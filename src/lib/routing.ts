@@ -72,16 +72,40 @@ export function searchLocalGazetteer(query: string, limit = 6): OsmPlace[] {
 }
 
 /**
- * Address search with fallback: live Nominatim first, curated local list
- * when OSM finds nothing (villas, beach clubs and new spots OSM misses).
+ * Direct OSM + local lookup. Used as the offline fallback when the server
+ * search route is unreachable.
  */
-export async function searchPlaces(
+export async function searchPlacesDirect(
   query: string,
   signal?: AbortSignal,
 ): Promise<OsmPlace[]> {
   const live = await searchPlacesBali(query, signal);
   if (live.length > 0) return live;
   return searchLocalGazetteer(query);
+}
+
+/**
+ * Primary address search: the server route merges live Nominatim with the
+ * curated gazetteer and any committed scraper CSV dumps. If the route is
+ * unreachable, falls back to a direct OSM + local lookup from the client.
+ */
+export async function searchPlaces(
+  query: string,
+  signal?: AbortSignal,
+): Promise<OsmPlace[]> {
+  try {
+    const res = await fetch(
+      `/api/places/search?q=${encodeURIComponent(query)}`,
+      { signal, headers: { Accept: "application/json" } },
+    );
+    if (!res.ok) throw new Error(`Place search failed (${res.status})`);
+    const data = (await res.json()) as { results?: OsmPlace[] };
+    if (Array.isArray(data.results) && data.results.length > 0)
+      return data.results;
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") throw err;
+  }
+  return searchPlacesDirect(query, signal);
 }
 
 export async function searchPlacesBali(
