@@ -13,6 +13,8 @@ interface AddressSearchInputProps {
   value: OsmPlace | null;
   onSelect: (place: OsmPlace) => void;
   onClear: () => void;
+  /** One-tap device location. When set, a crosshair button appears. */
+  onLocate?: () => void;
   /** When set, the empty state offers a "pick on map" escape hatch. */
   onPickOnMap?: () => void;
   locating?: boolean;
