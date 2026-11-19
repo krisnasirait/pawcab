@@ -255,6 +255,7 @@ export default function PetTransportPricing() {
                   onClear={() => setFromPlace(null)}
                   onLocate={() => locateFor("pickup")}
                   locating={locating === "pickup"}
+                  onPickOnMap={() => openMapFor("pickup")}
                 />
                 {locateError?.which === "pickup" && (
                   <p role="alert" className="mt-1.5 text-xs font-medium text-red-700">
@@ -296,6 +297,7 @@ export default function PetTransportPricing() {
                   onClear={() => setToPlace(null)}
                   onLocate={() => locateFor("dropoff")}
                   locating={locating === "dropoff"}
+                  onPickOnMap={() => openMapFor("dropoff")}
                 />
                 {locateError?.which === "dropoff" && (
                   <p role="alert" className="mt-1.5 text-xs font-medium text-red-700">

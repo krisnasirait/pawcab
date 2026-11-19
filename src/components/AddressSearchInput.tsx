@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { BsSearch, BsX } from "react-icons/bs";
-import { PiCrosshair } from "react-icons/pi";
+import { PiCrosshair, PiMapPin } from "react-icons/pi";
 import { searchPlaces, type OsmPlace } from "@/lib/routing";
 
 interface AddressSearchInputProps {
@@ -13,8 +13,8 @@ interface AddressSearchInputProps {
   value: OsmPlace | null;
   onSelect: (place: OsmPlace) => void;
   onClear: () => void;
-  /** One-tap device location. When set, a crosshair button appears. */
-  onLocate?: () => void;
+  /** When set, the empty state offers a "pick on map" escape hatch. */
+  onPickOnMap?: () => void;
   locating?: boolean;
 }
 
@@ -35,6 +35,7 @@ export default function AddressSearchInput({
   onClear,
   onLocate,
   locating = false,
+  onPickOnMap,
 }: AddressSearchInputProps) {
   const [query, setQuery] = useState(value?.short ?? "");
   const [results, setResults] = useState<OsmPlace[]>([]);
@@ -272,9 +273,25 @@ export default function AddressSearchInput({
           )}
 
           {status === "empty" && (
-            <p className="px-4 py-4 text-xs sm:text-sm text-warm-taupe">
-              No places found in Bali. Try a nearby landmark, street, or beach.
-            </p>
+            <div className="px-4 py-4">
+              <p className="text-xs sm:text-sm text-warm-taupe mb-3">
+                No places found in Bali. Try a nearby landmark, street, or
+                beach.
+              </p>
+              {onPickOnMap && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    onPickOnMap();
+                  }}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full bg-deep-midnight text-soft-white text-xs font-bold uppercase tracking-wider hover:bg-pawcab-navy transition-colors"
+                >
+                  <PiMapPin aria-hidden="true" className="text-sm" />
+                  Pick on Map Instead
+                </button>
+              )}
+            </div>
           )}
 
           {status === "error" && (
