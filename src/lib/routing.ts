@@ -38,22 +38,64 @@ export interface GazetteerEntry {
 const LOCAL_PLACES: GazetteerEntry[] =
   (gazetteer as { places?: GazetteerEntry[] }).places ?? [];
 
+function levenshtein(a: string, b: string): number {
+  if (a === b) return 0;
+  const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let diag = prev[0];
+    prev[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = prev[j];
+      prev[j] = Math.min(
+        prev[j] + 1,
+        prev[j - 1] + 1,
+        diag + (a[i - 1] === b[j - 1] ? 0 : 1),
+      );
+      diag = tmp;
+    }
+  }
+  return prev[b.length];
+}
+
 /**
- * Offline fallback: substring match over the curated Bali gazetteer.
- * Used only when Nominatim returns nothing, so OSM stays the primary.
+ * Token match with a small typo tolerance: exact substring wins, otherwise
+ * a token of length 4+ may be one edit away from a haystack word
+ * (two edits for length 7+). Google is fuzzy; our local lists should be too.
  */
-export function searchLocalGazetteer(query: string, limit = 6): OsmPlace[] {
+export function tokenMatches(
+  query: string,
+  name: string,
+  address: string,
+): boolean {
   const tokens = query
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .filter((t) => t.length >= 2);
-  if (tokens.length === 0) return [];
+  if (tokens.length === 0) return false;
+  const haystack = `${name} ${address}`.toLowerCase();
+  const words = haystack.split(/[^a-z0-9]+/).filter((w) => w.length > 2);
+  return tokens.every((t) => {
+    if (haystack.includes(t)) return true;
+    if (t.length < 4) return false;
+    const threshold = t.length >= 7 ? 2 : 1;
+    return words.some((w) => levenshtein(t, w) <= threshold);
+  });
+}
+/**
+ * Offline fallback: fuzzy match over the curated Bali gazetteer.
+ * Used only when Nominatim returns nothing, so OSM stays the primary.
+ */
+export function searchLocalGazetteer(query: string, limit = 6): OsmPlace[] {
+  const firstToken =
+    query
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((t) => t.length >= 2)[0] ?? "";
   const scored: Array<{ place: OsmPlace; score: number }> = [];
   for (const entry of LOCAL_PLACES) {
-    const haystack = `${entry.name} ${entry.address}`.toLowerCase();
-    if (!tokens.every((t) => haystack.includes(t))) continue;
+    if (!tokenMatches(query, entry.name, entry.address)) continue;
     // Prefer names that start with the query over mid-string matches.
-    const score = entry.name.toLowerCase().startsWith(tokens[0]) ? 0 : 1;
+    const score = entry.name.toLowerCase().startsWith(firstToken) ? 0 : 1;
     scored.push({
       place: {
         lat: entry.lat,

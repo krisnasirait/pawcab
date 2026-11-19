@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readdir, readFile } from "node:fs/promises";
+import { readdir, readFile, appendFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import gazetteer from "@/data/bali-places.json";
+import { liveScrapeAvailable, liveScrapePlaces } from "@/lib/liveScrape";
+import { tokenMatches } from "@/lib/routing";
 
 export interface ApiPlace {
   lat: number;
@@ -99,25 +101,21 @@ function tokenMatch(
   query: string,
   places: Array<{ name: string; address: string }>,
 ): number[] {
-  const tokens = query
-    .toLowerCase()
-    .split(/[^a-z0-9]+/)
-    .filter((t) => t.length >= 2);
-  if (tokens.length === 0) return [];
   const hits: number[] = [];
   places.forEach((p, i) => {
-    const haystack = `${p.name} ${p.address}`.toLowerCase();
-    if (tokens.every((t) => haystack.includes(t))) hits.push(i);
+    if (tokenMatches(query, p.name, p.address)) hits.push(i);
   });
   return hits.slice(0, 6);
 }
 
-async function readScrapedCsvPlaces(): Promise<ApiPlace[]> {
+async function readScrapedCsvPlaces(): Promise<
+  Array<ApiPlace & { sourceQuery: string }>
+> {
   try {
     const files = (await readdir(SCRAPED_DIR)).filter((f) =>
       f.endsWith(".csv"),
     );
-    const out: ApiPlace[] = [];
+    const out: Array<ApiPlace & { sourceQuery: string }> = [];
     for (const file of files) {
       const rows = parseCsv(await readFile(join(SCRAPED_DIR, file), "utf8"));
       for (const row of rows) {
@@ -131,6 +129,7 @@ async function readScrapedCsvPlaces(): Promise<ApiPlace[]> {
           name: address,
           short: name,
           source: "local",
+          sourceQuery: (row.source_query ?? "").trim().toLowerCase(),
         });
       }
     }
@@ -174,6 +173,46 @@ async function searchNominatim(query: string): Promise<ApiPlace[]> {
   }));
 }
 
+async function persistScrapedPlaces(
+  query: string,
+  places: Array<{ lat: number; lon: number; name: string; short: string }>,
+): Promise<void> {
+  // Best-effort self-populating cache: works on long-lived hosts, silently
+  // skips on read-only filesystems (e.g. serverless) where the committed
+  // CSVs remain the source of truth.
+  try {
+    await mkdir(SCRAPED_DIR, { recursive: true });
+    const file = join(SCRAPED_DIR, "auto.csv");
+    let existing = "";
+    try {
+      existing = await readFile(file, "utf8");
+    } catch {
+      // No cache file yet; one will be created below with a header.
+    }
+    const seenCoords = new Set<string>();
+    for (const m of existing.matchAll(
+      /(-?\d+\.\d+),\s*(-?\d+\.\d+)/g,
+    )) {
+      seenCoords.add(
+        `${Number(m[1]).toFixed(4)},${Number(m[2]).toFixed(4)}`,
+      );
+    }
+    const csvCell = (v: string | number) => `"${String(v).replace(/"/g, '""')}"`;
+    let out = existing === "" ? "title,address,coor,source_query\n" : "";
+    let added = 0;
+    for (const p of places) {
+      const key = `${p.lat.toFixed(4)},${p.lon.toFixed(4)}`;
+      if (seenCoords.has(key)) continue;
+      seenCoords.add(key);
+      out += [csvCell(p.short), csvCell(p.name), csvCell(`${p.lat},${p.lon}`), csvCell(query)].join(",") + "\n";
+      added += 1;
+    }
+    if (added > 0) await appendFile(file, out, "utf8");
+  } catch {
+    // Persistence is a bonus; the live results were already returned.
+  }
+}
+
 export async function GET(req: NextRequest) {
   const query = new URL(req.url).searchParams.get("q")?.trim() ?? "";
   if (query.length < 3) {
@@ -200,20 +239,46 @@ export async function GET(req: NextRequest) {
   }));
 
   // OSM stays primary; curated + scraped entries fill the gaps.
+  // A repeat of a previously scraped query matches instantly on the
+  // stored source_query, before fuzzy token matching even runs.
+  const normalizedQuery = query.toLowerCase().replace(/\s+/g, " ");
   const local = [...curated, ...scraped];
-  const localHits = tokenMatch(
-    query,
-    local.map((p) => ({ name: p.short, address: p.name })),
-  ).map((i) => local[i]);
+  const repeatHits = local.filter(
+    (p) =>
+      "sourceQuery" in p &&
+      (p as { sourceQuery: string }).sourceQuery === normalizedQuery,
+  );
+  const localHits = [
+    ...repeatHits,
+    ...tokenMatch(
+      query,
+      local.map((p) => ({ name: p.short, address: p.name })),
+    ).map((i) => local[i]),
+  ];
 
   const seen = new Set<string>();
   const results: ApiPlace[] = [];
-  for (const place of [...live, ...localHits]) {
+  const push = (place: ApiPlace) => {
     const key = `${place.lat.toFixed(4)},${place.lon.toFixed(4)}`;
-    if (seen.has(key)) continue;
+    if (seen.has(key)) return;
     seen.add(key);
     results.push(place);
+  };
+  for (const place of [...live, ...localHits]) {
+    push(place);
     if (results.length >= 8) break;
+  }
+
+  // Nothing anywhere: scrape Google live, show what comes back, and save
+  // the new rows so the next identical search is instant and offline.
+  if (results.length === 0 && liveScrapeAvailable()) {
+    const fresh = await liveScrapePlaces(query);
+    for (const place of fresh.slice(0, 8)) {
+      push({ ...place, source: "local" });
+    }
+    if (fresh.length > 0) {
+      persistScrapedPlaces(query, fresh).catch(() => {});
+    }
   }
 
   return NextResponse.json({ results });
