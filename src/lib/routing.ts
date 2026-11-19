@@ -5,6 +5,8 @@ export interface OsmPlace {
   name: string;
   /** Shortened name shown in the input after selection. */
   short: string;
+  /** Where the result came from: live OSM search or the local list. */
+  source?: "osm" | "local";
 }
 
 export interface DrivingRoute {
@@ -20,6 +22,66 @@ const BALI_VIEWBOX = "114.30,-8.00,115.80,-8.90";
 
 export function shortenDisplayName(displayName: string): string {
   return displayName.split(",").slice(0, 3).join(",").trim();
+}
+
+import gazetteer from "@/data/bali-places.json";
+
+export interface GazetteerEntry {
+  id: string;
+  name: string;
+  address: string;
+  lat: number;
+  lon: number;
+  source: string;
+}
+
+const LOCAL_PLACES: GazetteerEntry[] =
+  (gazetteer as { places?: GazetteerEntry[] }).places ?? [];
+
+/**
+ * Offline fallback: substring match over the curated Bali gazetteer.
+ * Used only when Nominatim returns nothing, so OSM stays the primary.
+ */
+export function searchLocalGazetteer(query: string, limit = 6): OsmPlace[] {
+  const tokens = query
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter((t) => t.length >= 2);
+  if (tokens.length === 0) return [];
+  const scored: Array<{ place: OsmPlace; score: number }> = [];
+  for (const entry of LOCAL_PLACES) {
+    const haystack = `${entry.name} ${entry.address}`.toLowerCase();
+    if (!tokens.every((t) => haystack.includes(t))) continue;
+    // Prefer names that start with the query over mid-string matches.
+    const score = entry.name.toLowerCase().startsWith(tokens[0]) ? 0 : 1;
+    scored.push({
+      place: {
+        lat: entry.lat,
+        lon: entry.lon,
+        name: entry.address || entry.name,
+        short: entry.name,
+        source: "local",
+      },
+      score,
+    });
+  }
+  return scored
+    .sort((a, b) => a.score - b.score)
+    .slice(0, limit)
+    .map((s) => s.place);
+}
+
+/**
+ * Address search with fallback: live Nominatim first, curated local list
+ * when OSM finds nothing (villas, beach clubs and new spots OSM misses).
+ */
+export async function searchPlaces(
+  query: string,
+  signal?: AbortSignal,
+): Promise<OsmPlace[]> {
+  const live = await searchPlacesBali(query, signal);
+  if (live.length > 0) return live;
+  return searchLocalGazetteer(query);
 }
 
 export async function searchPlacesBali(
@@ -52,6 +114,7 @@ export async function searchPlacesBali(
     lon: parseFloat(item.lon),
     name: item.display_name,
     short: shortenDisplayName(item.display_name),
+    source: "osm" as const,
   }));
 }
 

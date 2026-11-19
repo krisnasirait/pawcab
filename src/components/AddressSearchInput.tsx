@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BsSearch, BsX } from "react-icons/bs";
 import { PiCrosshair } from "react-icons/pi";
-import { searchPlacesBali, type OsmPlace } from "@/lib/routing";
+import { searchPlaces, type OsmPlace } from "@/lib/routing";
 
 interface AddressSearchInputProps {
   label: string;
@@ -63,7 +63,7 @@ export default function AddressSearchInput({
     const controller = new AbortController();
     const timer = setTimeout(async () => {
       try {
-        const places = await searchPlacesBali(trimmed, controller.signal);
+        const places = await searchPlaces(trimmed, controller.signal);
         if (controller.signal.aborted) return;
         setResults(places);
         setActiveIdx(places.length > 0 ? 0 : -1);
@@ -298,16 +298,22 @@ export default function AddressSearchInput({
       )}
 
       <p className="mt-1.5 text-[11px] text-warm-taupe">
-        Address search by{" "}
-        <a
-          href="https://www.openstreetmap.org/copyright"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline hover:text-deep-midnight transition-colors"
-        >
-          OpenStreetMap
-        </a>{" "}
-        contributors
+        {results.some((r) => r.source === "local") ? (
+          <>Address search by OpenStreetMap contributors and PawCab&apos;s local list</>
+        ) : (
+          <>
+            Address search by{" "}
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-deep-midnight transition-colors"
+            >
+              OpenStreetMap
+            </a>{" "}
+            contributors
+          </>
+        )}
       </p>
     </div>
   );

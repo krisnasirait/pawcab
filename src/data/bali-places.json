@@ -1,0 +1,36 @@
+{
+  "places": [
+    {
+      "id": "savaya-bali",
+      "name": "Savaya Bali",
+      "address": "Savaya Bali, Jalan Belimbing Sari, Pecatu, Kuta Selatan, Badung, Bali, 80362, Indonesia",
+      "lat": -8.8464133,
+      "lon": 115.1406518,
+      "source": "osm"
+    },
+    {
+      "id": "pura-luhur-uluwatu",
+      "name": "Pura Luhur Uluwatu",
+      "address": "Pura Luhur Uluwatu, Jalan Raya Uluwatu, Pecatu, Kuta Selatan, Badung, Bali, 80361, Indonesia",
+      "lat": -8.8293693,
+      "lon": 115.0843428,
+      "source": "osm"
+    },
+    {
+      "id": "tanah-lot",
+      "name": "Tanah Lot",
+      "address": "Tanah Lot, Jalan Enjung Pura, Batugaing, Beraban, Kediri, Tabanan, Bali, 82121, Indonesia",
+      "lat": -8.6212286,
+      "lon": 115.0868849,
+      "source": "osm"
+    },
+    {
+      "id": "mupu-rice-terrace",
+      "name": "Mupu Rice Terrace",
+      "address": "Mupu Rice Terrace, Tangkup, Kedisan, Tegallalang, Gianyar, Bali, 80561, Indonesia",
+      "lat": -8.428549,
+      "lon": 115.2798755,
+      "source": "osm"
+    }
+  ]
+}
