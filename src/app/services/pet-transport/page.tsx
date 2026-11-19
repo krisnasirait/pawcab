@@ -159,7 +159,7 @@ export default function PetTransportPage() {
                 </a>
 
                 <Link
-                  href="/#coverage"
+                  href="#pricing"
                   className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-all duration-300 bg-warm-ivory/60 backdrop-blur-sm"
                 >
                   Check Zones & Rates

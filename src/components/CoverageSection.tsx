@@ -7,7 +7,7 @@ export default function CoverageSection() {
   const coverage = contentData.home?.coverage;
 
   return (
-    <section className="bg-deep-midnight text-soft-white flex flex-col lg:flex-row w-full">
+    <section id="coverage" className="bg-deep-midnight text-soft-white flex flex-col lg:flex-row w-full">
       {/* Combined Text & Map Area with Bali Background and Midnight Filter */}
       <div
         className="flex-1 relative flex flex-col md:flex-row items-center justify-between py-8 md:py-12 lg:py-14 pr-8 md:pr-12 gap-8 overflow-hidden"
