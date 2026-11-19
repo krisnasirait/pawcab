@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+import dynamic from "next/dynamic";
 import {
   BsArrowRight,
   BsInfoCircle,
@@ -17,11 +18,19 @@ import { formatRupiah } from "@/data/fareCalculatorData";
 import {
   fetchDrivingRoute,
   calculateFlatFare,
+  getCurrentPosition,
+  geolocationErrorMessage,
+  reverseGeocodeBali,
   osmLinkFor,
   type OsmPlace,
 } from "@/lib/routing";
 import contentData from "@/lib/content";
 import AddressSearchInput from "./AddressSearchInput";
+import type { MapTarget } from "./MapPickerModal";
+
+const MapPickerModal = dynamic(() => import("./MapPickerModal"), {
+  ssr: false,
+});
 
 type RouteStatus = "idle" | "loading" | "ready" | "error";
 
@@ -34,6 +43,17 @@ type RouteStatus = "idle" | "loading" | "ready" | "error";
 export default function PetTransportPricing() {
   const [fromPlace, setFromPlace] = useState<OsmPlace | null>(null);
   const [toPlace, setToPlace] = useState<OsmPlace | null>(null);
+
+  // One-tap device location, per leg.
+  const [locating, setLocating] = useState<MapTarget | null>(null);
+  const [locateError, setLocateError] = useState<{
+    which: MapTarget;
+    message: string;
+  } | null>(null);
+
+  // Map picker modal.
+  const [mapOpen, setMapOpen] = useState(false);
+  const [mapTarget, setMapTarget] = useState<MapTarget>("pickup");
 
   // Optional trip notes / pet details
   const [tripNote, setTripNote] = useState<string>("");
@@ -108,6 +128,35 @@ export default function PetTransportPricing() {
   const handleSwap = () => {
     setFromPlace(toPlace);
     setToPlace(fromPlace);
+    setLocateError(null);
+  };
+
+  const locateFor = async (which: MapTarget) => {
+    setLocating(which);
+    setLocateError(null);
+    try {
+      const pos = await getCurrentPosition();
+      const place = await reverseGeocodeBali(pos.lat, pos.lon);
+      if (!place) {
+        setLocateError({
+          which,
+          message:
+            "Your location looks outside our Bali service area. Search or pick on the map instead.",
+        });
+        return;
+      }
+      if (which === "pickup") setFromPlace(place);
+      else setToPlace(place);
+    } catch (err) {
+      setLocateError({ which, message: geolocationErrorMessage(err) });
+    } finally {
+      setLocating(null);
+    }
+  };
+
+  const openMapFor = (which: MapTarget) => {
+    setMapTarget(which);
+    setMapOpen(true);
   };
 
   // Automated WhatsApp booking message with live route details.
@@ -204,7 +253,14 @@ export default function PetTransportPricing() {
                   value={fromPlace}
                   onSelect={setFromPlace}
                   onClear={() => setFromPlace(null)}
+                  onLocate={() => locateFor("pickup")}
+                  locating={locating === "pickup"}
                 />
+                {locateError?.which === "pickup" && (
+                  <p role="alert" className="mt-1.5 text-xs font-medium text-red-700">
+                    {locateError.message}
+                  </p>
+                )}
               </div>
 
               {/* Swap Button Column */}
@@ -238,8 +294,29 @@ export default function PetTransportPricing() {
                   value={toPlace}
                   onSelect={setToPlace}
                   onClear={() => setToPlace(null)}
+                  onLocate={() => locateFor("dropoff")}
+                  locating={locating === "dropoff"}
                 />
+                {locateError?.which === "dropoff" && (
+                  <p role="alert" className="mt-1.5 text-xs font-medium text-red-700">
+                    {locateError.message}
+                  </p>
+                )}
               </div>
+            </div>
+
+            {/* Map shortcut: pick either leg by tapping the map. */}
+            <div className="flex justify-center mb-6">
+              <button
+                type="button"
+                onClick={() =>
+                  openMapFor(fromPlace && !toPlace ? "dropoff" : "pickup")
+                }
+                className="inline-flex items-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-deep-midnight/25 text-deep-midnight text-xs font-bold uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-colors"
+              >
+                <PiMapPin aria-hidden="true" className="text-base" />
+                Choose on Map
+              </button>
             </div>
 
             {/* Note Section (Optional) */}
@@ -453,6 +530,22 @@ export default function PetTransportPricing() {
           </div>
         </div>
       </div>
+
+      {mapOpen && (
+        <MapPickerModal
+          target={mapTarget}
+          onTargetChange={setMapTarget}
+          pickup={fromPlace}
+          dropoff={toPlace}
+          onClose={() => setMapOpen(false)}
+          onConfirm={(place, which) => {
+            if (which === "pickup") setFromPlace(place);
+            else setToPlace(place);
+            setLocateError(null);
+            setMapOpen(false);
+          }}
+        />
+      )}
     </section>
   );
 }

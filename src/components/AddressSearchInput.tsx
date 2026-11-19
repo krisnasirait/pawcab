@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { BsSearch, BsX } from "react-icons/bs";
+import { PiCrosshair } from "react-icons/pi";
 import { searchPlacesBali, type OsmPlace } from "@/lib/routing";
 
 interface AddressSearchInputProps {
@@ -12,6 +13,9 @@ interface AddressSearchInputProps {
   value: OsmPlace | null;
   onSelect: (place: OsmPlace) => void;
   onClear: () => void;
+  /** One-tap device location. When set, a crosshair button appears. */
+  onLocate?: () => void;
+  locating?: boolean;
 }
 
 type SearchStatus = "idle" | "searching" | "ready" | "empty" | "error";
@@ -29,6 +33,8 @@ export default function AddressSearchInput({
   value,
   onSelect,
   onClear,
+  onLocate,
+  locating = false,
 }: AddressSearchInputProps) {
   const [query, setQuery] = useState(value?.short ?? "");
   const [results, setResults] = useState<OsmPlace[]>([]);
@@ -173,7 +179,7 @@ export default function AddressSearchInput({
           placeholder={placeholder}
           className="w-full bg-white border border-warm-taupe rounded-xl pl-9 pr-12 py-3 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:ring-1 focus:ring-pawcab-navy transition-all"
         />
-        {query && (
+        {query ? (
           <button
             type="button"
             onClick={handleClear}
@@ -182,6 +188,27 @@ export default function AddressSearchInput({
           >
             <BsX aria-hidden="true" className="text-lg" />
           </button>
+        ) : (
+          onLocate && (
+            <button
+              type="button"
+              onClick={onLocate}
+              disabled={locating}
+              aria-label={`Use my current location for ${label}`}
+              title="Use my location"
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-sm text-warm-taupe hover:text-deep-midnight transition-colors disabled:opacity-60"
+            >
+              {locating ? (
+                <span
+                  aria-hidden="true"
+                  role="status"
+                  className="h-4 w-4 animate-spin rounded-full border-2 border-sand-beige border-t-pawcab-navy"
+                />
+              ) : (
+                <PiCrosshair aria-hidden="true" className="text-lg" />
+              )}
+            </button>
+          )
         )}
       </div>
 

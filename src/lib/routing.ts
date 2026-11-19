@@ -101,3 +101,79 @@ export function calculateFlatFare(distanceKm: number, minimumFare = 65000): {
 export function osmLinkFor(lat: number, lon: number): string {
   return `https://www.openstreetmap.org/?mlat=${lat.toFixed(5)}&mlon=${lon.toFixed(5)}#map=16/${lat.toFixed(5)}/${lon.toFixed(5)}`;
 }
+
+export interface GeoCoords {
+  lat: number;
+  lon: number;
+}
+
+/** One-shot browser geolocation with a sane timeout. */
+export function getCurrentPosition(timeoutMs = 12000): Promise<GeoCoords> {
+  return new Promise((resolve, reject) => {
+    if (!("geolocation" in navigator)) {
+      reject(new Error("unsupported"));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) =>
+        resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+      (err) => reject(err),
+      { enableHighAccuracy: true, timeout: timeoutMs, maximumAge: 60000 },
+    );
+  });
+}
+
+export function geolocationErrorMessage(err: unknown): string {
+  if (err instanceof GeolocationPositionError) {
+    if (err.code === err.PERMISSION_DENIED)
+      return "Location permission was denied. Allow access in your browser, or search the address instead.";
+    if (err.code === err.TIMEOUT)
+      return "Getting your location timed out. Try again, or search the address instead.";
+    return "Your location is unavailable right now. Search the address instead.";
+  }
+  if (err instanceof Error && err.message === "unsupported")
+    return "This browser does not support location. Search the address instead.";
+  return "Could not get your location. Search the address instead.";
+}
+
+/**
+ * Reverse-geocode a point. Returns the place when it falls inside Bali,
+ * null when the point is outside the service area (thrown errors mean
+ * the lookup itself failed).
+ */
+export async function reverseGeocodeBali(
+  lat: number,
+  lon: number,
+  signal?: AbortSignal,
+): Promise<OsmPlace | null> {
+  const params = new URLSearchParams({
+    format: "jsonv2",
+    lat: String(lat),
+    lon: String(lon),
+  });
+  const res = await fetch(
+    `https://nominatim.openstreetmap.org/reverse?${params.toString()}`,
+    { signal, headers: { Accept: "application/json" } },
+  );
+  if (!res.ok) {
+    throw new Error(`Reverse lookup failed (${res.status})`);
+  }
+  const data = (await res.json()) as {
+    display_name?: string;
+    address?: { state?: string; country_code?: string };
+  };
+  if (!data.display_name) {
+    throw new Error("No address found for that point");
+  }
+  const state = data.address?.state ?? "";
+  const country = data.address?.country_code ?? "";
+  if (country !== "id" || !/bali/i.test(state)) {
+    return null;
+  }
+  return {
+    lat,
+    lon,
+    name: data.display_name,
+    short: shortenDisplayName(data.display_name),
+  };
+}
