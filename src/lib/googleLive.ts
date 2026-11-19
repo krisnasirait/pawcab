@@ -107,7 +107,7 @@ export async function liveGooglePlaces(
     if (oldest) cache.delete(oldest);
   }
 
-  let places: ScrapedPlace[] = [];
+  const places: ScrapedPlace[] = [];
   try {
     const mapsUrl =
       `https://www.google.com/maps/search/${encodeURIComponent(clean)}` +
