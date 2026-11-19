@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readdir, readFile, appendFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import gazetteer from "@/data/bali-places.json";
-import { liveScrapeAvailable, liveScrapePlaces } from "@/lib/liveScrape";
+import { liveGooglePlaces } from "@/lib/googleLive";
 import { tokenMatches } from "@/lib/routing";
 
 export interface ApiPlace {
@@ -269,10 +269,11 @@ export async function GET(req: NextRequest) {
     if (results.length >= 8) break;
   }
 
-  // Nothing anywhere: scrape Google live, show what comes back, and save
-  // the new rows so the next identical search is instant and offline.
-  if (results.length === 0 && liveScrapeAvailable()) {
-    const fresh = await liveScrapePlaces(query);
+  // Nothing anywhere: scrape Google live (in-process port of the Python
+  // scraper, Vercel-safe), show what comes back, and save the new rows so
+  // the next identical search is instant and offline.
+  if (results.length === 0) {
+    const fresh = await liveGooglePlaces(query);
     for (const place of fresh.slice(0, 8)) {
       push({ ...place, source: "local" });
     }
