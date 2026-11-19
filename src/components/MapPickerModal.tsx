@@ -65,7 +65,11 @@ function ClickToPick({
 function FlyTo({ center }: { center: [number, number] | null }) {
   const map = useMap();
   useEffect(() => {
-    if (center) map.flyTo(center, 14, { duration: 0.8 });
+    if (!center) return;
+    const reduceMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    map.flyTo(center, 14, { duration: reduceMotion ? 0 : 0.8 });
   }, [center, map]);
   return null;
 }

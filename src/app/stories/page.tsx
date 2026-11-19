@@ -123,8 +123,7 @@ export default function StoriesPage() {
             {/* Header Content */}
             <div className="max-w-2xl lg:max-w-xl">
               {/* Eyebrow Badge */}
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full bg-pawcab-gold inline-block" />
+              <div className="mb-4">
                 <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
                   {storiesContent?.hero?.badge || "COMMUNITY & EXPERIENCES"}
                 </p>
@@ -336,8 +335,7 @@ export default function StoriesPage() {
 
             <p className="text-warm-taupe text-base md:text-lg max-w-xl mx-auto mb-8 font-normal">
               Whether it&apos;s a scenic beach day, a comfortable vet visit, or
-              a relocation across Bali, we&apos;re here to make every journey
-              effortless.
+              a relocation across Bali, we handle every ride door to door.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">

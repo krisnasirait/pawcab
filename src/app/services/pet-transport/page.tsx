@@ -124,8 +124,7 @@ export default function PetTransportPage() {
             {/* Header Content */}
             <div className="max-w-2xl lg:max-w-xl">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full bg-pawcab-gold inline-block" />
+              <div className="mb-4">
                 <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
                   {transport?.hero?.badge || "PRIVATE PET TRANSPORTATION"}
                 </p>

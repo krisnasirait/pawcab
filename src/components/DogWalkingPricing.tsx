@@ -61,8 +61,7 @@ export default function DogWalkingPricing() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="max-w-3xl mb-14 md:mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-pawcab-gold inline-block" />
+          <div className="mb-3">
             <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
               PRICING
             </p>

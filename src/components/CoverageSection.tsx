@@ -65,7 +65,7 @@ export default function CoverageSection() {
         />
         <div aria-hidden="true" className="absolute inset-0 bg-deep-midnight/50"></div>
         <div className="absolute bottom-6 right-6 text-right">
-          <p className="font-medium tracking-[0.2em] leading-loose text-xs uppercase text-soft-white text-shadow">
+          <p className="font-medium tracking-[0.2em] leading-loose text-xs uppercase text-soft-white">
             {(coverage?.sideQuoteLines || ["Scenic routes.", "Happier", "journeys."]).map((line, idx) => (
               <React.Fragment key={idx}>
                 {line}

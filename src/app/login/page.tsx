@@ -87,7 +87,7 @@ function LoginForm() {
 
         {/* Error notification */}
         {error && (
-          <div className="mb-6 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2.5 animate-fadeIn">
+          <div className="mb-6 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2.5">
             <div className="w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-bold">
               !
             </div>

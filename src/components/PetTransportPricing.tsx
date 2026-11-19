@@ -187,8 +187,7 @@ export default function PetTransportPricing() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="max-w-3xl mb-14 md:mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-pawcab-gold inline-block" />
+          <div className="mb-3">
             <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
               PRICING
             </p>
@@ -207,12 +206,6 @@ export default function PetTransportPricing() {
             INTERACTIVE CALCULATOR WIDGET (LUXURY CARD)
             ======================================================== */}
         <div className="max-w-4xl mx-auto mb-16 bg-white rounded-3xl p-6 sm:p-9 md:p-10 border border-sand-beige/50 shadow-xl relative overflow-visible">
-          {/* Subtle Accent Glow */}
-          <div
-            aria-hidden="true"
-            className="absolute top-0 right-0 w-80 h-80 bg-pawcab-gold/10 rounded-full blur-3xl pointer-events-none"
-          />
-
           <div className="relative z-10">
             {/* Widget Title & Badge */}
             <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-sand-beige/30 mb-8">
@@ -399,11 +392,6 @@ export default function PetTransportPricing() {
 
             {bothSelected && routeStatus === "ready" && (
               <div className="rounded-3xl bg-deep-midnight text-soft-white p-6 sm:p-8 md:p-10 shadow-xl border border-soft-white/10 relative overflow-hidden">
-                {/* Subtle Decorative Glow */}
-                <div
-                  aria-hidden="true"
-                  className="absolute -top-12 -right-12 w-48 h-48 bg-pawcab-gold/15 rounded-full blur-2xl pointer-events-none"
-                />
 
                 <p className="text-[11px] uppercase tracking-widest text-soft-white/60 font-semibold mb-3">
                   {fromPlace?.short} to {toPlace?.short}

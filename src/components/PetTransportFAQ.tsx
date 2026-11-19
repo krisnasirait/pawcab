@@ -251,10 +251,6 @@ export default function PetTransportFAQ() {
       id="faq"
       className="py-20 md:py-28 px-6 md:px-10 bg-warm-ivory relative overflow-hidden"
     >
-      {/* Subtle Ambient Decorative Circles in Background */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-sand-beige/20 rounded-full blur-3xl pointer-events-none -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-pawcab-gold/10 rounded-full blur-3xl pointer-events-none translate-x-1/2" />
-
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16 pb-8 border-b border-sand-beige/40">
