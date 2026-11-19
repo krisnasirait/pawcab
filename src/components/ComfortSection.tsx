@@ -93,7 +93,7 @@ export default function ComfortSection() {
                   <p className="font-medium text-deep-midnight text-xl mb-1">
                     {detail.title}
                   </p>
-                  <p className="text-xs text-deep-midnight/70">
+                  <p className="text-xs text-warm-taupe">
                     {detail.subtitle}
                   </p>
                 </div>
@@ -106,10 +106,10 @@ export default function ComfortSection() {
         <div className="w-full md:w-5/12 lg:w-6/12 hidden md:block" />
       </div>
 
-      {/* Bottom Cursive Text aligned with Navbar width */}
+      {/* Bottom quote: set on a scrim pill so it holds contrast over the photo. */}
       <div className="relative z-10 max-w-7xl mx-auto w-full mt-6 hidden md:flex justify-end pointer-events-none">
-        <p className="font-playfair italic text-deep-midnight md:text-soft-white text-xl md:text-2xl lg:text-3xl transform -rotate-6 drop-shadow-md">
-          {comfort?.quoteText || "Comfort Comes First ♡"}
+        <p className="font-playfair italic text-soft-white text-xl md:text-2xl lg:text-3xl bg-deep-midnight/45 rounded-full px-7 py-2.5">
+          {comfort?.quoteText || "Comfort Comes First"}
         </p>
       </div>
     </section>

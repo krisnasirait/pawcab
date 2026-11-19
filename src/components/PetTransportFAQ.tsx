@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { BsChevronDown, BsWhatsapp } from "react-icons/bs";
-import { PiSparkleFill, PiChatCircleDotsFill } from "react-icons/pi";
+import { PiChatCircleDotsFill } from "react-icons/pi";
 import contentData from "@/lib/content";
 
 interface FAQItem {
@@ -162,46 +162,50 @@ export default function PetTransportFAQ() {
     return (
       <div
         key={item.id}
-        onClick={() => toggleItem(item.id)}
-        className={`group rounded-2xl border p-5 sm:p-6 cursor-pointer transition-all duration-300 ${
+        className={`group rounded-2xl border p-5 sm:p-6 transition-all duration-300 ${
           isOpen
             ? "bg-white border-pawcab-gold shadow-md ring-1 ring-pawcab-gold/30"
             : "bg-soft-white/90 border-sand-beige/40 shadow-xs hover:border-sand-beige hover:shadow-sm hover:bg-white"
         }`}
       >
-        {/* Card Header */}
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-start gap-3.5">
+        {/* Card Header: the whole header is one button, so keyboard,
+            screen reader, and pointer users all get the same control. */}
+        <button
+          type="button"
+          onClick={() => toggleItem(item.id)}
+          aria-expanded={isOpen}
+          className="flex w-full items-start justify-between gap-4 text-left"
+        >
+          <span className="flex items-start gap-3.5">
             {/* Number Pill */}
             <span
               className={`shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-playfair font-bold text-xs sm:text-sm tracking-wider transition-all duration-300 ${
                 isOpen
                   ? "bg-deep-midnight text-pawcab-gold shadow-sm"
-                  : "bg-sand-beige/30 text-deep-midnight/80 group-hover:bg-sand-beige/60"
+                  : "bg-sand-beige/30 text-deep-midnight group-hover:bg-sand-beige/60"
               }`}
             >
               {item.number}
             </span>
 
             {/* Question Title */}
-            <h3 className="font-playfair text-base sm:text-lg font-bold text-deep-midnight leading-snug pt-0.5 group-hover:text-pawcab-navy transition-colors">
+            <span className="font-playfair text-base sm:text-lg font-bold text-deep-midnight leading-snug pt-0.5 group-hover:text-pawcab-navy transition-colors">
               {item.question}
-            </h3>
-          </div>
+            </span>
+          </span>
 
-          {/* Chevron Indicator Button */}
-          <button
-            type="button"
+          {/* Chevron Indicator */}
+          <span
+            aria-hidden="true"
             className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 mt-0.5 ${
               isOpen
                 ? "bg-deep-midnight text-pawcab-gold rotate-180 shadow-xs"
-                : "bg-sand-beige/30 text-deep-midnight/70 group-hover:bg-sand-beige/60"
+                : "bg-sand-beige/30 text-warm-taupe group-hover:bg-sand-beige/60"
             }`}
-            aria-label={isOpen ? "Collapse question" : "Expand question"}
           >
             <BsChevronDown className="text-xs transition-transform duration-300" />
-          </button>
-        </div>
+          </span>
+        </button>
 
         {/* Smooth Expand/Collapse Content Container via CSS Grid */}
         <div
@@ -212,7 +216,7 @@ export default function PetTransportFAQ() {
           }`}
         >
           <div className="overflow-hidden">
-            <div className="pl-0 sm:pl-[46px] text-deep-midnight/80 text-sm sm:text-base leading-relaxed font-normal">
+            <div className="pl-0 sm:pl-[46px] text-warm-taupe text-sm sm:text-base leading-relaxed font-normal">
               <span className="inline-block px-2 py-0.5 rounded bg-pawcab-gold/20 text-deep-midnight font-bold text-xs uppercase tracking-wider mr-2">
                 Answer
               </span>
@@ -256,7 +260,7 @@ export default function PetTransportFAQ() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16 pb-8 border-b border-sand-beige/40">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sand-beige/35 border border-sand-beige/50 text-xs font-semibold uppercase tracking-[0.2em] text-warm-taupe mb-4">
-              <PiSparkleFill className="text-pawcab-gold text-sm" />
+              <PiChatCircleDotsFill className="text-pawcab-navy text-sm" />
               Pet Transport Guide
             </div>
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-deep-midnight font-bold tracking-tight">

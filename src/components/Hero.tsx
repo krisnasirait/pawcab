@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Button from "./Button";
 import { BsArrowRight } from "react-icons/bs";
 import contentData from "@/lib/content";
@@ -7,17 +8,27 @@ export default function Hero() {
   const hero = contentData.home.hero;
 
   return (
-    <section className="relative h-screen min-h-[650px] w-full flex flex-col justify-between bg-deep-midnight px-10 overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section className="relative h-screen min-h-[650px] w-full flex flex-col justify-between bg-deep-midnight px-6 md:px-10 overflow-hidden">
+      {/* Background photo: the product in its real setting. The gradient is
+          a readability scrim, not decoration: white text sits on the dark
+          left half, and a bottom fade carries the closing quote. */}
+      <Image
+        src={hero.bgImage}
+        alt="Dog riding calmly in The PawCab pet taxi in Bali"
+        fill
+        priority
+        fetchPriority="high"
+        sizes="100vw"
+        className="object-cover opacity-80"
+      />
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
-        style={{
-          backgroundImage: `url('${hero.bgImage}')`,
-        }}
-      >
-        {/* Gradient Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-midnight/70 via-deep-midnight/40 to-transparent" />
-      </div>
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-deep-midnight/70 via-deep-midnight/40 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-deep-midnight/70 via-transparent to-transparent"
+      />
 
       {/* Main Content Area aligned with Navbar max-w-7xl */}
       <div className="relative z-10 flex-grow flex items-center max-w-7xl mx-auto w-full pt-20">
@@ -33,11 +44,9 @@ export default function Hero() {
           <p className="text-base md:text-lg font-normal leading-relaxed mb-8 max-w-sm md:max-w-md text-soft-white/90">
             {hero.description}
           </p>
-          <a href={hero.primaryCtaHref}>
-            <Button variant="primary" icon={<BsArrowRight />}>
-              {hero.primaryCtaText}
-            </Button>
-          </a>
+          <Button variant="primary" icon={<BsArrowRight aria-hidden="true" />} href={hero.primaryCtaHref}>
+            {hero.primaryCtaText}
+          </Button>
         </div>
       </div>
 

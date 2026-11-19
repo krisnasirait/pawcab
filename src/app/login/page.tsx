@@ -80,7 +80,7 @@ function LoginForm() {
           <h1 className="font-playfair text-2xl sm:text-3xl font-bold text-deep-midnight">
             The PawCab Admin
           </h1>
-          <p className="text-xs sm:text-sm text-deep-midnight/70 mt-1.5">
+          <p className="text-xs sm:text-sm text-warm-taupe mt-1.5">
             Manage website content, pricing, stories & GitHub sync.
           </p>
         </div>
@@ -98,7 +98,7 @@ function LoginForm() {
         {/* Login form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-deep-midnight/80 mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-warm-taupe mb-2">
               Admin Password
             </label>
             <div className="relative">
@@ -111,13 +111,13 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password..."
                 autoFocus
-                className="w-full pl-10 pr-11 py-3 bg-white/90 border border-sand-beige/70 rounded-xl text-deep-midnight text-sm placeholder:text-deep-midnight/35 focus:outline-none focus:ring-2 focus:ring-pawcab-gold/70 focus:border-pawcab-gold transition"
+                className="w-full pl-10 pr-11 py-3 bg-white/90 border border-warm-taupe rounded-xl text-deep-midnight text-sm placeholder:text-warm-taupe focus:outline-none focus:ring-2 focus:ring-pawcab-gold/70 focus:border-pawcab-gold transition"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-deep-midnight/50 hover:text-deep-midnight transition"
-                tabIndex={-1}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-warm-taupe hover:text-deep-midnight transition"
               >
                 {showPassword ? <BsEyeSlash size={16} /> : <BsEye size={16} />}
               </button>
@@ -164,7 +164,7 @@ function LoginForm() {
 
         {/* Footer info */}
         <div className="mt-8 pt-6 border-t border-sand-beige/40 flex flex-col items-center gap-3 text-center">
-          <div className="flex items-center gap-1.5 text-xs text-deep-midnight/60">
+          <div className="flex items-center gap-1.5 text-xs text-warm-taupe">
             <PiPawPrint className="text-pawcab-gold" />
             <span>GitHub Contents API & Classic PAT Synced</span>
           </div>

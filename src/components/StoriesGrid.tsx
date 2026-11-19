@@ -217,7 +217,7 @@ export default function StoriesGrid() {
                 {selectedStory.title}
               </h3>
 
-              <div className="prose text-deep-midnight/80 text-sm md:text-base leading-relaxed space-y-4 mb-8">
+              <div className="prose text-warm-taupe text-sm md:text-base leading-relaxed space-y-4 mb-8">
                 <p>{selectedStory.fullStory}</p>
               </div>
 
@@ -231,7 +231,7 @@ export default function StoriesGrid() {
                 <p className="text-sm italic text-deep-midnight font-medium mb-2">
                   &ldquo;{selectedStory.quote}&rdquo;
                 </p>
-                <p className="text-xs text-deep-midnight/70 font-semibold">
+                <p className="text-xs text-warm-taupe font-semibold">
                   — {selectedStory.ownerName}
                 </p>
               </div>

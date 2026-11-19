@@ -4,9 +4,14 @@
   --color-pawcab-navy: #283B70;
   --color-deep-midnight: #14233F;
   --color-pawcab-gold: #FDC300;
+  /* Brass is the gold-ink companion for light surfaces: the brand gold
+     (#FDC300) falls below contrast on ivory, so ratings and small marks
+     on light backgrounds use brass instead. */
+  --color-brass: #7A6000;
   --color-warm-ivory: #F7F2E8;
   --color-sand-beige: #DDD0BA;
-  --color-warm-taupe: #9C8B75;
+  /* Darkened from #9C8B75 so secondary text meets WCAG AA (5.6:1 on ivory). */
+  --color-warm-taupe: #6E5E4D;
   --color-soft-white: #FCFAF6;
   --font-playfair: var(--font-playfair);
   --font-montserrat: var(--font-montserrat);
@@ -27,5 +32,51 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair), serif;
     color: var(--color-deep-midnight);
+  }
+
+  /* R-39: every operable control shows it can be used. Set once in the
+     base layer, never per component. */
+  button,
+  a,
+  summary,
+  select,
+  label[for],
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  /* R-32: one visible focus indicator everywhere. Navy on light surfaces,
+     gold on midnight surfaces (each meets 3:1 against its background). */
+  :focus-visible {
+    outline: 3px solid var(--color-pawcab-navy);
+    outline-offset: 2px;
+  }
+
+  header :focus-visible,
+  .bg-deep-midnight :focus-visible {
+    outline-color: var(--color-pawcab-gold);
+  }
+
+  /* Placeholders are text too: full-strength taupe, never faint grey. */
+  ::placeholder {
+    color: var(--color-warm-taupe);
+    opacity: 1;
+  }
+}
+
+/* R-39: non-essential motion stops when the user asks it to. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

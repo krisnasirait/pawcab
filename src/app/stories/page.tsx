@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import StoriesGrid from "@/components/StoriesGrid";
 import {
   BsArrowRight,
   BsArrowDown,
@@ -87,6 +86,7 @@ export default function StoriesPage() {
             <img
               src={storiesContent?.hero?.heroImage || "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1200&auto=format&fit=crop"}
               alt="Happy dog enjoying a calm car journey"
+              fetchPriority="high"
               className="w-full h-full object-cover object-center"
             />
             {/* Soft edge blend gradient on the left edge into warm-ivory */}
@@ -109,7 +109,7 @@ export default function StoriesPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto w-full">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs md:text-sm text-deep-midnight/60 font-medium mb-8">
+            <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
               <Link
                 href="/"
                 className="hover:text-deep-midnight transition-colors"
@@ -136,7 +136,7 @@ export default function StoriesPage() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-deep-midnight/80 font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-warm-taupe font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 {storiesContent?.hero?.subtitle || "Real experiences, happy paws, and journeys made better with The PawCab."}
               </p>
 
@@ -153,10 +153,10 @@ export default function StoriesPage() {
                 </a>
 
                 <a
-                  href="#stories-list"
+                  href="#featured-story"
                   className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-all duration-300 bg-warm-ivory/60 backdrop-blur-sm"
                 >
-                  Explore Stories
+                  Read Our Stories
                   <BsArrowDown />
                 </a>
               </div>
@@ -178,7 +178,7 @@ export default function StoriesPage() {
                   <h3 className="font-playfair font-bold text-base text-deep-midnight">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-deep-midnight/70 mt-0.5">
+                  <p className="text-xs text-warm-taupe mt-0.5">
                     {item.subtitle}
                   </p>
                 </div>
@@ -190,7 +190,7 @@ export default function StoriesPage() {
         {/* ========================================================
             SPOTLIGHT FEATURED STORY (Editorial Layout)
             ======================================================== */}
-        <section className="py-12 md:py-16 px-6 md:px-10 bg-soft-white">
+        <section id="featured-story" className="py-12 md:py-16 px-6 md:px-10 bg-soft-white">
           <div className="max-w-5xl mx-auto">
             <div className="rounded-3xl bg-warm-ivory border border-sand-beige/50 overflow-hidden shadow-md flex flex-col lg:flex-row items-center">
               {/* Photo on Left */}
@@ -211,7 +211,7 @@ export default function StoriesPage() {
               <div className="w-full lg:w-7/12 p-6 sm:p-8 md:p-9 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 text-xs text-warm-taupe font-semibold uppercase tracking-wider mb-2">
-                    <span className="flex items-center gap-1 text-deep-midnight/70">
+                    <span className="flex items-center gap-1 text-warm-taupe">
                       <PiMapPin className="text-pawcab-gold" /> Canggu → Echo Beach
                     </span>
                     <span>•</span>
@@ -222,7 +222,7 @@ export default function StoriesPage() {
                     How Luna Found Her Travel Confidence in Bali
                   </h2>
 
-                  <p className="text-deep-midnight/75 text-xs sm:text-sm leading-relaxed mb-4 font-normal">
+                  <p className="text-warm-taupe text-xs sm:text-sm leading-relaxed mb-4 font-normal">
                     Getting Luna into vehicles used to mean anxious pacing, panting, and distress.
                     With The PawCab’s flat-floor setup, soothing climate control, and her human
                     seated right by her side, Luna now gazes happily out the window and looks forward
@@ -230,7 +230,7 @@ export default function StoriesPage() {
                   </p>
 
                   <div className="p-3.5 sm:p-4 rounded-xl bg-sand-beige/30 border border-sand-beige/50 mb-4">
-                    <div className="flex items-center gap-1 text-pawcab-gold mb-1.5">
+                    <div className="flex items-center gap-1 text-brass mb-1.5">
                       {[...Array(5)].map((_, i) => (
                         <BsStarFill key={i} className="text-[0.65rem]" />
                       ))}
@@ -239,7 +239,7 @@ export default function StoriesPage() {
                       &ldquo;We used to dread taking Luna anywhere because of car anxiety. With The PawCab, she hops right in with tail wags. It changed our Bali lifestyle completely.&rdquo;
                     </blockquote>
                     <p className="text-[0.7rem] font-bold text-deep-midnight mt-1.5">
-                      — Sarah & Luna (Canggu)
+                      Sarah & Luna, Canggu
                     </p>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ export default function StoriesPage() {
                     href="https://wa.me/?text=Hi%20PawCab,%20I%20read%20Luna's%20story%20and%20would%20like%20to%20book%20a%20similar%20trip."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-gold transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-navy transition-colors"
                   >
                     Book a Similar Ride <BsArrowRight />
                   </a>
@@ -284,37 +284,37 @@ export default function StoriesPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
                 <p className="font-playfair text-4xl sm:text-5xl text-pawcab-gold font-bold mb-2">
-                  500+
+                  {storiesContent?.metrics?.[0]?.value || "500+"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 uppercase tracking-wider">
-                  Happy Trips Completed
+                  {storiesContent?.metrics?.[0]?.label || "Happy Trips Completed"}
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
                 <p className="font-playfair text-4xl sm:text-5xl text-pawcab-gold font-bold mb-2">
-                  100%
+                  {storiesContent?.metrics?.[1]?.value || "100%"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 uppercase tracking-wider">
-                  Private Pet Cabins
+                  {storiesContent?.metrics?.[1]?.label || "Private Pet Cabins"}
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
                 <p className="font-playfair text-4xl sm:text-5xl text-pawcab-gold font-bold mb-2">
-                  4.9★
+                  {storiesContent?.metrics?.[2]?.value || "4.9★"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 uppercase tracking-wider">
-                  Owner Satisfaction
+                  {storiesContent?.metrics?.[2]?.label || "Owner Satisfaction"}
                 </p>
               </div>
 
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
                 <p className="font-playfair text-4xl sm:text-5xl text-pawcab-gold font-bold mb-2">
-                  18+
+                  {storiesContent?.metrics?.[3]?.value || "18+"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 uppercase tracking-wider">
-                  Bali Zones Covered
+                  {storiesContent?.metrics?.[3]?.label || "Bali Zones Covered"}
                 </p>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function StoriesPage() {
               Ready to Create Your Pet&apos;s Next Happy Story?
             </h2>
 
-            <p className="text-deep-midnight/70 text-base md:text-lg max-w-xl mx-auto mb-8 font-normal">
+            <p className="text-warm-taupe text-base md:text-lg max-w-xl mx-auto mb-8 font-normal">
               Whether it&apos;s a scenic beach day, a comfortable vet visit, or
               a relocation across Bali, we&apos;re here to make every journey
               effortless.
@@ -355,7 +355,7 @@ export default function StoriesPage() {
                 href="/#services"
                 className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-all duration-300"
               >
-                Explore Services
+                See Our Services
                 <BsArrowRight />
               </Link>
             </div>

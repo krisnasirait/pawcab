@@ -14,7 +14,6 @@ import {
   PiMapPin,
   PiNavigationArrow,
   PiCalculator,
-  PiSparkle,
   PiHouse,
   PiBuildings,
   PiLink,
@@ -140,7 +139,7 @@ function LocationSelect({
           )}
           {label}
         </label>
-        <span className="text-[10px] text-warm-taupe/80 font-medium">
+        <span className="text-[10px] text-warm-taupe font-medium">
           {isPickup ? "Origin" : "Destination"}
         </span>
       </div>
@@ -210,13 +209,13 @@ function LocationSelect({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search area (e.g. Canggu, Sanur, Ubud)..."
-                className="w-full bg-white border border-sand-beige/70 rounded-xl pl-9 pr-8 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-deep-midnight/40 focus:outline-none focus:border-pawcab-navy focus:ring-1 focus:ring-pawcab-navy transition-all"
+                className="w-full bg-white border border-warm-taupe rounded-xl pl-9 pr-8 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:ring-1 focus:ring-pawcab-navy transition-all"
               />
               {search && (
                 <button
                   type="button"
                   onClick={() => setSearch("")}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-warm-taupe hover:text-deep-midnight w-5 h-5 flex items-center justify-center"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 text-sm text-warm-taupe hover:text-deep-midnight w-11 h-11 flex items-center justify-center"
                 >
                   ✕
                 </button>
@@ -233,10 +232,10 @@ function LocationSelect({
                   key={z}
                   type="button"
                   onClick={() => setActiveZoneFilter(z)}
-                  className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                  className={`px-3 py-1 min-h-[44px] inline-flex items-center rounded-full text-[10px] font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
                     activeZoneFilter === z
                       ? "bg-deep-midnight text-white shadow-xs"
-                      : "bg-white text-deep-midnight/70 border border-sand-beige/60 hover:bg-sand-beige/30"
+                      : "bg-white text-warm-taupe border border-sand-beige/60 hover:bg-sand-beige/30"
                   }`}
                 >
                   {z === "all" ? "All" : `Zone ${z}`}
@@ -248,7 +247,7 @@ function LocationSelect({
           {/* Area List (Grouped by Zone) */}
           <div className="max-h-64 sm:max-h-72 overflow-y-auto divide-y divide-sand-beige/20 overscroll-contain">
             {filteredAreas.length === 0 ? (
-              <div className="py-8 text-center text-xs text-deep-midnight/60">
+              <div className="py-8 text-center text-xs text-warm-taupe">
                 No location found matching &ldquo;{search}&rdquo;
               </div>
             ) : (
@@ -266,7 +265,7 @@ function LocationSelect({
                   return (
                     <div key={zId}>
                       {/* Sticky Zone Section Header */}
-                      <div className="px-4 py-1.5 bg-sand-beige/25 text-[10px] font-bold uppercase tracking-widest text-deep-midnight/80 sticky top-0 backdrop-blur-xs flex items-center justify-between border-y border-sand-beige/30">
+                      <div className="px-4 py-1.5 bg-sand-beige/25 text-[10px] font-bold uppercase tracking-widest text-warm-taupe sticky top-0 backdrop-blur-xs flex items-center justify-between border-y border-sand-beige/30">
                         <span>Zone {zId}</span>
                         <span className="text-[9px] font-medium text-warm-taupe">
                           {areasInZone.length}{" "}
@@ -285,7 +284,7 @@ function LocationSelect({
                             className={`w-full text-left px-4 py-3 flex items-center justify-between text-xs sm:text-sm transition-colors cursor-pointer ${
                               isSelected
                                 ? "bg-pawcab-gold/20 text-deep-midnight font-bold"
-                                : "text-deep-midnight/80 hover:bg-warm-ivory hover:text-deep-midnight"
+                                : "text-warm-taupe hover:bg-warm-ivory hover:text-deep-midnight"
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
@@ -417,7 +416,7 @@ export default function PetTransportPricing() {
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-bold leading-tight mb-4">
             Zone-Based Fare
           </h2>
-          <p className="text-deep-midnight/80 font-normal text-base md:text-lg leading-relaxed">
+          <p className="text-warm-taupe font-normal text-base md:text-lg leading-relaxed">
             Calculate your private pet transportation fare based on distance
             (km) and zone-specific rates across Bali.
           </p>
@@ -449,7 +448,7 @@ export default function PetTransportPricing() {
               </div>
 
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pawcab-gold/20 text-deep-midnight text-xs font-semibold uppercase tracking-wider">
-                <PiSparkle className="text-xs text-pawcab-navy" /> Per-KM Zone
+                <PiCalculator className="text-xs text-pawcab-navy" /> Per-KM Zone
                 Matrix
               </span>
             </div>
@@ -476,7 +475,7 @@ export default function PetTransportPricing() {
                     value={pickupAddress}
                     onChange={(e) => setPickupAddress(e.target.value)}
                     placeholder="e.g. Villa Lotus, Jl. Kayu Aya No. 8"
-                    className="w-full bg-warm-ivory/50 border border-sand-beige/70 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-deep-midnight/40 focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
+                    className="w-full bg-warm-ivory/50 border border-warm-taupe rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
                   />
                 </div>
 
@@ -487,7 +486,7 @@ export default function PetTransportPricing() {
                       <PiLink className="text-pawcab-gold text-sm shrink-0" />
                       Google Maps Link
                     </label>
-                    <span className="text-[10px] uppercase font-semibold text-warm-taupe/70 bg-sand-beige/30 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] uppercase font-semibold text-warm-taupe bg-sand-beige/30 px-2 py-0.5 rounded-full">
                       Optional
                     </span>
                   </div>
@@ -496,7 +495,7 @@ export default function PetTransportPricing() {
                     value={pickupMapsLink}
                     onChange={(e) => setPickupMapsLink(e.target.value)}
                     placeholder="https://maps.app.goo.gl/..."
-                    className="w-full bg-warm-ivory/50 border border-sand-beige/70 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-deep-midnight/40 focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
+                    className="w-full bg-warm-ivory/50 border border-warm-taupe rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
                   />
                 </div>
               </div>
@@ -533,7 +532,7 @@ export default function PetTransportPricing() {
                     value={dropoffAddress}
                     onChange={(e) => setDropoffAddress(e.target.value)}
                     placeholder="e.g. Sunset Vet Clinic, Jl. Sunset Road"
-                    className="w-full bg-warm-ivory/50 border border-sand-beige/70 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-deep-midnight/40 focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
+                    className="w-full bg-warm-ivory/50 border border-warm-taupe rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
                   />
                 </div>
 
@@ -544,7 +543,7 @@ export default function PetTransportPricing() {
                       <PiLink className="text-pawcab-navy text-sm shrink-0" />
                       Google Maps Link
                     </label>
-                    <span className="text-[10px] uppercase font-semibold text-warm-taupe/70 bg-sand-beige/30 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] uppercase font-semibold text-warm-taupe bg-sand-beige/30 px-2 py-0.5 rounded-full">
                       Optional
                     </span>
                   </div>
@@ -553,7 +552,7 @@ export default function PetTransportPricing() {
                     value={dropoffMapsLink}
                     onChange={(e) => setDropoffMapsLink(e.target.value)}
                     placeholder="https://maps.app.goo.gl/..."
-                    className="w-full bg-warm-ivory/50 border border-sand-beige/70 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-deep-midnight/40 focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
+                    className="w-full bg-warm-ivory/50 border border-warm-taupe rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:bg-white transition-all shadow-2xs"
                   />
                 </div>
               </div>
@@ -566,7 +565,7 @@ export default function PetTransportPricing() {
                   <PiNotePencil className="text-pawcab-navy text-base shrink-0" />
                   Trip Notes & Pet Details
                 </label>
-                <span className="text-[10px] uppercase font-semibold text-warm-taupe/70 bg-sand-beige/30 px-2.5 py-0.5 rounded-full">
+                <span className="text-[10px] uppercase font-semibold text-warm-taupe bg-sand-beige/30 px-2.5 py-0.5 rounded-full">
                   Optional
                 </span>
               </div>
@@ -575,7 +574,7 @@ export default function PetTransportPricing() {
                 onChange={(e) => setTripNote(e.target.value)}
                 rows={2}
                 placeholder="e.g. 2 large dogs (Golden Retriever), owner will ride along, crate required, pick up at 10:00 AM..."
-                className="w-full bg-white border border-sand-beige/70 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-deep-midnight/40 focus:outline-none focus:border-pawcab-navy transition-all resize-none shadow-2xs"
+                className="w-full bg-white border border-warm-taupe rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy transition-all resize-none shadow-2xs"
               />
             </div>
 
@@ -660,7 +659,7 @@ export default function PetTransportPricing() {
         </div>
 
         {/* Note / Disclaimer Banner */}
-        <div className="max-w-4xl mx-auto mb-10 p-5 rounded-2xl bg-warm-ivory/60 border border-sand-beige/40 flex items-start sm:items-center gap-3 text-xs text-deep-midnight/80">
+        <div className="max-w-4xl mx-auto mb-10 p-5 rounded-2xl bg-warm-ivory/60 border border-sand-beige/40 flex items-start sm:items-center gap-3 text-xs text-warm-taupe">
           <BsInfoCircle className="text-base text-warm-taupe shrink-0 mt-0.5 sm:mt-0" />
           <p>
             Fares are calculated based on estimated distance (km) and PawCab
@@ -679,10 +678,10 @@ export default function PetTransportPricing() {
                 Interactive Zone Map
               </p>
               <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight">
-                Explore The Coverage Map
+                The Coverage Map
               </h3>
             </div>
-            <p className="text-xs text-deep-midnight/70 font-normal max-w-sm sm:text-right">
+            <p className="text-xs text-warm-taupe font-normal max-w-sm sm:text-right">
               Pinch or scroll to zoom. Tap any highlighted area to verify your
               exact zone.
             </p>

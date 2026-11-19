@@ -70,7 +70,7 @@ export default function DogWalkingPricing() {
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-bold leading-tight mb-4">
             Dog Walking Fares
           </h2>
-          <p className="text-deep-midnight/80 font-light text-base md:text-lg leading-relaxed">
+          <p className="text-warm-taupe font-light text-base md:text-lg leading-relaxed">
             Our walking services are available in two options. Choose the one that
             best suits your dog&apos;s needs.
           </p>
@@ -103,7 +103,7 @@ export default function DogWalkingPricing() {
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feat, idx) => (
                     <li key={idx} className="flex items-center gap-3">
-                      <BsCheckCircleFill className="text-pawcab-gold shrink-0 text-base" />
+                      <BsCheckCircleFill className="text-brass shrink-0 text-base" />
                       <span className="text-deep-midnight/85 text-sm sm:text-[15px] font-normal">
                         {feat}
                       </span>
@@ -118,7 +118,7 @@ export default function DogWalkingPricing() {
                   <p className="font-playfair text-3xl sm:text-4xl font-bold text-deep-midnight leading-none">
                     {plan.price}
                   </p>
-                  <p className="text-xs sm:text-sm text-deep-midnight/60 font-light mt-1.5">
+                  <p className="text-xs sm:text-sm text-warm-taupe font-light mt-1.5">
                     {plan.unit}
                   </p>
                 </div>
@@ -138,7 +138,7 @@ export default function DogWalkingPricing() {
         </div>
 
         {/* Note / Disclaimer Banner */}
-        <div className="max-w-4xl mx-auto p-5 sm:p-6 rounded-2xl bg-warm-ivory/70 border border-sand-beige/40 flex items-start sm:items-center gap-3.5 text-xs sm:text-sm text-deep-midnight/80">
+        <div className="max-w-4xl mx-auto p-5 sm:p-6 rounded-2xl bg-warm-ivory/70 border border-sand-beige/40 flex items-start sm:items-center gap-3.5 text-xs sm:text-sm text-warm-taupe">
           <BsInfoCircle className="text-lg text-warm-taupe shrink-0 mt-0.5 sm:mt-0" />
           <p>
             All sessions include fresh drinking water, gentle paw cleaning after the

@@ -78,6 +78,7 @@ export default function PetTransportPage() {
             <img
               src={transport?.hero?.heroImage || "https://images.unsplash.com/photo-1703828654117-112baa788e51?q=80&w=1170&auto=format&fit=crop"}
               alt="Golden retriever looking out car window"
+              fetchPriority="high"
               className="w-full h-full object-cover object-center"
             />
             {/* Soft edge blend gradient on the left edge of the image */}
@@ -100,7 +101,7 @@ export default function PetTransportPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto w-full">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs md:text-sm text-deep-midnight/60 font-medium mb-8">
+            <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
               <Link
                 href="/"
                 className="hover:text-deep-midnight transition-colors"
@@ -141,7 +142,7 @@ export default function PetTransportPage() {
               </h1>
 
               {/* Description */}
-              <p className="text-deep-midnight/80 font-medium text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-warm-taupe font-medium text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 {transport?.hero?.subtitle || "Safe, comfortable, and stress-free transportation for your beloved companions. Whether it's a vet appointment, grooming session, airport transfer, or a little adventure, we make sure your pets travel in comfort with a personal touch."}
               </p>
 
@@ -209,7 +210,7 @@ export default function PetTransportPage() {
                   <h3 className="font-playfair text-lg md:text-xl font-bold text-deep-midnight mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-deep-midnight/70 font-medium max-w-[200px]">
+                  <p className="text-xs md:text-sm text-warm-taupe font-medium max-w-[200px]">
                     {item.subtitle}
                   </p>
                 </div>
@@ -246,7 +247,7 @@ export default function PetTransportPage() {
                     Comfort in Every Detail
                   </h2>
 
-                  <p className="text-deep-midnight/80 font-medium text-sm sm:text-base leading-relaxed mb-8">
+                  <p className="text-warm-taupe font-medium text-sm sm:text-base leading-relaxed mb-8">
                     Our vehicle is designed to provide a safe and enjoyable
                     travel experience for pets, with a clean, spacious, and
                     air-conditioned cabin. A medium-sized crate is available
@@ -271,7 +272,7 @@ export default function PetTransportPage() {
                       <p className="text-xs uppercase tracking-widest text-warm-taupe font-semibold">
                         Custom arrangements?
                       </p>
-                      <p className="text-xs text-deep-midnight/70 font-medium mt-0.5">
+                      <p className="text-xs text-warm-taupe font-medium mt-0.5">
                         Multiple stops or special care available
                       </p>
                     </div>
@@ -279,7 +280,7 @@ export default function PetTransportPage() {
                       href="https://wa.me/?text=Hi%20PawCab,%20I%20have%20a%20question%20about%20pet%20transportation."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-gold transition-colors"
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-navy transition-colors"
                     >
                       Inquire Directly <BsArrowRight />
                     </a>

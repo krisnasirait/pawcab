@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { BsChevronDown, BsWhatsapp } from "react-icons/bs";
-import { PiSparkleFill, PiChatCircleDotsFill } from "react-icons/pi";
+import { PiChatCircleDotsFill } from "react-icons/pi";
 import contentData from "@/lib/content";
 
 interface FAQItem {
@@ -122,42 +122,45 @@ export default function DogWalkingFAQ() {
     return (
       <div
         key={item.id}
-        onClick={() => toggleItem(item.id)}
-        className={`group rounded-2xl border p-5 sm:p-6 cursor-pointer transition-all duration-300 ${
+        className={`group rounded-2xl border p-5 sm:p-6 transition-all duration-300 ${
           isOpen
             ? "bg-white border-pawcab-gold shadow-md ring-1 ring-pawcab-gold/30"
             : "bg-soft-white/90 border-sand-beige/40 shadow-xs hover:border-sand-beige hover:shadow-sm hover:bg-white"
         }`}
       >
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-start gap-3.5">
+        <button
+          type="button"
+          onClick={() => toggleItem(item.id)}
+          aria-expanded={isOpen}
+          className="flex w-full items-start justify-between gap-4 text-left"
+        >
+          <span className="flex items-start gap-3.5">
             <span
               className={`shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-playfair font-bold text-xs sm:text-sm tracking-wider transition-all duration-300 ${
                 isOpen
                   ? "bg-deep-midnight text-pawcab-gold shadow-sm"
-                  : "bg-sand-beige/30 text-deep-midnight/80 group-hover:bg-sand-beige/60"
+                  : "bg-sand-beige/30 text-deep-midnight group-hover:bg-sand-beige/60"
               }`}
             >
               {item.number}
             </span>
 
-            <h3 className="font-playfair text-base sm:text-lg font-bold text-deep-midnight leading-snug pt-0.5 group-hover:text-pawcab-navy transition-colors">
+            <span className="font-playfair text-base sm:text-lg font-bold text-deep-midnight leading-snug pt-0.5 group-hover:text-pawcab-navy transition-colors">
               {item.question}
-            </h3>
-          </div>
+            </span>
+          </span>
 
-          <button
-            type="button"
+          <span
+            aria-hidden="true"
             className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 mt-0.5 ${
               isOpen
                 ? "bg-deep-midnight text-pawcab-gold rotate-180 shadow-xs"
-                : "bg-sand-beige/30 text-deep-midnight/70 group-hover:bg-sand-beige/60"
+                : "bg-sand-beige/30 text-warm-taupe group-hover:bg-sand-beige/60"
             }`}
-            aria-label={isOpen ? "Collapse question" : "Expand question"}
           >
             <BsChevronDown className="text-xs transition-transform duration-300" />
-          </button>
-        </div>
+          </span>
+        </button>
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
@@ -167,7 +170,7 @@ export default function DogWalkingFAQ() {
           }`}
         >
           <div className="overflow-hidden">
-            <div className="text-deep-midnight/80 text-sm sm:text-base leading-relaxed pl-11.5 sm:pl-12.5 font-light">
+            <div className="text-warm-taupe text-sm sm:text-base leading-relaxed pl-11.5 sm:pl-12.5 font-light">
               {item.answer ? (
                 <span>{item.answer}</span>
               ) : (
@@ -200,7 +203,7 @@ export default function DogWalkingFAQ() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-sand-beige/30 pb-8">
           <div>
             <div className="inline-flex items-center gap-2 mb-3">
-              <PiSparkleFill className="text-pawcab-gold text-sm animate-pulse" />
+              <PiChatCircleDotsFill className="text-pawcab-navy text-sm" />
               <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
                 FREQUENTLY ASKED QUESTIONS
               </p>
@@ -208,7 +211,7 @@ export default function DogWalkingFAQ() {
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-bold leading-tight">
               Dog Walking Questions
             </h2>
-            <p className="text-deep-midnight/70 font-light text-sm sm:text-base mt-2 max-w-xl">
+            <p className="text-warm-taupe font-light text-sm sm:text-base mt-2 max-w-xl">
               Everything you need to know about our neighborhood and beach walking sessions.
             </p>
           </div>
@@ -216,13 +219,13 @@ export default function DogWalkingFAQ() {
           <div className="flex items-center gap-3">
             <button
               onClick={expandAll}
-              className="px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-full border border-deep-midnight/20 text-deep-midnight/80 hover:bg-deep-midnight hover:text-soft-white transition-colors"
+              className="px-5 py-3 min-h-[44px] inline-flex items-center text-xs uppercase tracking-wider font-semibold rounded-full border border-deep-midnight/20 text-deep-midnight hover:bg-deep-midnight hover:text-soft-white transition-colors"
             >
               Expand All
             </button>
             <button
               onClick={collapseAll}
-              className="px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-full border border-deep-midnight/20 text-deep-midnight/80 hover:bg-deep-midnight hover:text-soft-white transition-colors"
+              className="px-5 py-3 min-h-[44px] inline-flex items-center text-xs uppercase tracking-wider font-semibold rounded-full border border-deep-midnight/20 text-deep-midnight hover:bg-deep-midnight hover:text-soft-white transition-colors"
             >
               Collapse All
             </button>
@@ -243,7 +246,7 @@ export default function DogWalkingFAQ() {
               <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight">
                 Have a special request for your dog?
               </h3>
-              <p className="text-deep-midnight/70 font-light text-sm mt-1">
+              <p className="text-warm-taupe font-light text-sm mt-1">
                 Chat with our team on WhatsApp for customized schedules, route preferences, or multiple dogs.
               </p>
             </div>

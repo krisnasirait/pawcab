@@ -73,7 +73,7 @@ export default function HowItWorksSection() {
               <p className="font-medium text-deep-midnight text-lg mb-2">
                 {step.title}
               </p>
-              <p className="text-xs text-deep-midnight/70 max-w-[200px] mx-auto xl:mx-0">
+              <p className="text-xs text-warm-taupe max-w-[200px] mx-auto xl:mx-0">
                 {step.desc}
               </p>
             </div>
@@ -82,25 +82,21 @@ export default function HowItWorksSection() {
 
         {/* Action Area */}
         <div className="w-full xl:w-1/4 flex flex-col items-center xl:items-end text-center xl:text-right">
-          <a
-            href={contentData.site?.whatsapp ? `https://wa.me/${contentData.site.whatsapp}` : "https://wa.me/6282266383800"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full md:w-auto"
-          >
-            <Button
+          <Button
               variant="secondary"
               className="mb-4 w-full md:w-auto flex justify-between"
-              icon={<BsArrowRight />}
+              icon={<BsArrowRight aria-hidden="true" />}
+              href={contentData.site?.whatsapp ? `https://wa.me/${contentData.site.whatsapp}` : "https://wa.me/6282266383800"}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="flex items-center gap-2">
-                <BsWhatsapp className="text-lg" />
+              <span className="flex items-center gap-2">
+                <BsWhatsapp className="text-lg" aria-hidden="true" />
                 <span>Book Via WhatsApp</span>
-              </div>
+              </span>
             </Button>
-          </a>
-          <p className="text-xs text-deep-midnight/70 font-medium">
-            Quick, easy, and pet-friendly. ♡
+          <p className="text-xs text-warm-taupe font-medium">
+            Quick, easy, and pet-friendly.
           </p>
         </div>
       </div>

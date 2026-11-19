@@ -1,14 +1,13 @@
 import React from "react";
 import Button from "./Button";
 import { BsArrowRight } from "react-icons/bs";
-import Link from "next/link";
 import contentData from "@/lib/content";
 
 export default function AboutSection() {
   const about = contentData.home.about;
 
   return (
-    <section className="relative w-full py-16 md:py-18 px-10 overflow-hidden bg-warm-ivory">
+    <section id="about" className="relative w-full py-16 md:py-18 px-6 md:px-10 overflow-hidden bg-warm-ivory">
       {/* Background Image on the Right */}
       <div className="absolute z-10 right-0 top-0 bottom-0 w-full md:w-[60%] lg:w-[56%] h-full">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -45,20 +44,18 @@ export default function AboutSection() {
           <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
             {about.headingLine1} <br /> {about.headingLine2}
           </h2>
-          <p className="text-sm md:text-base font-normal leading-relaxed mb-6 text-deep-midnight/80">
+          <p className="text-sm md:text-base font-normal leading-relaxed mb-6 text-warm-taupe">
             {about.description}
           </p>
-          <Link href={about.ctaHref || "/stories"}>
-            <Button variant="secondary" icon={<BsArrowRight />}>
-              {about.ctaText}
-            </Button>
-          </Link>
+          <Button variant="secondary" icon={<BsArrowRight aria-hidden="true" />} href={about.ctaHref || "/stories"}>
+            {about.ctaText}
+          </Button>
         </div>
       </div>
 
-      {/* Bottom Text */}
+      {/* Bottom Text: sits over the photo, so it carries its own scrim. */}
       <div className="absolute bottom-10 right-10 text-right z-10 hidden md:block">
-        <p className="text-soft-white/80 font-medium tracking-[0.2em] leading-loose text-base">
+        <p className="bg-deep-midnight/55 rounded-2xl px-5 py-3 text-soft-white font-medium tracking-[0.2em] leading-loose text-base">
           {about.bottomQuoteLines?.map((line, i) => (
             <React.Fragment key={i}>
               {line}

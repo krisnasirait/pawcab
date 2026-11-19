@@ -46,15 +46,9 @@ export default function ServicesSection() {
             </h2>
           </div>
           <div className="text-right">
-            <p className="text-deep-midnight/80 font-normal mb-2 max-w-sm ml-auto">
+            <p className="text-warm-taupe font-normal mb-2 max-w-sm ml-auto">
               {section?.subtitle || "From daily rides to special adventures, we're here for every step of their journey."}
             </p>
-            <a
-              href="#services"
-              className="inline-flex items-center gap-2 uppercase tracking-widest text-xs font-bold hover:text-pawcab-gold transition-colors"
-            >
-              View All Services <BsArrowRight />
-            </a>
           </div>
         </div>
 
@@ -77,15 +71,15 @@ export default function ServicesSection() {
                 <h3 className="font-playfair text-2xl font-bold mb-3 group-hover:text-pawcab-navy transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-deep-midnight/70 font-normal max-w-[400px] text-sm mb-4">
+                <p className="text-warm-taupe font-normal max-w-[400px] text-sm mb-4">
                   {service.description}
                 </p>
 
                 <div className="flex justify-between items-end">
-                  <span className="inline-flex items-center gap-2 uppercase tracking-widest text-xs font-bold text-warm-taupe group-hover:text-pawcab-gold transition-colors">
-                    Learn More <BsArrowRight />
+                  <span className="inline-flex items-center gap-2 uppercase tracking-widest text-xs font-bold text-warm-taupe group-hover:text-pawcab-navy transition-colors">
+                    See {service.title} <BsArrowRight aria-hidden="true" />
                   </span>
-                  <span className="font-playfair text-4xl text-warm-taupe/30 font-bold">
+                  <span className="font-playfair text-4xl text-warm-taupe font-bold">
                     {service.id}
                   </span>
                 </div>

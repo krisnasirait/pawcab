@@ -12,7 +12,7 @@ import {
   PiDog,
   PiCamera,
   PiDrop,
-  PiSparkle,
+  PiPawPrint,
 } from "react-icons/pi";
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default function DogWalkingPage() {
       subtitle: "Fresh water breaks & healthy snacks",
     },
     {
-      icon: <PiSparkle className="text-3xl text-deep-midnight" />,
+      icon: <PiPawPrint className="text-3xl text-deep-midnight" />,
       title: "Clean Paws Return",
       subtitle: "Towel-dried and freshened up",
     },
@@ -87,6 +87,7 @@ export default function DogWalkingPage() {
             <img
               src="https://images.unsplash.com/photo-1782067128048-1e2f7c18bcf1?q=80&w=1170&auto=format&fit=crop"
               alt="Person walking happy dog outdoors on a leash"
+              fetchPriority="high"
               className="w-full h-full object-cover object-center"
             />
             {/* Soft edge blend gradient on the left edge into warm-ivory */}
@@ -109,7 +110,7 @@ export default function DogWalkingPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto w-full">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs md:text-sm text-deep-midnight/60 font-medium mb-8">
+            <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
               <Link
                 href="/"
                 className="hover:text-deep-midnight transition-colors"
@@ -144,7 +145,7 @@ export default function DogWalkingPage() {
               </h1>
 
               {/* Description */}
-              <p className="text-deep-midnight/80 font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-warm-taupe font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 Give your furry companion the opportunity to explore, exercise,
                 and enjoy the outdoors. Our pet walking service is thoughtfully
                 tailored to your dog&apos;s pace, personality, and needs,
@@ -208,7 +209,7 @@ export default function DogWalkingPage() {
                       <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-deep-midnight mb-3">
                         {opt.title}
                       </h3>
-                      <p className="text-deep-midnight/75 font-normal text-sm sm:text-base leading-relaxed">
+                      <p className="text-warm-taupe font-normal text-sm sm:text-base leading-relaxed">
                         {opt.description}
                       </p>
                     </div>
@@ -219,7 +220,7 @@ export default function DogWalkingPage() {
                       </span>
                       <a
                         href="#pricing"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-deep-midnight group-hover:text-pawcab-gold transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-deep-midnight group-hover:text-pawcab-navy transition-colors"
                       >
                         See Pricing <BsArrowRight />
                       </a>
@@ -272,7 +273,7 @@ export default function DogWalkingPage() {
                   <h3 className="font-playfair text-lg md:text-xl font-bold text-deep-midnight mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-deep-midnight/70 font-normal max-w-[200px]">
+                  <p className="text-xs md:text-sm text-warm-taupe font-normal max-w-[200px]">
                     {item.subtitle}
                   </p>
                 </div>

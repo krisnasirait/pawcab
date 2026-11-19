@@ -36,11 +36,9 @@ export default function CoverageSection() {
             {coverage?.description || "Know your zone before you book. Our service covers Bali with simple, transparent pricing."}
           </p>
           <div>
-            <a href={coverage?.ctaHref || "/services/pet-transport#pricing"}>
-              <Button variant="primary" icon={<BsArrowRight />}>
-                {coverage?.ctaText || "View Zones & Rates"}
-              </Button>
-            </a>
+            <Button variant="primary" icon={<BsArrowRight aria-hidden="true" />} href={coverage?.ctaHref || "/services/pet-transport#pricing"}>
+              {coverage?.ctaText || "View Zones & Rates"}
+            </Button>
           </div>
         </div>
 
@@ -56,12 +54,16 @@ export default function CoverageSection() {
 
       {/* Right Image (Paling Kanan) */}
       <div className="w-full lg:w-60 xl:w-72 shrink-0 relative h-48 lg:h-auto border-t lg:border-t-0 lg:border-l border-soft-white/10 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={coverage?.sideImage || "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1938&auto=format&fit=crop"}
           alt="Bali Scenic Route"
+          loading="lazy"
+          width={800}
+          height={1000}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-deep-midnight/30"></div>
+        <div aria-hidden="true" className="absolute inset-0 bg-deep-midnight/50"></div>
         <div className="absolute bottom-6 right-6 text-right">
           <p className="font-medium tracking-[0.2em] leading-loose text-xs uppercase text-soft-white text-shadow">
             {(coverage?.sideQuoteLines || ["Scenic routes.", "Happier", "journeys."]).map((line, idx) => (

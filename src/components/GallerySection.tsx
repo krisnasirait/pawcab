@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { IoClose, IoChevronBack, IoChevronForward } from "react-icons/io5";
 import contentData from "@/lib/content";
 
@@ -9,6 +9,8 @@ export default function GallerySection() {
   const galleryItems = gallery.items || [];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   const showNext = useCallback(() => {
     if (lightboxIndex === null || galleryItems.length === 0) return;
@@ -25,6 +27,18 @@ export default function GallerySection() {
         : 0
     );
   }, [lightboxIndex, galleryItems.length]);
+
+  // When the lightbox opens, move focus to the close button; on close,
+  // return focus to the thumbnail that opened it (R-32, R-26).
+  const lightboxOpen = lightboxIndex !== null;
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    triggerRef.current = document.activeElement as HTMLElement;
+    closeRef.current?.focus();
+    return () => {
+      triggerRef.current?.focus?.();
+    };
+  }, [lightboxOpen]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -61,7 +75,7 @@ export default function GallerySection() {
             {gallery.heading || "Our Passengers"}
           </h2>
           {gallery.subtitle && (
-            <p className="text-deep-midnight/70 text-sm mt-2 max-w-xl">
+            <p className="text-warm-taupe text-sm mt-2 max-w-xl">
               {gallery.subtitle}
             </p>
           )}
@@ -70,10 +84,12 @@ export default function GallerySection() {
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5">
           {galleryItems.map((item, idx) => (
-            <div
+            <button
               key={idx}
+              type="button"
               onClick={() => setLightboxIndex(idx)}
-              className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-sand-beige/20 border border-sand-beige/40 shadow-sm hover:shadow-xl hover:border-pawcab-gold/70 transition-all duration-300 cursor-pointer group"
+              aria-label={`View photo of ${item.name || `passenger ${idx + 1}`}`}
+              className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-sand-beige/20 border border-sand-beige/40 shadow-sm hover:shadow-xl hover:border-pawcab-gold/70 transition-all duration-300 text-left group"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -82,12 +98,12 @@ export default function GallerySection() {
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep-midnight/80 via-deep-midnight/30 to-transparent p-3 pt-6 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep-midnight/80 via-deep-midnight/30 to-transparent p-3 pt-6 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
                 <p className="text-white text-xs font-semibold truncate text-center">
                   {item.name}
                 </p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -97,11 +113,13 @@ export default function GallerySection() {
         <div
           role="dialog"
           aria-modal="true"
+          aria-label="Passenger photo viewer"
           className="fixed inset-0 z-50 bg-deep-midnight/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8 select-none"
           onClick={() => setLightboxIndex(null)}
         >
           {/* Close Button */}
           <button
+            ref={closeRef}
             onClick={() => setLightboxIndex(null)}
             aria-label="Close image preview"
             className="absolute top-4 right-4 md:top-6 md:right-8 w-11 h-11 rounded-full bg-soft-white/10 hover:bg-soft-white/20 text-soft-white flex items-center justify-center transition-colors cursor-pointer z-20"
@@ -142,6 +160,8 @@ export default function GallerySection() {
             <img
               src={galleryItems[lightboxIndex].image}
               alt={galleryItems[lightboxIndex].name}
+              width={1200}
+              height={900}
               className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl"
             />
             {/* Caption & Counter */}

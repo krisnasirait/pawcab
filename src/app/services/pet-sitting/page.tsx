@@ -117,6 +117,7 @@ export default function PetSittingPage() {
             <img
               src="https://images.unsplash.com/photo-1455287278107-115faab3eafa?q=80&w=1171&auto=format&fit=crop"
               alt="Golden retriever dog resting comfortably at home on a bed"
+              fetchPriority="high"
               className="w-full h-full object-cover object-center"
             />
             {/* Soft edge blend gradient on the left edge into warm-ivory */}
@@ -139,7 +140,7 @@ export default function PetSittingPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto w-full">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs md:text-sm text-deep-midnight/60 font-medium mb-8">
+            <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
               <Link
                 href="/"
                 className="hover:text-deep-midnight transition-colors"
@@ -174,7 +175,7 @@ export default function PetSittingPage() {
               </h1>
 
               {/* Description */}
-              <p className="text-deep-midnight/80 font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-warm-taupe font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 Our in-home pet sitting service allows your beloved companions
                 to stay happy and comfortable in their familiar environment.
                 From feeding and playtime to everyday care, we provide
@@ -246,7 +247,7 @@ export default function PetSittingPage() {
                   <h3 className="font-playfair text-lg md:text-xl font-bold text-deep-midnight mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-deep-midnight/70 font-normal max-w-[200px]">
+                  <p className="text-xs md:text-sm text-warm-taupe font-normal max-w-[200px]">
                     {item.subtitle}
                   </p>
                 </div>
@@ -280,7 +281,7 @@ export default function PetSittingPage() {
                     Personalized Care
                   </h2>
 
-                  <p className="text-deep-midnight/80 font-normal text-sm sm:text-base leading-relaxed mb-8">
+                  <p className="text-warm-taupe font-normal text-sm sm:text-base leading-relaxed mb-8">
                     We focus on maintaining your pet&apos;s routine and comfort,
                     so they feel safe and loved while you&apos;re away.
                   </p>
@@ -302,7 +303,7 @@ export default function PetSittingPage() {
                       <p className="text-xs uppercase tracking-widest text-warm-taupe font-semibold">
                         Ready to book sitting?
                       </p>
-                      <p className="text-xs text-deep-midnight/70 font-normal mt-0.5">
+                      <p className="text-xs text-warm-taupe font-normal mt-0.5">
                         Drop-in visits & multi-day care available
                       </p>
                     </div>
@@ -310,7 +311,7 @@ export default function PetSittingPage() {
                       href="https://wa.me/?text=Hi%20PawCab,%20I'd%20like%20to%20request%20a%20quote%20for%20In-Home%20Pet%20Sitting."
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-gold transition-colors"
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-navy transition-colors"
                     >
                       Request a Quote <BsArrowRight />
                     </a>
@@ -359,7 +360,7 @@ export default function PetSittingPage() {
                   </h3>
 
                   {/* Step Description */}
-                  <p className="text-xs sm:text-sm text-deep-midnight/70 font-normal leading-relaxed max-w-[220px]">
+                  <p className="text-xs sm:text-sm text-warm-taupe font-normal leading-relaxed max-w-[220px]">
                     {step.desc}
                   </p>
                 </div>
@@ -372,7 +373,7 @@ export default function PetSittingPage() {
                 <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight mb-1">
                   Ready to arrange care for your pet?
                 </h3>
-                <p className="text-deep-midnight/70 font-normal text-sm">
+                <p className="text-warm-taupe font-normal text-sm">
                   Let us know your dates and location for an instant quote.
                 </p>
               </div>
