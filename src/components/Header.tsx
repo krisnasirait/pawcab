@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { BsArrowRight } from "react-icons/bs";
-import { IoClose, IoMenu } from "react-icons/io5";
 import Image from "next/image";
 import Link from "next/link";
 import contentData from "@/lib/content";
@@ -12,10 +10,11 @@ interface HeaderProps {
 }
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
-  { label: "Stories", href: "/stories" },
-  { label: "About", href: "/#about" },
+  { label: "Rides", href: "/services/pet-transport" },
+  { label: "Walking", href: "/services/dog-walking" },
+  { label: "Sitting", href: "/services/pet-sitting" },
+  { label: "Passengers", href: "/#passengers" },
+  { label: "Fare", href: "/#fare" },
 ];
 
 export default function Header({ theme = "dark" }: HeaderProps) {
@@ -28,122 +27,101 @@ export default function Header({ theme = "dark" }: HeaderProps) {
     "https://wa.me/6282266383800?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.";
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 16);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close the mobile menu on Escape and return focus to the trigger.
   useEffect(() => {
     if (!menuOpen) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
     panelRef.current?.querySelector("a")?.focus();
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
   const isLight = theme === "light" && !isScrolled;
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 px-6 md:px-10 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "py-3 bg-deep-midnight/95 backdrop-blur-md shadow-lg text-soft-white"
+          ? "bg-[#FFFEFA]/95 backdrop-blur-md border-b border-[#D8C9AE]/60 text-[#0E2A21] py-3"
           : isLight
-            ? "py-6 bg-transparent text-deep-midnight"
-            : "py-6 bg-transparent text-soft-white"
+            ? "bg-transparent text-[#0E2A21] py-5"
+            : "bg-gradient-to-b from-[#0E2A21]/85 to-transparent text-[#FFFEFA] py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-        {/* Logo Area */}
-        <Link href="/" className="flex items-center gap-3 group">
+      <div className="max-w-7xl mx-auto w-full px-5 md:px-8 flex justify-between items-center">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="The PawCab home">
           <Image
             src="/images/logo-pawcab.png"
-            alt="The PawCab Logo"
-            width={48}
-            height={48}
-            className="object-contain shrink-0 group-hover:scale-105 transition-transform"
+            alt="The PawCab logo"
+            width={40}
+            height={40}
+            className="object-contain shrink-0 rounded-full bg-[#FFFEFA] p-0.5"
           />
-          <div className="flex items-center">
+          <span className="flex flex-col leading-none">
             <span
-              className="font-elmessiri text-xl md:text-3xl font-bold leading-none tracking-wide"
+              className="font-elmessiri text-lg md:text-xl font-bold tracking-wide"
               style={{ fontFamily: "'El Messiri', serif" }}
             >
               THE PAWCAB
             </span>
-          </div>
+            <span className={`text-[11px] font-medium tracking-wide ${isScrolled || isLight ? "text-[#3F382E]/80" : "text-white/70"}`}>
+              Private pet rides, Bali
+            </span>
+          </span>
         </Link>
 
-        {/* Navigation */}
-        <nav
-          aria-label="Primary"
-          className="hidden lg:flex items-center gap-8 text-sm tracking-widest font-medium uppercase"
-        >
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="hover:text-pawcab-gold transition-colors"
+              className={`transition-colors hover:text-[#0E6B5E] ${
+                isScrolled || isLight ? "text-[#0E2A21]" : "text-[#FFFEFA]/90"
+              }`}
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        {/* Actions */}
         <div className="flex items-center gap-3">
+          <span className={`hidden md:block text-[13px] font-medium ${isScrolled || isLight ? "text-[#3F382E]" : "text-white/75"}`}>
+            Daily 07.00 to 21.00
+          </span>
           <a
             href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hidden sm:inline-flex border rounded-full px-5 py-2 min-h-[44px] items-center text-xs md:text-sm uppercase tracking-wider gap-2 transition-colors ${
-              isLight
-                ? "border-deep-midnight text-deep-midnight hover:bg-deep-midnight hover:text-soft-white"
-                : "border-soft-white text-soft-white hover:bg-soft-white hover:text-deep-midnight"
-            }`}
+            className="hidden sm:inline-flex items-center min-h-[44px] rounded-full bg-[#FFC61A] text-[#0E2A21] font-bold text-[14px] px-5 py-2.5 hover:bg-[#ffd14d] transition-colors"
           >
-            Book a Ride <BsArrowRight aria-hidden="true" />
+            Book a ride
           </a>
-
-          {/* Mobile menu trigger */}
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className={`lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border transition-colors ${
-              isLight
-                ? "border-deep-midnight text-deep-midnight"
-                : "border-soft-white text-soft-white"
+            className={`lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-[10px] border transition-colors ${
+              isScrolled || isLight
+                ? "border-[#0E2A21]/20 text-[#0E2A21]"
+                : "border-white/30 text-white"
             }`}
           >
-            {menuOpen ? (
-              <IoClose className="text-2xl" aria-hidden="true" />
-            ) : (
-              <IoMenu className="text-2xl" aria-hidden="true" />
-            )}
+            <span aria-hidden="true" className="text-xl leading-none">{menuOpen ? "✕" : "☰"}</span>
           </button>
         </div>
       </div>
 
-      {/* Mobile navigation panel */}
       {menuOpen && (
         <div
           id="mobile-nav"
           ref={panelRef}
-          className="lg:hidden mt-4 rounded-3xl bg-deep-midnight text-soft-white border border-soft-white/10 shadow-2xl overflow-hidden"
+          className="lg:hidden mx-4 mt-3 rounded-2xl bg-[#0E2A21] text-[#FFFEFA] border border-white/10 shadow-2xl overflow-hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col p-3">
             {NAV_LINKS.map((link) => (
@@ -151,7 +129,7 @@ export default function Header({ theme = "dark" }: HeaderProps) {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="px-5 py-3.5 min-h-[44px] flex items-center rounded-2xl text-sm uppercase tracking-widest font-medium hover:bg-soft-white/10 hover:text-pawcab-gold transition-colors"
+                className="px-5 py-3.5 min-h-[48px] flex items-center rounded-xl text-[16px] font-medium hover:bg-white/10 transition-colors"
               >
                 {link.label}
               </Link>
@@ -160,9 +138,9 @@ export default function Header({ theme = "dark" }: HeaderProps) {
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 mx-2 mb-2 inline-flex items-center justify-center gap-2 rounded-full bg-pawcab-gold text-deep-midnight font-bold px-5 py-3.5 min-h-[44px] text-sm uppercase tracking-wider hover:bg-yellow-400 transition-colors"
+              className="mt-2 mb-2 inline-flex items-center justify-center rounded-full bg-[#FFC61A] text-[#0E2A21] font-bold px-5 py-3.5 min-h-[48px] text-[15px]"
             >
-              Book a Ride <BsArrowRight aria-hidden="true" />
+              Book a ride
             </a>
           </nav>
         </div>

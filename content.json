@@ -53,7 +53,7 @@
       "title1": "More",
       "title2": "Journey",
       "title3Accent": "Together",
-      "description": "Private, comfortable, and stress-free transportation for pets and their humans across Bali.",
+      "description": "A private, air-conditioned SUV with a trained handler, anywhere in Bali. You can ride along.",
       "primaryCtaText": "Book a Ride",
       "primaryCtaHref": "https://wa.me/6282266383800?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.",
       "secondaryCtaText": "Our Services",
@@ -69,25 +69,25 @@
       {
         "id": "door-to-door",
         "title": "Private Door-to-Door",
-        "description": "Dedicated private vehicle exclusively for your pet. No shared cages or unfamiliar pets.",
+        "description": "One car, one dog family. Never shared, never caged with strangers' pets.",
         "icon": "car"
       },
       {
         "id": "experienced-handlers",
         "title": "Trained Pet Handlers",
-        "description": "Compassionate animal lovers trained to keep high-anxiety and senior pets relaxed.",
+        "description": "Handlers who ride with anxious and senior dogs every day.",
         "icon": "heart"
       },
       {
         "id": "climate-control",
         "title": "Climate-Controlled SUV",
-        "description": "Continuous fresh air conditioning, non-slip sanitized mats, and spacious room for up to 3 dogs.",
+        "description": "Air conditioning on before pickup, sanitised mats, room for up to 3 dogs.",
         "icon": "shield"
       },
       {
         "id": "island-coverage",
         "title": "Bali-Wide Coverage",
-        "description": "Covering Denpasar, Badung, Tabanan, Gianyar, and customized cross-island routes.",
+        "description": "Denpasar to Uluwatu, Canggu to Sukawati, plus custom runs beyond.",
         "icon": "pin"
       }
     ],
@@ -97,7 +97,7 @@
       "headingLine2": "Around Them.",
       "description": "The PawCab is a private pet mobility service created for pets who deserve a safer, calmer, and more comfortable journey, whether it's a vet visit, beach trip, grooming day, or just a little adventure around Bali.",
       "image": "/images/about.jpg",
-      "ctaText": "Our Story",
+      "ctaText": "See passenger stories",
       "ctaHref": "/stories",
       "bottomQuoteLines": [
         "Because",
@@ -108,7 +108,7 @@
     "services": {
       "badge": "Our Services",
       "heading": "Every Journey, A Better Day.",
-      "subtitle": "From daily rides to special adventures, we're here for every step of their journey.",
+      "subtitle": "Rides are the core. The same handler does the walks and the sitting.",
       "items": [
         {
           "id": "01",
@@ -137,7 +137,7 @@
       "badge": "Our Coverage",
       "headingLine1": "Find Your",
       "headingLine2": "PawCab Zone.",
-      "description": "Know your zone before you book. Our service covers Bali with simple, transparent pricing.",
+      "description": "One island, one flat rate per kilometre. Type two addresses and see the fare.",
       "ctaText": "View Zones & Rates",
       "ctaHref": "/services/pet-transport#pricing",
       "mapImage": "/images/map-zone.png",
@@ -151,7 +151,7 @@
     "gallery": {
       "badge": "Our Passengers",
       "heading": "Happy Tails on Every Ride",
-      "subtitle": "A glimpse of our wonderful furry friends traveling safely and comfortably with The PawCab across Bali.",
+      "subtitle": "Dogs that rode recently. Tap any photo to see who they are.",
       "items": [
         {
           "name": "Appa",
@@ -228,47 +228,47 @@
       ]
     },
     "comfort": {
-      "badge": "Comfort & Safety",
-      "headingLine1": "Clean, Safe,",
-      "headingLine2": "Stress-Free.",
-      "description": "Every vehicle is sanitized before each journey with non-toxic, pet-safe cleaners. We provide temperature monitoring, secure partitions, and soothing music to keep anxious pets at ease.",
+      "badge": "Inside the car",
+      "headingLine1": "Cool, clean,",
+      "headingLine2": "room to lie down.",
+      "description": "Air conditioning on before pickup. Sanitised mats after every trip. A medium crate on request, and notes kept on every regular.",
       "features": [
-        "Sanitized cabin before every single trip",
-        "Continuous high-output AC ventilation",
-        "Spacious crate or open seating options",
-        "Complimentary water bowl and pet pads"
+        "Sanitised mats after every trip",
+        "Air conditioning on before pickup",
+        "Medium crate on request",
+        "Notes kept on every regular"
       ],
       "image": "/images/pet-crate.jpg",
-      "quoteText": "Because your peace of mind is just as important as theirs."
+      "quoteText": "We drive like there is a sleeping puppy in the back. There usually is."
     },
     "reviews": {
-      "badge": "Reviews",
-      "heading": "What Our Customers Say",
+      "badge": "Guestbook",
+      "heading": "Notes from the back seat.",
       "elfsightAppId": "elfsight-app-c1a7d814-8e07-4cf9-b595-0369eaca3594"
     },
     "howItWorks": {
       "badge": "Easy Booking",
-      "heading": "How The PawCab Works",
+      "heading": "Priced by you, booked on WhatsApp.",
       "steps": [
         {
-          "number": "01",
-          "title": "Select Pickup & Destination",
-          "description": "Choose your pickup and drop-off areas using our simple zone fare calculator."
+          "number": "1",
+          "title": "Price it yourself",
+          "description": "Type pickup and drop-off. The map measures the live driving distance and the flat fare."
         },
         {
-          "number": "02",
-          "title": "Confirm via WhatsApp",
-          "description": "Send your booking details with one tap. Our team confirms driver availability instantly."
+          "number": "2",
+          "title": "Confirm on WhatsApp",
+          "description": "One tap sends the route, distance, fare, and your notes. We confirm a driver."
         },
         {
-          "number": "03",
-          "title": "Door-to-Door Pickup",
-          "description": "Our trained driver arrives on time in a cool, sanitized vehicle ready for your pet."
+          "number": "3",
+          "title": "We come to your gate",
+          "description": "A trained handler arrives in a cool, clean car. Tell us the gate colour."
         },
         {
-          "number": "04",
-          "title": "Safe Arrival & Updates",
-          "description": "Relax with live WhatsApp trip updates until your fur baby safely reaches their destination."
+          "number": "4",
+          "title": "Ride and arrive",
+          "description": "Your dog rides private. Message us on the way if plans change."
         }
       ]
     }
@@ -310,8 +310,8 @@
         "Regular sanitization after every ride"
       ],
       "pricingConfig": {
-        "heading": "Fare Calculator & Bali Zones",
-        "subheading": "Select your pickup and drop-off areas to instantly calculate the estimated distance and fare.",
+        "heading": "One flat rate, measured live.",
+        "subheading": "Type pickup and drop-off. The map measures the driving distance at Rp 10.000 per kilometre.",
         "badge": "TRANSPARENT PRICING",
         "minimumFare": 65000,
         "perExtraPetFee": 35000,
@@ -614,7 +614,7 @@
           "id": 1,
           "number": "01",
           "question": "What type of vehicle do you use for pet transportation?",
-          "answer": "We use a comfortable SUV with full air conditioning to provide a private, safe, and stress-free journey for your pets."
+          "answer": "A private SUV with air conditioning on before every pickup, sanitised mats, and room for up to 3 dogs. You can ride along."
         },
         {
           "id": 2,

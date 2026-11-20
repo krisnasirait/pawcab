@@ -1,77 +1,56 @@
 import React from "react";
 import Button from "./Button";
-import { BsArrowRight } from "react-icons/bs";
 import contentData from "@/lib/content";
 
+// R-31: coverage is a ledger, not a dark SaaS band. Paper background,
+// map in a thin rattan frame, zone list as text rows. One booking CTA.
 export default function CoverageSection() {
   const coverage = contentData.home?.coverage;
+  const zones = [
+    { name: "South Denpasar, Sanur, Kuta, Seminyak", note: "Home ground, fastest pickup" },
+    { name: "Canggu, Kerobokan, Berawa, Pererenan", note: "Daily runs, morning and dusk" },
+    { name: "Jimbaran, Nusa Dua, Uluwatu", note: "South runs, plan a little extra time" },
+    { name: "Tanah Lot, Tabanan, Sukawati, outer Bali", note: "Custom routes, ask on WhatsApp" },
+  ];
 
   return (
-    <section id="coverage" className="bg-deep-midnight text-soft-white flex flex-col lg:flex-row w-full">
-      {/* Combined Text & Map Area with Bali Background and Midnight Filter */}
-      <div
-        className="flex-1 relative flex flex-col md:flex-row items-center justify-between py-8 md:py-12 lg:py-14 pr-8 md:pr-12 gap-8 overflow-hidden"
-        style={{ paddingLeft: "max(2.5rem, calc((100vw - 80rem) / 2))" }}
-      >
-        {/* Background Image: Bali Landscape */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
-        {/* Midnight Filter Overlay */}
-        <div className="absolute inset-0 bg-deep-midnight/95 backdrop-blur-[1px]" />
-
-        {/* Text Content */}
-        <div className="relative z-10 w-full md:w-5/12 flex flex-col justify-center">
-          <p className="uppercase tracking-[0.2em] text-xs text-pawcab-gold font-semibold mb-2">
-            {coverage?.badge || "Our Coverage"}
+    <section id="coverage" className="bg-[#FFFEFA] py-16 md:py-24 border-y border-[#D8C9AE]/60">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
+        <div>
+          <p className="flex items-center gap-3 text-[14px] font-medium text-[#0E6B5E] mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#0E6B5E]" />
+            Where we drive
           </p>
-          <h2 className="font-playfair text-white text-3xl md:text-5xl leading-tight mb-4">
-            {coverage?.headingLine1 || "Find Your"} <br /> {coverage?.headingLine2 || "PawCab Zone."}
+          <h2 className="text-4xl md:text-[52px] leading-[1.05] font-semibold text-[#0E2A21]" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+            If it is in Bali, we will come to the gate.
           </h2>
-          <p className="text-soft-white/80 font-normal leading-relaxed mb-6 text-sm max-w-xs">
-            {coverage?.description || "Know your zone before you book. Our service covers Bali with simple, transparent pricing."}
+          <p className="text-[16px] leading-relaxed text-[#3F382E] mt-4 max-w-md">
+            {coverage?.description || "One island, one flat rate per kilometre. No zone maths for you to do."}
           </p>
-          <div>
-            <Button variant="primary" icon={<BsArrowRight aria-hidden="true" />} href={coverage?.ctaHref || "/services/pet-transport#pricing"}>
-              {coverage?.ctaText || "View Zones & Rates"}
+          <ul className="mt-8 border-t border-[#0E2A21]/15">
+            {zones.map((z) => (
+              <li key={z.name} className="py-4 border-b border-[#0E2A21]/15 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                <span className="font-semibold text-[15px] text-[#0E2A21] sm:w-64 shrink-0">{z.name}</span>
+                <span className="text-[14px] text-[#3F382E]">{z.note}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button variant="secondary" href={coverage?.ctaHref || "/services/pet-transport#pricing"}>
+              {coverage?.ctaText || "See zones and rates"}
             </Button>
           </div>
         </div>
-
-        {/* Map Area */}
-        <div className="relative z-10 w-full md:w-9/12 flex items-center justify-center">
+        <div className="rounded-xl overflow-hidden border border-[#D8C9AE] bg-white p-3 shadow-[0_10px_30px_rgba(14,42,33,0.08)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={coverage?.mapImage || "/images/map-zone.png"}
-            alt="PawCab Bali Coverage Map"
-            className="w-full h-full object-contain drop-shadow-2xl max-h-[280px] lg:max-h-[420px]"
+            alt="PawCab Bali coverage map"
+            loading="lazy"
+            className="w-full h-auto object-contain rounded-lg"
           />
-        </div>
-      </div>
-
-      {/* Right Image (Paling Kanan) */}
-      <div className="w-full lg:w-60 xl:w-72 shrink-0 relative h-48 lg:h-auto border-t lg:border-t-0 lg:border-l border-soft-white/10 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={coverage?.sideImage || "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1938&auto=format&fit=crop"}
-          alt="Bali Scenic Route"
-          loading="lazy"
-          width={800}
-          height={1000}
-          className="w-full h-full object-cover"
-        />
-        <div aria-hidden="true" className="absolute inset-0 bg-deep-midnight/50"></div>
-        <div className="absolute bottom-6 right-6 text-right">
-          <p className="font-medium tracking-[0.2em] leading-loose text-xs uppercase text-soft-white">
-            {(coverage?.sideQuoteLines || ["Scenic routes.", "Happier", "journeys."]).map((line, idx) => (
-              <React.Fragment key={idx}>
-                {line}
-                {idx < (coverage?.sideQuoteLines?.length || 3) - 1 && <br />}
-              </React.Fragment>
-            ))}
+          <p className="px-2 py-3 text-[13.5px] text-[#3F382E] leading-relaxed">
+            Screenshot this map when you book. Tell us your gate colour and your dog's name, and the driver will find you.
           </p>
         </div>
       </div>

@@ -1,51 +1,34 @@
 import React from "react";
-import {
-  PiCarProfile,
-  PiSnowflake,
-  PiUser,
-  PiPawPrint,
-  PiMapPin,
-  PiHeart,
-  PiShieldCheck,
-} from "react-icons/pi";
 import contentData from "@/lib/content";
 
-const iconMap: Record<string, React.ReactNode> = {
-  car: <PiCarProfile className="text-3xl text-pawcab-gold" />,
-  snowflake: <PiSnowflake className="text-3xl text-pawcab-gold" />,
-  user: <PiUser className="text-3xl text-pawcab-gold" />,
-  paw: <PiPawPrint className="text-3xl text-pawcab-gold" />,
-  pin: <PiMapPin className="text-3xl text-pawcab-gold" />,
-  heart: <PiHeart className="text-3xl text-pawcab-gold" />,
-  shield: <PiShieldCheck className="text-3xl text-pawcab-gold" />,
-};
-
+// R-31: no card grid. This strip is a ledger line: one sentence of proof,
+// separated by rattan hairlines, left aligned, sentence case. It answers
+// "can I trust a stranger with my dog in Bali heat" in one glance.
 export default function FeaturesRow() {
-  const contentFeatures = contentData.home?.features || [];
-  const defaultFeatures = [
-    { title: "Private Ride", subtitle: "No shared pets", icon: "car" },
-    { title: "Air Conditioned", subtitle: "Comfortable cabin", icon: "snowflake" },
-    { title: "Owner Welcome", subtitle: "Ride together", icon: "user" },
-    { title: "Large-Dog Friendly", subtitle: "All breeds & sizes", icon: "paw" },
-    { title: "Door to Door", subtitle: "Across Bali", icon: "pin" },
+  const list = contentData.home?.features || [];
+
+  const fallback = [
+    { title: "Private SUV, never shared", description: "No cages, no strangers' pets in the cabin." },
+    { title: "Trained handlers", description: "Calm with anxious and senior dogs." },
+    { title: "Cool cabin", description: "Air conditioning, sanitised mats, water stops." },
+    { title: "Island wide", description: "Denpasar to Uluwatu, Canggu to Sukawati." },
   ];
 
-  const list = contentFeatures.length > 0 ? contentFeatures : defaultFeatures;
+  const items = (list.length > 0 ? list : fallback).slice(0, 4);
 
   return (
-    <section className="bg-deep-midnight border-t border-soft-white/10 py-6 px-10">
-      <div className="max-w-7xl mx-auto flex flex-wrap justify-between gap-8 md:gap-4">
-        {list.map((feature, idx) => (
-          <div key={idx} className="flex items-center gap-4 text-soft-white">
+    <section aria-label="Why PawCab" className="bg-[#FFFEFA] border-b border-[#D8C9AE]/70">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 py-7 grid sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-8">
+        {items.map((f, i) => (
+          <div
+            key={i}
+            className={`flex gap-4 items-start ${i > 0 ? "lg:border-l lg:border-[#D8C9AE]/70 lg:pl-8" : ""}`}
+          >
+            <span aria-hidden="true" className="mt-2 inline-block h-2 w-2 shrink-0 rounded-full bg-[#0E6B5E]" />
             <div>
-              {iconMap[feature.icon || ""] || <PiPawPrint className="text-3xl text-pawcab-gold" />}
-            </div>
-            <div>
-              <h4 className="text-white tracking-wider text-base font-semibold">
-                {feature.title}
-              </h4>
-              <p className="text-xs text-soft-white/70 font-normal mt-1">
-                {"description" in feature && feature.description ? feature.description : (feature as { subtitle?: string }).subtitle}
+              <h2 className="text-[16px] font-bold text-[#0E2A21] leading-snug">{f.title}</h2>
+              <p className="text-[14px] leading-relaxed text-[#3F382E] mt-1">
+                {"description" in f && f.description ? f.description : ""}
               </p>
             </div>
           </div>

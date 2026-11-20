@@ -1,89 +1,52 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BsInstagram, BsWhatsapp, BsLock } from "react-icons/bs";
 import contentData from "@/lib/content";
 
+// R-31: footer as a booking ledger, not a 4-column template.
+// One row: identity, real destinations, contact. No ghost links.
 export default function Footer() {
-  const footer = contentData.footer;
   const site = contentData.site;
 
   return (
-    <footer id="footer" className="bg-deep-midnight text-soft-white py-12 px-10 border-t border-soft-white/10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <Image
-            src="/images/logo-pawcab.png"
-            alt="The PawCab Logo"
-            width={36}
-            height={36}
-            className="object-contain"
-          />
-          <div className="flex flex-col">
-            <span
-              className="font-elmessiri text-xl font-bold tracking-wide"
-              style={{ fontFamily: "'El Messiri', serif" }}
-            >
-              {site.name || "The PawCab"}
-            </span>
-            <span className="text-[10px] text-soft-white/50 tracking-wider">
-              {site.tagline}
-            </span>
+    <footer id="footer" className="bg-[#0E2A21] text-[#FFFEFA] pt-14 pb-8">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
+        <div className="grid md:grid-cols-[1.2fr_1fr_1fr] gap-10 pb-10 border-b border-white/12">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <Image src="/images/logo-pawcab.png" alt="The PawCab logo" width={36} height={36} className="object-contain rounded-full bg-[#FFFEFA] p-0.5" />
+              <span className="font-elmessiri text-lg font-bold" style={{ fontFamily: "'El Messiri', serif" }}>
+                {site.name || "The PawCab"}
+              </span>
+            </div>
+            <p className="mt-3 text-[14.5px] leading-relaxed text-white/70 max-w-sm">
+              Private pet rides and care across Bali. Cool cars, trained handlers, and notes kept on every regular.
+            </p>
+            <p className="mt-4 text-[14px] text-white/70">
+              {site.operatingHours} · <a className="underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a>
+            </p>
+          </div>
+          <nav aria-label="Services">
+            <p className="text-[13px] font-bold text-[#FFC61A] mb-3">Services</p>
+            <ul className="space-y-2.5 text-[15px]">
+              <li><Link className="hover:underline underline-offset-4" href="/services/pet-transport">Pet transport with fare calculator</Link></li>
+              <li><Link className="hover:underline underline-offset-4" href="/services/dog-walking">Dog walking</Link></li>
+              <li><Link className="hover:underline underline-offset-4" href="/services/pet-sitting">Pet sitting</Link></li>
+              <li><Link className="hover:underline underline-offset-4" href="/stories">Passenger stories</Link></li>
+            </ul>
+          </nav>
+          <div>
+            <p className="text-[13px] font-bold text-[#FFC61A] mb-3">Book</p>
+            <ul className="space-y-2.5 text-[15px]">
+              <li><a className="hover:underline underline-offset-4" target="_blank" rel="noopener noreferrer" href={`https://wa.me/${site.whatsapp}`}>WhatsApp {site.phone}</a></li>
+              <li><a className="hover:underline underline-offset-4" target="_blank" rel="noopener noreferrer" href={site.instagramUrl}>Instagram @{site.instagram}</a></li>
+              <li><a className="hover:underline underline-offset-4" href="/#fare">Check a fare</a></li>
+            </ul>
           </div>
         </div>
-
-        {/* Links */}
-        <div className="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest font-medium text-soft-white/70">
-          <Link href="/services/pet-transport" className="hover:text-pawcab-gold transition-colors">
-            Transport
-          </Link>
-          <Link href="/services/dog-walking" className="hover:text-pawcab-gold transition-colors">
-            Walking
-          </Link>
-          <Link href="/services/pet-sitting" className="hover:text-pawcab-gold transition-colors">
-            Sitting
-          </Link>
-          <Link href="/stories" className="hover:text-pawcab-gold transition-colors">
-            Stories
-          </Link>
-          <Link
-            href="/login"
-            className="hover:text-pawcab-gold transition-colors inline-flex items-center gap-1 opacity-60 hover:opacity-100"
-          >
-            <BsLock className="text-[10px]" /> CMS Admin
-          </Link>
-        </div>
-
-        {/* Social & Copyright */}
-        <div className="flex flex-col items-center md:items-end gap-3">
-          <div className="flex gap-4">
-            {site.instagramUrl && (
-              <a
-                href={site.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-soft-white/70 hover:text-pawcab-gold transition-colors"
-                title={`Instagram: ${site.instagram}`}
-              >
-                <BsInstagram className="text-xl" />
-              </a>
-            )}
-            {site.whatsapp && (
-              <a
-                href={`https://wa.me/${site.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-soft-white/70 hover:text-pawcab-gold transition-colors"
-                title={`WhatsApp: ${site.phone}`}
-              >
-                <BsWhatsapp className="text-xl" />
-              </a>
-            )}
-          </div>
-          <p className="text-[0.65rem] text-soft-white/40 tracking-wider">
-            {footer.copyrightText || "© 2026 The PawCab. All rights reserved."}
-          </p>
+        <div className="pt-6 flex flex-col sm:flex-row justify-between gap-2 text-[12.5px] text-white/50">
+          <p>© 2026 The PawCab Bali. Private rides across the island.</p>
+          <p>{site.serviceArea}</p>
         </div>
       </div>
     </footer>

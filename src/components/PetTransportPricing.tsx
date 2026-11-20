@@ -181,52 +181,42 @@ export default function PetTransportPricing() {
 
   return (
     <section
-      id="pricing"
-      className="py-20 md:py-28 px-6 md:px-10 bg-soft-white border-t border-sand-beige/40"
+      id="fare"
+      className="relative py-16 md:py-24 px-5 md:px-8 bg-[#FFFEFA] border-y border-[#D8C9AE]/60 scroll-mt-20"
     >
+      <span id="pricing" aria-hidden="true" className="absolute -top-20" />
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-14 md:mb-16">
-          <div className="mb-3">
-            <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
-              PRICING
-            </p>
-          </div>
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-bold leading-tight mb-4">
-            Flat-Rate Fare
+        <div className="max-w-2xl mb-10 md:mb-12">
+          <p className="flex items-center gap-3 text-[14px] font-medium text-[#0E6B5E] mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#0E6B5E]" />
+            Price your ride
+          </p>
+          <h2 className="text-4xl md:text-[52px] leading-[1.05] font-semibold text-[#0E2A21]" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+            One flat rate. Measured live.
           </h2>
-          <p className="text-warm-taupe font-normal text-base md:text-lg leading-relaxed">
-            Search any pickup and drop-off in Bali. We measure the real driving
-            distance with OpenStreetMap and charge one flat rate: Rp 10.000 per
-            km.
+          <p className="text-[#3F382E] text-[16px] leading-relaxed mt-4">
+            Type any two Bali addresses. We measure the real driving distance
+            and charge Rp 10.000 per km. The booking message writes itself.
           </p>
         </div>
 
         {/* ========================================================
             INTERACTIVE CALCULATOR WIDGET (LUXURY CARD)
             ======================================================== */}
-        <div className="max-w-4xl mx-auto mb-16 bg-white rounded-3xl p-6 sm:p-9 md:p-10 border border-sand-beige/50 shadow-xl relative overflow-visible">
+        <div className="max-w-4xl mx-auto mb-10 bg-white rounded-2xl p-6 sm:p-8 md:p-9 border border-[#D8C9AE] shadow-[0_10px_30px_rgba(14,42,33,0.08)] relative overflow-visible">
           <div className="relative z-10">
             {/* Widget Title & Badge */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-sand-beige/30 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-warm-ivory border border-sand-beige/50 flex items-center justify-center text-deep-midnight">
-                  <PiCalculator className="text-2xl text-deep-midnight" />
-                </div>
-                <div>
-                  <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight">
-                    Trip Fare Estimator
-                  </h3>
-                  <p className="text-xs text-warm-taupe font-medium">
-                    Search your pickup and drop-off to see live driving distance
-                    and fare
-                  </p>
-                </div>
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-dashed border-[#D8C9AE] mb-7">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0E2A21]" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+                  Trip fare estimator
+                </h3>
+                <p className="text-[13.5px] text-[#3F382E] mt-1">
+                  Live driving distance, flat rate, WhatsApp ready
+                </p>
               </div>
-
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pawcab-gold/20 text-deep-midnight text-xs font-semibold uppercase tracking-wider">
-                <PiCalculator className="text-xs text-pawcab-navy" /> Flat Rp
-                10.000 / km
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-[#0E2A21] text-[#FFFEFA] text-[13px] font-bold">
+                Rp 10.000 / km
               </span>
             </div>
 
@@ -391,7 +381,7 @@ export default function PetTransportPricing() {
             )}
 
             {bothSelected && routeStatus === "ready" && (
-              <div className="rounded-3xl bg-deep-midnight text-soft-white p-6 sm:p-8 md:p-10 shadow-xl border border-soft-white/10 relative overflow-hidden">
+              <div className="rounded-2xl bg-[#0E2A21] text-[#FFFEFA] p-6 sm:p-8 shadow-xl border border-white/10 relative overflow-hidden">
 
                 <p className="text-[11px] uppercase tracking-widest text-soft-white/60 font-semibold mb-3">
                   {fromPlace?.short} to {toPlace?.short}
@@ -475,8 +465,7 @@ export default function PetTransportPricing() {
           </div>
         </div>
 
-        {/* Note / Disclaimer Banner */}
-        <div className="max-w-4xl mx-auto mb-10 p-5 rounded-2xl bg-warm-ivory/60 border border-sand-beige/40 flex items-start sm:items-center gap-3 text-xs text-warm-taupe">
+        <div className="max-w-4xl mx-auto mb-10 p-5 rounded-xl bg-[#FBF8F1] border border-[#D8C9AE]/70 flex items-start sm:items-center gap-3 text-[13px] leading-relaxed text-[#3F382E]">
           <BsInfoCircle
             aria-hidden="true"
             className="text-base text-warm-taupe shrink-0 mt-0.5 sm:mt-0"
@@ -508,7 +497,7 @@ export default function PetTransportPricing() {
             </p>
           </div>
 
-          <div className="w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg border border-sand-beige/50 bg-white">
+          <div className="w-full rounded-xl overflow-hidden border border-[#D8C9AE] bg-white">
             <iframe
               src="https://www.openstreetmap.org/export/embed.html?bbox=114.2500%2C-8.9500%2C115.8000%2C-7.9500&layer=mapnik"
               width="100%"

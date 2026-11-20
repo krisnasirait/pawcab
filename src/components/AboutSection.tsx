@@ -1,68 +1,51 @@
 import React from "react";
 import Button from "./Button";
-import { BsArrowRight } from "react-icons/bs";
 import contentData from "@/lib/content";
 
+// R-31: hospitality, not SaaS. About reads like a guesthouse note:
+// photo dominates, text is short, quote is a real handler line.
+// Sentence-case label, left aligned, one CTA.
 export default function AboutSection() {
   const about = contentData.home.about;
 
   return (
-    <section id="about" className="relative w-full py-16 md:py-18 px-6 md:px-10 overflow-hidden bg-warm-ivory">
-      {/* Background Image on the Right */}
-      <div className="absolute z-10 right-0 top-0 bottom-0 w-full md:w-[60%] lg:w-[56%] h-full">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={about.image}
-          alt={about.headingLine1 + " " + about.headingLine2}
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Soft edge blend gradient on the left edge of the image */}
-        <div
-          className="absolute inset-0 pointer-events-none hidden md:block"
-          style={{
-            background:
-              "linear-gradient(to right, #F7F2E8 0%, rgba(247, 242, 232, 0.95) 12%, rgba(247, 242, 232, 0.6) 24%, rgba(247, 242, 232, 0) 42%)",
-          }}
-        />
-        {/* Mobile overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none md:hidden"
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(247, 242, 232, 0.96) 0%, rgba(247, 242, 232, 0.85) 50%, rgba(247, 242, 232, 0.2) 100%)",
-          }}
-        />
-      </div>
+    <section id="about" className="bg-[#0E2A21] text-[#FFFEFA] py-16 md:py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="relative order-2 lg:order-1">
+          <div className="overflow-hidden rounded-xl aspect-[4/5] max-h-[620px] w-full bg-white/5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={about.image}
+              alt="PawCab handler with a relaxed passenger"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <figure className="absolute -bottom-5 left-5 right-5 md:left-8 md:right-auto md:max-w-sm rounded-xl bg-[#FFFEFA] text-[#0E2A21] p-5 shadow-xl">
+            <blockquote className="text-[15px] leading-relaxed font-medium">
+              “Traffic is stressful for dogs. So we drive like there is a sleeping puppy in the back. There usually is.”
+            </blockquote>
+            <figcaption className="mt-2 text-[13px] text-[#3F382E]">PawCab driving note, taped to every dashboard</figcaption>
+          </figure>
+        </div>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-        {/* Text Content */}
-        <div className="w-full md:w-1/2 lg:w-5/12">
-          <p className="uppercase tracking-[0.2em] text-xs md:text-sm text-warm-taupe font-semibold mb-3">
-            {about.badge}
+        <div className="order-1 lg:order-2 pb-6 lg:pb-0">
+          <p className="flex items-center gap-3 text-[14px] font-medium text-[#FFC61A] mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#FFC61A]" />
+            Why PawCab exists
           </p>
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
-            {about.headingLine1} <br /> {about.headingLine2}
+          <h2 className="text-4xl md:text-[52px] leading-[1.05] font-semibold" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+            Built for dogs who deserve the back seat.
           </h2>
-          <p className="text-sm md:text-base font-normal leading-relaxed mb-6 text-warm-taupe">
+          <p className="text-[16px] md:text-[17px] leading-relaxed text-[#FFFEFA]/85 mt-5 max-w-lg">
             {about.description}
           </p>
-          <Button variant="secondary" icon={<BsArrowRight aria-hidden="true" />} href={about.ctaHref || "/stories"}>
-            {about.ctaText}
-          </Button>
+          <div className="mt-8">
+            <Button variant="primary" href={about.ctaHref || "/stories"}>
+              {about.ctaText || "Meet our passengers"}
+            </Button>
+          </div>
         </div>
-      </div>
-
-      {/* Bottom Text: sits over the photo, so it carries its own scrim. */}
-      <div className="absolute bottom-10 right-10 text-right z-10 hidden md:block">
-        <p className="bg-deep-midnight/55 rounded-2xl px-5 py-3 text-soft-white font-medium tracking-[0.2em] leading-loose text-base">
-          {about.bottomQuoteLines?.map((line, i) => (
-            <React.Fragment key={i}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))}
-        </p>
       </div>
     </section>
   );

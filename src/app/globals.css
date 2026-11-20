@@ -1,20 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-pawcab-navy: #283B70;
-  --color-deep-midnight: #14233F;
-  --color-pawcab-gold: #FDC300;
-  /* Brass is the gold-ink companion for light surfaces: the brand gold
-     (#FDC300) falls below contrast on ivory, so ratings and small marks
-     on light backgrounds use brass instead. */
-  --color-brass: #7A6000;
-  --color-warm-ivory: #F7F2E8;
-  --color-sand-beige: #DDD0BA;
-  /* Darkened from #9C8B75 so secondary text meets WCAG AA (5.6:1 on ivory). */
-  --color-warm-taupe: #6E5E4D;
-  --color-soft-white: #FCFAF6;
-  --font-playfair: var(--font-playfair);
-  --font-montserrat: var(--font-montserrat);
+  /* PawCab hospitality ledger. R-31 reasons:
+     canopy: dusk foliage ink, owns the night-drive hero, 15:1 with paper.
+     lagoon: shallow-water secondary, cool counterpoint to warm paper.
+     marigold: taxi-mark CTA only, never body decoration.
+     paper: guesthouse paper, warmer than white, cooler than cream-tell.
+     rattan: woven-cane hairlines that structure without boxes.
+     bark: volcanic-soil secondary text, 7:1 on paper. */
+  --color-pawcab-navy: #16453a;
+  --color-deep-midnight: #0e2a21;
+  --color-pawcab-gold: #ffc61a;
+  --color-brass: #6d5300;
+  --color-warm-ivory: #fbf8f1;
+  --color-sand-beige: #d8c9ae;
+  --color-warm-taupe: #3f382e;
+  --color-soft-white: #fffefa;
+  --color-canopy: #0e2a21;
+  --color-lagoon: #0e6b5e;
+  --color-rattan: #d8c9ae;
+  --color-bark: #3f382e;
+  --color-paper: #fbf8f1;
+  --font-playfair: var(--font-fraunces), Georgia, serif;
+  --font-montserrat: var(--font-dm-sans), system-ui, sans-serif;
+  --font-fraunces: var(--font-fraunces), Georgia, serif;
+  --font-dm-sans: var(--font-dm-sans), system-ui, sans-serif;
   --font-elmessiri: "El Messiri", serif;
 }
 
@@ -26,12 +36,20 @@
   body {
     background-color: var(--color-warm-ivory);
     color: var(--color-deep-midnight);
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair), serif;
+    font-family: var(--font-fraunces), Georgia, serif;
     color: var(--color-deep-midnight);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   /* R-39: every operable control shows it can be used. Set once in the

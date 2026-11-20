@@ -1,17 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { getContent } from "@/lib/content";
-import { Playfair_Display, Montserrat } from "next/font/google";
+import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const playfair = Fraunces({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-fraunces",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const montserrat = Montserrat({
+const montserrat = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const DESCRIPTION =
@@ -99,7 +104,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${playfair.variable} ${montserrat.variable} antialiased`}>
+      <body className={`${playfair.variable} ${montserrat.variable} antialiased bg-[#FBF8F1]`}>
         {children}
       </body>
     </html>
