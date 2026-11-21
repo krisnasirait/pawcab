@@ -43,3 +43,6 @@ next-env.d.ts
 
 # pi agent session state
 .pi/
+
+# local lighthouse reports
+.lighthouse/

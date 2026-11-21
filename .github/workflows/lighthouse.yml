@@ -1,0 +1,39 @@
+name: Lighthouse LCP
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lcp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Start production server
+        run: |
+          npm run start -- --port 3200 &
+          npx wait-on http://localhost:3200/ --timeout 60000
+
+      - name: LCP budget check (mobile, 2500ms)
+        run: node scripts/check-lcp.mjs http://localhost:3200
+        env:
+          LCP_BUDGET_MS: 2500
+
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-lcp
+          path: .lighthouse/

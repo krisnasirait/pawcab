@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import dynamic from "next/dynamic";
 import { PiArrowsLeftRight, PiInfo, PiMapPin, PiNavigationArrow, PiNotePencil, PiWhatsappLogo } from "react-icons/pi";
 import {
@@ -29,6 +29,51 @@ const MapPickerModal = dynamic(() => import("./MapPickerModal"), {
 });
 
 type RouteStatus = "idle" | "loading" | "ready" | "error";
+
+/**
+ * Below-fold OSM embed (~300KB of embed JS). Only set the iframe src
+ * once the placeholder is near the viewport so initial load never pays
+ * for it. Shows a static frame with the same dimensions until then.
+ */
+function CoverageEmbed() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(
+    () => typeof IntersectionObserver === "undefined"
+  );
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || visible) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [visible]);
+  return (
+    <div ref={ref} className="w-full h-[300px] sm:h-[350px] md:h-[380px] bg-sagewash/40">
+      {visible ? (
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=114.2500%2C-8.9500%2C115.8000%2C-7.9500&layer=mapnik"
+          width="100%"
+          height="380"
+          className="w-full h-[300px] sm:h-[350px] md:h-[380px] border-0"
+          loading="lazy"
+          title="PawCab Bali service coverage map"
+        />
+      ) : (
+        <p role="status" className="flex h-full items-center justify-center text-sm text-ink">
+          Loading coverage map…
+        </p>
+      )}
+    </div>
+  );
+}
 
 /* ============================================================================
    MAIN PET TRANSPORT PRICING COMPONENT
@@ -612,14 +657,7 @@ export default function PetTransportPricing() {
           </div>
 
           <div className="w-full rounded-xl overflow-hidden border border-sage bg-white">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=114.2500%2C-8.9500%2C115.8000%2C-7.9500&layer=mapnik"
-              width="100%"
-              height="380"
-              className="w-full h-[300px] sm:h-[350px] md:h-[380px] border-0"
-              loading="lazy"
-              title="PawCab Bali service coverage map"
-            />
+            <CoverageEmbed />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { PiArrowSquareOut } from "react-icons/pi";
 import coverage from "@/data/coverage-areas.json";
@@ -23,7 +23,26 @@ const REFERENCE_URL = "https://www.google.com/maps/d/viewer?mid=1ebzNOKwkJKVQrDP
 export default function BaliZoneMap() {
   const [activeZone, setActiveZone] = useState<number | null>(null);
   const [tilesUnavailable, setTilesUnavailable] = useState(false);
+  const [mapVisible, setMapVisible] = useState(
+    () => typeof IntersectionObserver === "undefined",
+  );
+  const mapAnchorRef = useRef<HTMLDivElement>(null);
   const handleTileError = useCallback(() => setTilesUnavailable(true), []);
+  useEffect(() => {
+    const el = mapAnchorRef.current;
+    if (!el || mapVisible) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setMapVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mapVisible]);
   const areas = coverage.areas.filter((a) => activeZone === null || a.zoneId === activeZone);
 
   return (
@@ -51,8 +70,12 @@ export default function BaliZoneMap() {
         ))}
       </div>
 
-      <div role="region" aria-label="Interactive PawCab service zone map" className="relative z-0 border-y border-forest/15">
-        <Map activeZone={activeZone} onSelectZone={setActiveZone} onTileError={handleTileError} />
+      <div ref={mapAnchorRef} role="region" aria-label="Interactive PawCab service zone map" className="relative z-0 border-y border-forest/15">
+        {mapVisible ? (
+          <Map activeZone={activeZone} onSelectZone={setActiveZone} onTileError={handleTileError} />
+        ) : (
+          <div role="status" className="h-[420px] sm:h-[520px] flex items-center justify-center bg-sagewash text-sm text-forest">Loading service map…</div>
+        )}
         <noscript><p className="p-4 text-sm text-ink">The interactive map needs JavaScript. The full service-area directory and original map link are available below.</p></noscript>
       </div>
 
