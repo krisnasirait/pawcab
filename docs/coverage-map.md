@@ -14,7 +14,7 @@ The homepage coverage panel is a custom Leaflet map, not a Google Maps iframe. I
 ## Files and behavior
 
 - `BaliZoneMap.tsx`: public shell, keyboard-accessible filter buttons, counts, selected area list, expandable full directory, fare link and original map link.
-- `BaliCoverageMap.tsx`: client-only, dynamically imported Leaflet renderer, OSM tiles, polygon/point tooltips, zone click selection, zoom/pan. Wheel zoom disabled so page scrolling stays predictable. Zone changes use immediate fitBounds (no reduced-motion exception needed). The map and its layers are created in one effect setup and removed in that effect's cleanup; reconnected effects create a fresh instance.
+- `BaliCoverageMap.tsx`: client-only, dynamically imported Leaflet renderer, OSM tiles, polygon/point tooltips, zone click selection, zoom/pan. Wheel zoom disabled so page scrolling stays predictable. Zone changes use immediate fitBounds (no reduced-motion exception needed). The map and its layers are created in one effect setup and removed in that effect's cleanup; reconnected effects create a fresh instance. Optional `endpoints` pins (pickup/drop-off) and `heightClass` let the fare estimator reuse the same map: pins refit the view, otherwise zone framing applies. SSR and first client render both start with the lazy placeholder (`useState(false)` + effect upgrade) so hydration matches; the `react-hooks/set-state-in-effect` disables are one-time, render-guarded enhancements.
 - `coverage-areas.json`: existing 29 point locations, unchanged. Counts remain 6 / 8 / 5 / 10. Ubud and Gianyar remain listed and plotted.
 - Tile failures show a status message. Local polygons, markers and directory remain usable without basemap tiles. No-JavaScript visitors retain the expandable area directory and links.
 
@@ -29,6 +29,10 @@ These polygons are display-only. `zoneForPoint`, nearest-coordinate lookup, rout
 Fresh production build at localhost:3104. Browser checked at 320/390/768/1440: all 10 polygon paths and 29 point paths render; no horizontal overflow; OSM tiles load. All four zone buttons select and refit, All zones resets; polygon clicks and real keyboard Enter selection work; directory still includes Ubud/Gianyar. No Google iframe. A blocked-tile fixture shows the fallback status while all 39 overlay paths remain. No observed runtime exceptions during this probe.
 
 TypeScript, component ESLint, color-token script, diff checks and production build pass. This is not a full screen-reader or external-map accuracy certification.
+
+### Estimator reuse
+
+The fare estimator's "Coverage Map" panel reuses this map instead of a generic OSM iframe (`CoverageEmbed` in `PetTransportPricing.tsx`, also IO-gated). It passes the trip's outer zone as `activeZone` and memoised pickup/drop-off pins; polygon clicks are a stable no-op there (hover still names zones). Verified with address fixtures: 39 overlay paths with no addresses, 41 with both pins, no OSM iframe anywhere, no overflow, no runtime errors. The `mapEndpoints` memo keeps typing notes or toggling round-trip from rebuilding pins or yanking the view.
 
 ### Cached-navigation lifecycle regression
 

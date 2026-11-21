@@ -23,14 +23,19 @@ const REFERENCE_URL = "https://www.google.com/maps/d/viewer?mid=1ebzNOKwkJKVQrDP
 export default function BaliZoneMap() {
   const [activeZone, setActiveZone] = useState<number | null>(null);
   const [tilesUnavailable, setTilesUnavailable] = useState(false);
-  const [mapVisible, setMapVisible] = useState(
-    () => typeof IntersectionObserver === "undefined",
-  );
+  // Always start false so server HTML matches the first client render.
+  const [mapVisible, setMapVisible] = useState(false);
   const mapAnchorRef = useRef<HTMLDivElement>(null);
   const handleTileError = useCallback(() => setTilesUnavailable(true), []);
   useEffect(() => {
     const el = mapAnchorRef.current;
     if (!el || mapVisible) return;
+    if (typeof IntersectionObserver === "undefined") {
+      // One-time progressive enhancement, not a render loop: guarded above.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMapVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {

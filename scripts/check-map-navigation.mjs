@@ -46,15 +46,22 @@ async function waitFor(expression) {
   assert.fail(`Timed out: ${expression}\n${errors.join("\n")}`);
 }
 const mapReady = `location.pathname === '/' && document.querySelectorAll('#coverage .leaflet-overlay-pane path').length === 39`;
+async function revealCoverageMap() {
+  // The map is lazy-mounted near the viewport; bring it into view first.
+  await evaluate(`document.querySelector('#coverage').scrollIntoView()`);
+}
 try {
   await call("Page.enable");
   await call("Runtime.enable");
+  await call("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await call("Page.navigate", { url: base });
+  await revealCoverageMap();
   await waitFor(mapReady);
   for (let cycle = 0; cycle < 3; cycle++) {
     await evaluate(`document.querySelector('a[href="/services/dog-walking"]').click()`);
     await waitFor(`location.pathname === '/services/dog-walking'`);
     await evaluate(`document.querySelector('header a[aria-label="The PawCab home"]').click()`);
+    await revealCoverageMap();
     await waitFor(mapReady);
     assert.equal(await evaluate(`document.querySelectorAll('#coverage .leaflet-container').length`), 1);
     await evaluate(`[...document.querySelectorAll('#coverage [aria-pressed]')].find(b => b.innerText === 'All zones').click()`);

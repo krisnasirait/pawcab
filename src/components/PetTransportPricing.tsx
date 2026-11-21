@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { PiArrowsLeftRight, PiInfo, PiMapPin, PiNavigationArrow, PiNotePencil, PiWhatsappLogo } from "react-icons/pi";
 import {
@@ -21,6 +21,7 @@ import {
   type OsmPlace,
 } from "@/lib/routing";
 import contentData from "@/lib/content";
+import type { MapEndpoint } from "./BaliCoverageMap";
 import AddressSearchInput from "./AddressSearchInput";
 import type { MapTarget } from "./MapPickerModal";
 
@@ -30,19 +31,42 @@ const MapPickerModal = dynamic(() => import("./MapPickerModal"), {
 
 type RouteStatus = "idle" | "loading" | "ready" | "error";
 
+const EstimatorMap = dynamic(() => import("./BaliCoverageMap"), {
+  ssr: false,
+  loading: () => (
+    <p role="status" className="flex h-full items-center justify-center text-sm text-ink">
+      Loading coverage map…
+    </p>
+  ),
+});
+
+// Display-only in this context: polygon clicks do nothing, hover still
+// names the zone. Stable reference so the map instance is never rebuilt.
+const noopZoneSelection = () => {};
+
 /**
- * Below-fold OSM embed (~300KB of embed JS). Only set the iframe src
- * once the placeholder is near the viewport so initial load never pays
- * for it. Shows a static frame with the same dimensions until then.
+ * Reuses the shared PawCab zone map instead of a generic OSM embed.
+ * Below-fold, so the Leaflet chunk only loads near the viewport.
+ * Highlights the trip's outer zone and pins pickup/drop-off once chosen.
  */
-function CoverageEmbed() {
+function CoverageEmbed({ outerZone, endpoints }: {
+  outerZone: number | null;
+  endpoints: MapEndpoint[];
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(
-    () => typeof IntersectionObserver === "undefined"
-  );
+  // Always start false so the server HTML matches the first client render.
+  const [visible, setVisible] = useState(false);
+  const [tilesDown, setTilesDown] = useState(false);
+  const handleTileError = useCallback(() => setTilesDown(true), []);
   useEffect(() => {
     const el = ref.current;
     if (!el || visible) return;
+    if (typeof IntersectionObserver === "undefined") {
+      // One-time progressive enhancement, not a render loop: guarded above.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -56,19 +80,25 @@ function CoverageEmbed() {
     return () => observer.disconnect();
   }, [visible]);
   return (
-    <div ref={ref} className="w-full h-[300px] sm:h-[350px] md:h-[380px] bg-sagewash/40">
-      {visible ? (
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=114.2500%2C-8.9500%2C115.8000%2C-7.9500&layer=mapnik"
-          width="100%"
-          height="380"
-          className="w-full h-[300px] sm:h-[350px] md:h-[380px] border-0"
-          loading="lazy"
-          title="PawCab Bali service coverage map"
-        />
-      ) : (
-        <p role="status" className="flex h-full items-center justify-center text-sm text-ink">
-          Loading coverage map…
+    <div ref={ref}>
+      <div role="region" aria-label="Trip zones on the PawCab service map" className="w-full h-[300px] sm:h-[350px] md:h-[380px] bg-sagewash/40">
+        {visible ? (
+          <EstimatorMap
+            activeZone={outerZone}
+            onSelectZone={noopZoneSelection}
+            onTileError={handleTileError}
+            endpoints={endpoints}
+            heightClass="h-[300px] sm:h-[350px] md:h-[380px] w-full"
+          />
+        ) : (
+          <p role="status" className="flex h-full items-center justify-center text-sm text-ink">
+            Loading coverage map…
+          </p>
+        )}
+      </div>
+      {tilesDown && (
+        <p role="status" className="mt-2 text-[13px] text-ink">
+          Map tiles could not load, but your fare below is unaffected.
         </p>
       )}
     </div>
@@ -182,6 +212,15 @@ export default function PetTransportPricing() {
       }),
     [distanceKm, pickupZone, dropoffZone, roundTrip, waitingHours],
   );
+
+  // Pins for the shared zone map. Memoised so typing notes or toggling
+  // round-trip never rebuilds the pins or yanks the map view.
+  const mapEndpoints = useMemo<MapEndpoint[]>(() => {
+    const points: MapEndpoint[] = [];
+    if (fromPlace) points.push({ lat: fromPlace.lat, lon: fromPlace.lon, label: `Pickup: ${fromPlace.short}` });
+    if (toPlace) points.push({ lat: toPlace.lat, lon: toPlace.lon, label: `Drop-off: ${toPlace.short}` });
+    return points;
+  }, [fromPlace, toPlace]);
 
   // Swap origin and destination; notes belong to the trip, not the leg.
   const handleSwap = () => {
@@ -639,7 +678,7 @@ export default function PetTransportPricing() {
           </p>
         </div>
 
-        {/* Interactive OpenStreetMap Coverage Map */}
+        {/* PawCab zone map, shared with the coverage section */}
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5">
             <div>
@@ -651,13 +690,13 @@ export default function PetTransportPricing() {
               </h3>
             </div>
             <p className="text-xs text-deep-midnight/70 font-normal max-w-sm sm:text-right">
-              Zoom to explore our Bali service coverage. Every searchable
-              address above is routed live.
+              Your pickup and drop-off appear as pins on our zone map. Hover
+              any shaded area to see its zone.
             </p>
           </div>
 
           <div className="w-full rounded-xl overflow-hidden border border-sage bg-white">
-            <CoverageEmbed />
+            <CoverageEmbed outerZone={fare.zone} endpoints={mapEndpoints} />
           </div>
         </div>
       </div>

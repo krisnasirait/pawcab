@@ -13,14 +13,19 @@ export default function ReviewsSection() {
   const reviews = contentData.home?.reviews;
   const elfsightAppId = reviews?.elfsightAppId?.trim();
   const ref = useRef<HTMLElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(
-    () => typeof IntersectionObserver === "undefined",
-  );
+  // Always start false so server HTML matches the first client render.
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     if (!elfsightAppId || shouldLoad) return;
     const el = ref.current;
     if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      // One-time progressive enhancement, not a render loop: guarded above.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setShouldLoad(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
