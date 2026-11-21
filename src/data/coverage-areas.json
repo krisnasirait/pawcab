@@ -1,235 +1,267 @@
 {
- "source": "OpenStreetMap Nominatim, queried 2026-11-20",
- "areas": [
-  {
-   "id": "seminyak",
-   "name": "Seminyak",
-   "zoneId": 1,
-   "lat": -8.68986,
-   "lon": 115.16678,
-   "osm": "Seminyak, Kuta, Badung"
-  },
-  {
-   "id": "kuta",
-   "name": "Kuta",
-   "zoneId": 1,
-   "lat": -8.72643,
-   "lon": 115.17781,
-   "osm": "Kuta, Badung, Bali"
-  },
-  {
-   "id": "legian",
-   "name": "Legian",
-   "zoneId": 1,
-   "lat": -8.70405,
-   "lon": 115.17376,
-   "osm": "Legian, Kuta, Badung"
-  },
-  {
-   "id": "sanur",
-   "name": "Sanur",
-   "zoneId": 1,
-   "lat": -8.69465,
-   "lon": 115.26058,
-   "osm": "Sanur, Denpasar Selatan, Denpasar"
-  },
-  {
-   "id": "denpasar-kota",
-   "name": "Denpasar City",
-   "zoneId": 1,
-   "lat": -8.66533,
-   "lon": 115.21762,
-   "osm": "Denpasar, Bali, Indonesia"
-  },
-  {
-   "id": "renon",
-   "name": "Renon",
-   "zoneId": 1,
-   "lat": -8.68606,
-   "lon": 115.23922,
-   "osm": "Renon, Denpasar Selatan, Denpasar"
-  },
-  {
-   "id": "canggu",
-   "name": "Canggu",
-   "zoneId": 2,
-   "lat": -8.6399,
-   "lon": 115.1436,
-   "osm": "Canggu, Kuta Utara, Badung"
-  },
-  {
-   "id": "kerobokan",
-   "name": "Kerobokan",
-   "zoneId": 2,
-   "lat": -8.65265,
-   "lon": 115.16257,
-   "osm": "Kerobokan, Kuta Utara, Badung"
-  },
-  {
-   "id": "berawa",
-   "name": "Berawa Beach",
-   "zoneId": 2,
-   "lat": -8.67447,
-   "lon": 115.14597,
-   "osm": "Berawa Beach, Jalan Batu Belig, Kerobokan Kelod"
-  },
-  {
-   "id": "pererenan",
-   "name": "Pererenan",
-   "zoneId": 2,
-   "lat": -8.64099,
-   "lon": 115.13279,
-   "osm": "Pererenan, Mengwi, Badung"
-  },
-  {
-   "id": "dalung",
-   "name": "Dalung",
-   "zoneId": 2,
-   "lat": -8.61843,
-   "lon": 115.16857,
-   "osm": "Dalung, Kuta Utara, Badung"
-  },
-  {
-   "id": "sempidi",
-   "name": "Sempidi",
-   "zoneId": 2,
-   "lat": -8.60583,
-   "lon": 115.18482,
-   "osm": "Sempidi, Mengwi, Badung"
-  },
-  {
-   "id": "darmasaba",
-   "name": "Darmasaba",
-   "zoneId": 2,
-   "lat": -8.58084,
-   "lon": 115.20248,
-   "osm": "Darmasaba, Abiansemal, Badung"
-  },
-  {
-   "id": "batubulan",
-   "name": "Batu Bulan",
-   "zoneId": 2,
-   "lat": -8.62104,
-   "lon": 115.25838,
-   "osm": "Batubulan, Sukawati, Gianyar"
-  },
-  {
-   "id": "jimbaran",
-   "name": "Jimbaran",
-   "zoneId": 3,
-   "lat": -8.78968,
-   "lon": 115.1625,
-   "osm": "Jimbaran, Kuta Selatan, Badung"
-  },
-  {
-   "id": "nusa-dua",
-   "name": "Nusa Dua",
-   "zoneId": 3,
-   "lat": -8.80168,
-   "lon": 115.22393,
-   "osm": "Nusa Dua, Kuta Selatan, Badung"
-  },
-  {
-   "id": "tanjung-benoa",
-   "name": "Tanjung Benoa",
-   "zoneId": 3,
-   "lat": -8.76574,
-   "lon": 115.22326,
-   "osm": "Tanjung Benoa, Jalan Taman Sari, Tanjung Benoa"
-  },
-  {
-   "id": "kuta-selatan",
-   "name": "South Kuta",
-   "zoneId": 3,
-   "lat": -8.80045,
-   "lon": 115.17664,
-   "osm": "Kuta Selatan, Badung, Bali"
-  },
-  {
-   "id": "ungasan",
-   "name": "Ungasan",
-   "zoneId": 3,
-   "lat": -8.82711,
-   "lon": 115.15709,
-   "osm": "Ungasan, Kuta Selatan, Badung"
-  },
-  {
-   "id": "tanah-lot",
-   "name": "Tanah Lot",
-   "zoneId": 4,
-   "lat": -8.62123,
-   "lon": 115.08688,
-   "osm": "Tanah Lot, Jalan Enjung Pura, Batugaing"
-  },
-  {
-   "id": "seseh",
-   "name": "Seseh",
-   "zoneId": 4,
-   "lat": -8.64791,
-   "lon": 115.11582,
-   "osm": "seseh beach, Munggu, Mengwi"
-  },
-  {
-   "id": "tabanan-kediri",
-   "name": "Tabanan (Kediri)",
-   "zoneId": 4,
-   "lat": -8.57565,
-   "lon": 115.12576,
-   "osm": "Kediri, Tabanan, Bali"
-  },
-  {
-   "id": "tabanan-kerambitan",
-   "name": "Tabanan (Kerambitan)",
-   "zoneId": 4,
-   "lat": -8.5268,
-   "lon": 115.09473,
-   "osm": "Kerambitan, Tabanan, Bali"
-  },
-  {
-   "id": "mengwi",
-   "name": "Mengwi",
-   "zoneId": 4,
-   "lat": -8.54881,
-   "lon": 115.18539,
-   "osm": "Mengwi, Badung, Bali"
-  },
-  {
-   "id": "abiansemal",
-   "name": "Abiansemal",
-   "zoneId": 4,
-   "lat": -8.52838,
-   "lon": 115.21419,
-   "osm": "Abiansemal, Badung, Bali"
-  },
-  {
-   "id": "sukawati",
-   "name": "Sukawati",
-   "zoneId": 4,
-   "lat": -8.58361,
-   "lon": 115.26958,
-   "osm": "Sukawati, Gianyar, Bali"
-  },
-  {
-   "id": "pecatu-uluwatu",
-   "name": "Pecatu / Uluwatu",
-   "zoneId": 4,
-   "lat": -8.82824,
-   "lon": 115.08796,
-   "osm": "Uluwatu, Pecatu, Kuta Selatan"
-  },
-  {
-   "id": "ubud",
-   "name": "Ubud",
-   "zoneId": 4,
-   "lat": -8.5170195,
-   "lon": 115.2550507
-  },
-  {
-   "id": "gianyar",
-   "name": "Gianyar",
-   "zoneId": 4,
-   "lat": -8.4821436,
-   "lon": 115.2855901
-  }
- ]
+  "source": "OpenStreetMap Nominatim, queried 2026-11-20",
+  "areas": [
+    {
+      "id": "seminyak",
+      "name": "Seminyak",
+      "zoneId": 1,
+      "lat": -8.68986,
+      "lon": 115.16678,
+      "osm": "Seminyak, Kuta, Badung"
+    },
+    {
+      "id": "kuta",
+      "name": "Kuta",
+      "zoneId": 1,
+      "lat": -8.72643,
+      "lon": 115.17781,
+      "osm": "Kuta, Badung, Bali"
+    },
+    {
+      "id": "legian",
+      "name": "Legian",
+      "zoneId": 1,
+      "lat": -8.70405,
+      "lon": 115.17376,
+      "osm": "Legian, Kuta, Badung"
+    },
+    {
+      "id": "sanur",
+      "name": "Sanur",
+      "zoneId": 1,
+      "lat": -8.69465,
+      "lon": 115.26058,
+      "osm": "Sanur, Denpasar Selatan, Denpasar"
+    },
+    {
+      "id": "denpasar-kota",
+      "name": "Denpasar City",
+      "zoneId": 1,
+      "lat": -8.66533,
+      "lon": 115.21762,
+      "osm": "Denpasar, Bali, Indonesia"
+    },
+    {
+      "id": "renon",
+      "name": "Renon",
+      "zoneId": 1,
+      "lat": -8.68606,
+      "lon": 115.23922,
+      "osm": "Renon, Denpasar Selatan, Denpasar"
+    },
+    {
+      "id": "canggu",
+      "name": "Canggu",
+      "zoneId": 2,
+      "lat": -8.6399,
+      "lon": 115.1436,
+      "osm": "Canggu, Kuta Utara, Badung"
+    },
+    {
+      "id": "kerobokan",
+      "name": "Kerobokan",
+      "zoneId": 2,
+      "lat": -8.65265,
+      "lon": 115.16257,
+      "osm": "Kerobokan, Kuta Utara, Badung"
+    },
+    {
+      "id": "berawa",
+      "name": "Berawa Beach",
+      "zoneId": 2,
+      "lat": -8.67447,
+      "lon": 115.14597,
+      "osm": "Berawa Beach, Jalan Batu Belig, Kerobokan Kelod"
+    },
+    {
+      "id": "pererenan",
+      "name": "Pererenan",
+      "zoneId": 2,
+      "lat": -8.64099,
+      "lon": 115.13279,
+      "osm": "Pererenan, Mengwi, Badung"
+    },
+    {
+      "id": "dalung",
+      "name": "Dalung",
+      "zoneId": 2,
+      "lat": -8.61843,
+      "lon": 115.16857,
+      "osm": "Dalung, Kuta Utara, Badung"
+    },
+    {
+      "id": "sempidi",
+      "name": "Sempidi",
+      "zoneId": 2,
+      "lat": -8.60583,
+      "lon": 115.18482,
+      "osm": "Sempidi, Mengwi, Badung"
+    },
+    {
+      "id": "darmasaba",
+      "name": "Darmasaba",
+      "zoneId": 2,
+      "lat": -8.58084,
+      "lon": 115.20248,
+      "osm": "Darmasaba, Abiansemal, Badung"
+    },
+    {
+      "id": "batubulan",
+      "name": "Batu Bulan",
+      "zoneId": 2,
+      "lat": -8.62104,
+      "lon": 115.25838,
+      "osm": "Batubulan, Sukawati, Gianyar"
+    },
+    {
+      "id": "jimbaran",
+      "name": "Jimbaran",
+      "zoneId": 3,
+      "lat": -8.78968,
+      "lon": 115.1625,
+      "osm": "Jimbaran, Kuta Selatan, Badung"
+    },
+    {
+      "id": "nusa-dua",
+      "name": "Nusa Dua",
+      "zoneId": 3,
+      "lat": -8.80168,
+      "lon": 115.22393,
+      "osm": "Nusa Dua, Kuta Selatan, Badung"
+    },
+    {
+      "id": "tanjung-benoa",
+      "name": "Tanjung Benoa",
+      "zoneId": 3,
+      "lat": -8.76574,
+      "lon": 115.22326,
+      "osm": "Tanjung Benoa, Jalan Taman Sari, Tanjung Benoa"
+    },
+    {
+      "id": "kuta-selatan",
+      "name": "South Kuta",
+      "zoneId": 3,
+      "lat": -8.80045,
+      "lon": 115.17664,
+      "osm": "Kuta Selatan, Badung, Bali"
+    },
+    {
+      "id": "ungasan",
+      "name": "Ungasan",
+      "zoneId": 3,
+      "lat": -8.82711,
+      "lon": 115.15709,
+      "osm": "Ungasan, Kuta Selatan, Badung"
+    },
+    {
+      "id": "tanah-lot",
+      "name": "Tanah Lot",
+      "zoneId": 4,
+      "lat": -8.62123,
+      "lon": 115.08688,
+      "osm": "Tanah Lot, Jalan Enjung Pura, Batugaing"
+    },
+    {
+      "id": "seseh",
+      "name": "Seseh",
+      "zoneId": 4,
+      "lat": -8.64791,
+      "lon": 115.11582,
+      "osm": "seseh beach, Munggu, Mengwi"
+    },
+    {
+      "id": "tabanan-kediri",
+      "name": "Tabanan (Kediri)",
+      "zoneId": 4,
+      "lat": -8.57565,
+      "lon": 115.12576,
+      "osm": "Kediri, Tabanan, Bali"
+    },
+    {
+      "id": "tabanan-kerambitan",
+      "name": "Tabanan (Kerambitan)",
+      "zoneId": 4,
+      "lat": -8.5268,
+      "lon": 115.09473,
+      "osm": "Kerambitan, Tabanan, Bali"
+    },
+    {
+      "id": "mengwi",
+      "name": "Mengwi",
+      "zoneId": 4,
+      "lat": -8.54881,
+      "lon": 115.18539,
+      "osm": "Mengwi, Badung, Bali"
+    },
+    {
+      "id": "abiansemal",
+      "name": "Abiansemal",
+      "zoneId": 4,
+      "lat": -8.52838,
+      "lon": 115.21419,
+      "osm": "Abiansemal, Badung, Bali"
+    },
+    {
+      "id": "sukawati",
+      "name": "Sukawati",
+      "zoneId": 4,
+      "lat": -8.58361,
+      "lon": 115.26958,
+      "osm": "Sukawati, Gianyar, Bali"
+    },
+    {
+      "id": "pecatu-uluwatu",
+      "name": "Pecatu / Uluwatu",
+      "zoneId": 4,
+      "lat": -8.82824,
+      "lon": 115.08796,
+      "osm": "Uluwatu, Pecatu, Kuta Selatan"
+    },
+    {
+      "id": "ubud",
+      "name": "Ubud",
+      "zoneId": 4,
+      "lat": -8.5170195,
+      "lon": 115.2550507
+    },
+    {
+      "id": "gianyar",
+      "name": "Gianyar",
+      "zoneId": 4,
+      "lat": -8.4821436,
+      "lon": 115.2855901
+    },
+    {
+      "id": "peguyangan",
+      "name": "Peguyangan",
+      "zoneId": 1,
+      "lat": -8.625,
+      "lon": 115.215,
+      "osm": "Peguyangan, Denpasar Utara, Denpasar"
+    },
+    {
+      "id": "seseh-beach",
+      "name": "Seseh Beach",
+      "zoneId": 4,
+      "lat": -8.6154,
+      "lon": 115.1285,
+      "osm": "Seseh Beach, Cemagi, Mengwi"
+    },
+    {
+      "id": "pecatu-south",
+      "name": "South Pecatu",
+      "zoneId": 4,
+      "lat": -8.86,
+      "lon": 115.141,
+      "osm": "South Pecatu, Bali, Indonesia"
+    },
+    {
+      "id": "abiansemal-south",
+      "name": "South Abiansemal",
+      "zoneId": 4,
+      "lat": -8.562,
+      "lon": 115.231,
+      "osm": "South Abiansemal, Badung, Bali"
+    }
+  ]
 }

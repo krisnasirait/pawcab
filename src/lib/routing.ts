@@ -25,6 +25,7 @@ export function shortenDisplayName(displayName: string): string {
 }
 
 import gazetteer from "@/data/bali-places.json";
+import { resolveFareDistance } from "@/data/fareCalculatorData";
 
 export interface GazetteerEntry {
   id: string;
@@ -76,7 +77,10 @@ export function tokenMatches(
   const words = haystack.split(/[^a-z0-9]+/).filter((w) => w.length > 2);
   return tokens.every((t) => {
     if (haystack.includes(t)) return true;
-    if (t.length < 4) return false;
+    // Short tokens match exactly only: fuzzy distance 1 on 4 letters
+    // makes "kuta" match "kota" (as in Kota Denpasar), sending Kuta
+    // searches to Uluwatu when live results are unavailable.
+    if (t.length < 5) return false;
     const threshold = t.length >= 7 ? 2 : 1;
     return words.some((w) => levenshtein(t, w) <= threshold);
   });
@@ -184,6 +188,17 @@ export async function searchPlacesBali(
   }));
 }
 
+/**
+ * Realistic Bali drive time: OSRM assumes free-flow traffic, so the raw
+ * duration is too optimistic. 30 km/h effective speed plus a 5-minute
+ * pickup/traffic buffer, rounded up. 16.1 km -> 38 min.
+ */
+export function estimateDuration(distanceKm: number): number {
+  const averageSpeedKmh = 30;
+  const bufferMinutes = 5;
+  return Math.ceil((distanceKm / averageSpeedKmh) * 60 + bufferMinutes);
+}
+
 export async function fetchDrivingRoute(
   from: { lat: number; lon: number },
   to: { lat: number; lon: number },
@@ -203,9 +218,11 @@ export async function fetchDrivingRoute(
   if (!route) {
     throw new Error("No driving route found");
   }
+  const osrmKm = route.distance / 1000;
+  const { distanceKm } = resolveFareDistance(osrmKm, from.lat, from.lon, to.lat, to.lon);
   return {
-    distanceKm: route.distance / 1000,
-    durationMin: route.duration / 60,
+    distanceKm,
+    durationMin: estimateDuration(distanceKm),
   };
 }
 

@@ -324,25 +324,25 @@
           {
             "id": 1,
             "name": "Zone 1",
-            "areasHeadline": "DENPASAR - KUTA - LEGIAN - SEMINYAK - SANUR",
+            "areasHeadline": "KOTA DENPASAR - SANUR - SEMINYAK - LEGIAN - KUTA",
             "description": "City centre, the south-central coast, and the main visitor districts."
           },
           {
             "id": 2,
             "name": "Zone 2",
-            "areasHeadline": "KEROBOKAN - DALUNG - CANGGU",
+            "areasHeadline": "KUTA UTARA - SEMPIDI - DARMASABA - BATU BULAN",
             "description": "Kerobokan, Dalung, Canggu and the west-central corridor."
           },
           {
             "id": 3,
             "name": "Zone 3",
-            "areasHeadline": "JIMBARAN - NUSA DUA - BENOA",
+            "areasHeadline": "KUTA SELATAN - NUSA DUA",
             "description": "The southern hill peninsula: Jimbaran, Nusa Dua and Benoa."
           },
           {
             "id": 4,
             "name": "Zone 4",
-            "areasHeadline": "TABANAN - UBUD - GIANYAR",
+            "areasHeadline": "TANAH LOT - SESEH - TABANAN (KEDIRI, KERAMBITAN) - MENGWI - ABIANSEMAL - SUKAWATI - PECATU",
             "description": "West Tabanan, Mengwi, Ubud and Gianyar, plus the outer runs."
           }
         ],
@@ -501,6 +501,26 @@
           {
             "id": "gianyar",
             "name": "Gianyar",
+            "zoneId": 4
+          },
+          {
+            "id": "peguyangan",
+            "name": "Peguyangan",
+            "zoneId": 1
+          },
+          {
+            "id": "seseh-beach",
+            "name": "Seseh Beach",
+            "zoneId": 4
+          },
+          {
+            "id": "pecatu-south",
+            "name": "South Pecatu",
+            "zoneId": 4
+          },
+          {
+            "id": "abiansemal-south",
+            "name": "South Abiansemal",
             "zoneId": 4
           }
         ],

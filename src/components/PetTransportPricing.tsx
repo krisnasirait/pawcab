@@ -22,6 +22,7 @@ import {
   type OsmPlace,
 } from "@/lib/routing";
 import contentData from "@/lib/content";
+import { trackEvent } from "@/lib/firebase";
 import type { MapEndpoint } from "./BaliCoverageMap";
 import AddressSearchInput from "./AddressSearchInput";
 import type { MapTarget } from "./MapPickerModal";
@@ -214,6 +215,22 @@ export default function PetTransportPricing() {
       }),
     [distanceKm, pickupZone, dropoffZone, roundTrip, waitingHours],
   );
+
+  // Funnel tracking: one fare_calculated per loaded route (keyed by the
+  // loaded route so typing notes or toggling round-trip never refires).
+  const lastTrackedRoute = useRef("");
+  useEffect(() => {
+    if (routeStatus !== "ready" || !loadedKey || loadedKey === lastTrackedRoute.current) return;
+    lastTrackedRoute.current = loadedKey;
+    if (fare.tier === "quote") return;
+    trackEvent("fare_calculated", {
+      zone: fare.zone ?? 0,
+      distance_km: Number(distanceKm.toFixed(1)),
+      value: fare.total,
+      currency: "IDR",
+      round_trip: roundTrip,
+    });
+  }, [routeStatus, loadedKey, fare, distanceKm, roundTrip]);
 
   // Pins for the shared zone map. Memoised so typing notes or toggling
   // round-trip never rebuilds the pins or yanks the map view.
@@ -504,13 +521,13 @@ export default function PetTransportPricing() {
                 </p>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-left py-2">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center text-center lg:text-left py-2">
                   {/* Driving Distance */}
-                  <div className="border-b md:border-b-0 md:border-r border-soft-white/15 pb-4 md:pb-0 md:pr-4">
+                  <div className="min-w-0 border-b lg:border-b-0 lg:border-r border-soft-white/15 pb-4 lg:pb-0 lg:pr-4">
                     <span className="text-xs text-soft-white/60 font-semibold block mb-1">
                       Driving Distance
                     </span>
-                    <div className="flex items-baseline justify-center md:justify-start gap-1.5">
+                    <div className="flex items-baseline justify-center lg:justify-start gap-1.5">
                       <span className="text-3xl sm:text-4xl font-semibold tabular-nums text-white">
                         {distanceKm.toFixed(1)}
                       </span>
@@ -524,11 +541,11 @@ export default function PetTransportPricing() {
                   </div>
 
                   {/* Zone + rate applied */}
-                  <div className="border-b md:border-b-0 md:border-r border-soft-white/15 pb-4 md:pb-0 md:pr-4">
+                  <div className="min-w-0 border-b lg:border-b-0 lg:border-r border-soft-white/15 pb-4 lg:pb-0 lg:pr-4">
                     <span className="text-xs text-soft-white/60 font-medium block mb-1">
                       {fare.zone ? `Zone ${fare.zone} rate` : "Zone"}
                     </span>
-                    <div className="flex items-baseline justify-center md:justify-start gap-1">
+                    <div className="flex items-baseline justify-center lg:justify-start gap-1">
                       {fare.tier === "fixed" && fare.rate ? (
                         <>
                           <span className="text-2xl sm:text-3xl font-semibold tabular-nums text-white">
@@ -567,7 +584,7 @@ export default function PetTransportPricing() {
                   </div>
 
                   {/* Total Fare, or a hand quote when the card runs out */}
-                  <div>
+                  <div className="min-w-0">
                     {fare.tier === "quote" ? (
                       <>
                         <span className="text-xs text-soft-white/80 font-medium block mb-1">
@@ -587,7 +604,7 @@ export default function PetTransportPricing() {
                         <span className="text-xs text-soft-white/80 font-medium block mb-1">
                           Total Estimated Fare
                         </span>
-                        <p className="text-3xl sm:text-4xl md:text-5xl font-semibold tabular-nums text-white tracking-tight">
+                        <p className="text-3xl sm:text-4xl font-semibold tabular-nums text-white tracking-tight break-words">
                           {formatRupiah(fare.total)}
                         </p>
                         <p className="text-[11px] text-soft-white/70 mt-1">
@@ -647,6 +664,9 @@ export default function PetTransportPricing() {
                     href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent(waMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-analytics-zone={fare.zone ?? ""}
+                    data-analytics-total={fare.tier === "quote" ? 0 : fare.total}
+                    data-analytics-distance={distanceKm.toFixed(1)}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 whitespace-nowrap bg-accent hover:bg-accent-hover text-forest font-medium px-7 py-3.5 min-h-[48px] rounded-full text-[15px] border-2 border-line transition-colors duration-200"
                   >
                     <PiWhatsappLogo aria-hidden="true" className="text-base" />

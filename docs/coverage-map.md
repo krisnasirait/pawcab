@@ -15,7 +15,7 @@ The homepage coverage panel is a custom Leaflet map, not a Google Maps iframe. I
 
 - `BaliZoneMap.tsx`: public shell, keyboard-accessible filter buttons, counts, selected area list, expandable full directory, fare link and original map link.
 - `BaliCoverageMap.tsx`: client-only, dynamically imported Leaflet renderer, OSM tiles, polygon/point tooltips, zone click selection, zoom/pan. Wheel zoom disabled so page scrolling stays predictable. Zone changes use immediate fitBounds (no reduced-motion exception needed). The map and its layers are created in one effect setup and removed in that effect's cleanup; reconnected effects create a fresh instance. Optional `endpoints` pins (pickup/drop-off) and `heightClass` let the fare estimator reuse the same map: pins refit the view, otherwise zone framing applies. SSR and first client render both start with the lazy placeholder (`useState(false)` + effect upgrade) so hydration matches; the `react-hooks/set-state-in-effect` disables are one-time, render-guarded enhancements.
-- `coverage-areas.json`: existing 29 point locations, unchanged. Counts remain 6 / 8 / 5 / 10. Ubud and Gianyar remain listed and plotted.
+- `coverage-areas.json`: 33 point locations (Peguyangan z1; Seseh Beach, South Pecatu and South Abiansemal z4; see pricing-model). Counts are 7 / 8 / 5 / 13. Ubud and Gianyar remain listed and plotted.
 - Tile failures show a status message. Local polygons, markers and directory remain usable without basemap tiles. No-JavaScript visitors retain the expandable area directory and links.
 
 ## Important separation from fares
@@ -32,7 +32,7 @@ TypeScript, component ESLint, color-token script, diff checks and production bui
 
 ### Estimator reuse
 
-The fare estimator's "Coverage Map" panel reuses this map instead of a generic OSM iframe (`CoverageEmbed` in `PetTransportPricing.tsx`, also IO-gated). It passes the trip's outer zone as `activeZone` and memoised pickup/drop-off pins; polygon clicks are a stable no-op there (hover still names zones). Verified with address fixtures: 39 overlay paths with no addresses, 41 with both pins, no OSM iframe anywhere, no overflow, no runtime errors. The `mapEndpoints` memo keeps typing notes or toggling round-trip from rebuilding pins or yanking the view.
+The fare estimator's "Coverage Map" panel reuses this map instead of a generic OSM iframe (`CoverageEmbed` in `PetTransportPricing.tsx`, also IO-gated). It passes the trip's outer zone as `activeZone` and memoised pickup/drop-off pins; polygon clicks are a stable no-op there (hover still names zones). Verified with address fixtures: 43 overlay paths with no addresses (10 polygons + 33 points), 45 with both pins, no OSM iframe anywhere, no overflow, no runtime errors. The `mapEndpoints` memo keeps typing notes or toggling round-trip from rebuilding pins or yanking the view.
 
 ### Cached-navigation lifecycle regression
 
@@ -40,4 +40,4 @@ Reproduced the reported `TileLayer`/`appendChild` error by navigating home → D
 
 The coverage renderer now manages the existing Leaflet library directly inside an effect, creating a fresh map/layer set on every setup. Cleanup removes that exact instance and clears its ref. Tile-error callbacks are stable, so ordinary status changes do not reconstruct the map. No global caching/Strict Mode settings, dependencies, map coordinates or fare rules changed.
 
-Run `node scripts/check-map-navigation.mjs http://localhost:3000` with Node 22+ and an open Chrome tab using `--remote-debugging-port=9333`. This navigates home → walking → home three times, asserting one map, 39 overlay paths, working zone filters and no runtime exceptions. Passed on both next dev (:3000) and a fresh production build (:3106). Responsive, shape-click, keyboard and blocked-tile checks were also rerun successfully against :3106. Earlier initial-load-only map checks did not cover this lifecycle.
+Run `node scripts/check-map-navigation.mjs http://localhost:3000` with Node 22+ and an open Chrome tab using `--remote-debugging-port=9333`. This navigates home → walking → home three times, asserting one map, 43 overlay paths, working zone filters and no runtime exceptions. Passed on both next dev (:3000) and a fresh production build (:3106). Responsive, shape-click, keyboard and blocked-tile checks were also rerun successfully against :3106. Earlier initial-load-only map checks did not cover this lifecycle.

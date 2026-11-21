@@ -61,6 +61,7 @@ export const PAWCAB_AREAS: AreaLocation[] =
   { id: "sanur", name: "Sanur", zoneId: 1, popular: true },
   { id: "denpasar-kota", name: "Denpasar City", zoneId: 1 },
   { id: "renon", name: "Renon", zoneId: 1 },
+  { id: "peguyangan", name: "Peguyangan", zoneId: 1 },
 
   // Zone 2
   { id: "canggu", name: "Canggu", zoneId: 2, popular: true },
@@ -90,6 +91,9 @@ export const PAWCAB_AREAS: AreaLocation[] =
   { id: "ubud", name: "Ubud", zoneId: 4, popular: true },
   { id: "gianyar", name: "Gianyar", zoneId: 4 },
   { id: "pecatu-uluwatu", name: "Pecatu / Uluwatu", zoneId: 4, popular: true },
+  { id: "seseh-beach", name: "Seseh Beach", zoneId: 4 },
+  { id: "pecatu-south", name: "South Pecatu", zoneId: 4 },
+  { id: "abiansemal-south", name: "South Abiansemal", zoneId: 4 },
 ];
 
 // 3. TARIF PER KM ANTAR-ZONA (Sync with content.json with fallback)
@@ -386,7 +390,7 @@ const AREA_COORDS: Record<string, { lat: number; lon: number }> = Object.fromEnt
 /** A point further than this from every listed area is treated as outside the zones. */
 const MAX_ZONE_DISTANCE_KM = 25;
 
-function haversineKm(aLat: number, aLon: number, bLat: number, bLon: number) {
+export function haversineKm(aLat: number, aLon: number, bLat: number, bLon: number) {
   const R = 6371;
   const dLat = ((bLat - aLat) * Math.PI) / 180;
   const dLon = ((bLon - aLon) * Math.PI) / 180;
@@ -396,6 +400,30 @@ function haversineKm(aLat: number, aLon: number, bLat: number, bLon: number) {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(la1) * Math.cos(la2) * Math.sin(dLon / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+/**
+ * Fare distance from an OSRM road distance. OSRM optimises for free-flow
+ * time, so in Bali it can prefer long bypass loops (Sanur Kauh to
+ * Peguyangan: 15.0 km vs ~13.7 km on Google). When the route looks
+ * pathological next to the straight line, fare on calibrated circuity
+ * instead of the loop. Normal routes pass through untouched.
+ */
+export const MAX_FARE_CIRCUITY = 1.5;
+export const FALLBACK_CIRCUITY = 1.4;
+
+export function resolveFareDistance(
+  osrmKm: number,
+  fromLat: number,
+  fromLon: number,
+  toLat: number,
+  toLon: number,
+): { distanceKm: number; capped: boolean } {
+  const straightKm = haversineKm(fromLat, fromLon, toLat, toLon);
+  if (straightKm > 0 && osrmKm > straightKm * MAX_FARE_CIRCUITY) {
+    return { distanceKm: straightKm * FALLBACK_CIRCUITY, capped: true };
+  }
+  return { distanceKm: osrmKm, capped: false };
 }
 
 /** Zone of a coordinate: nearest listed service area, or null when it is outside Bali's zones. */

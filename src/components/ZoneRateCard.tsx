@@ -55,6 +55,7 @@ export default function ZoneRateCard() {
                   href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Hi PawCab, I would like to book a Zone ${zone.id} ride.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-zone={zone.id}
                   className="inline-flex items-center justify-center gap-2 min-h-12 px-6 rounded-full border-2 border-forest text-forest font-medium text-[15px] hover:bg-forest hover:text-white transition-colors duration-200 md:self-center shrink-0"
                 >
                   Book Zone {zone.id} <PiArrowRight aria-hidden="true" />

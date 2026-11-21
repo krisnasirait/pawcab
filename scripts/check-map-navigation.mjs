@@ -45,7 +45,7 @@ async function waitFor(expression) {
   }
   assert.fail(`Timed out: ${expression}\n${errors.join("\n")}`);
 }
-const mapReady = `location.pathname === '/' && document.querySelectorAll('#coverage .leaflet-overlay-pane path').length === 39`;
+const mapReady = `location.pathname === '/' && document.querySelectorAll('#coverage .leaflet-overlay-pane path').length === 43`;
 async function revealCoverageMap() {
   // The map is lazy-mounted near the viewport; bring it into view first.
   await evaluate(`document.querySelector('#coverage').scrollIntoView()`);
@@ -65,10 +65,10 @@ try {
     await waitFor(mapReady);
     assert.equal(await evaluate(`document.querySelectorAll('#coverage .leaflet-container').length`), 1);
     await evaluate(`[...document.querySelectorAll('#coverage [aria-pressed]')].find(b => b.innerText === 'All zones').click()`);
-    await waitFor(`document.querySelector('#coverage [aria-live]').innerText.includes('29 areas')`);
+    await waitFor(`document.querySelector('#coverage [aria-live]').innerText.includes('33 areas')`);
     await evaluate(`[...document.querySelectorAll('#coverage [aria-pressed]')].find(b => b.innerText.startsWith('Zone 3')).click()`);
     await waitFor(`document.querySelector('#coverage [aria-live]').innerText.startsWith('Zone 3:')`);
-    console.log(`PASS navigation cycle ${cycle + 1}: one map, 10 polygons + 29 markers, working filter`);
+    console.log(`PASS navigation cycle ${cycle + 1}: one map, 10 polygons + 33 markers, working filter`);
   }
   assert.deepEqual(errors, [], "No runtime exceptions during cached navigation");
 } finally {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { getContent } from "@/lib/content";
 import { Cormorant_Garamond, Public_Sans } from "next/font/google";
+import FirebaseAnalytics from "@/components/FirebaseAnalytics";
 import "./globals.css";
 
 // Display serif: thin, high-contrast, used at weight 300 for every headline
@@ -102,6 +103,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${display.variable} ${text.variable} antialiased bg-white`}>
+        <FirebaseAnalytics />
         {children}
       </body>
     </html>

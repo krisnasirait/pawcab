@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { readdir, readFile, appendFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import gazetteer from "@/data/bali-places.json";
+import coverageAreas from "@/data/coverage-areas.json";
+import { PAWCAB_ZONES } from "@/data/fareCalculatorData";
 import { liveGooglePlaces } from "@/lib/googleLive";
 import { tokenMatches } from "@/lib/routing";
 
@@ -227,7 +229,14 @@ export async function GET(req: NextRequest) {
   const scraped =
     scrapedSettled.status === "fulfilled" ? scrapedSettled.value : [];
 
-  const curated = (
+  const curated: Array<{
+    lat: number;
+    lon: number;
+    name: string;
+    short: string;
+    alias?: string;
+    source: "local";
+  }> = (
     (gazetteer as { places?: Array<{ name: string; address: string; lat: number; lon: number }> })
       .places ?? []
   ).map((p) => ({
@@ -237,6 +246,23 @@ export async function GET(req: NextRequest) {
     short: p.name,
     source: "local" as const,
   }));
+
+  // The 30 fare-directory areas double as offline search entries, so a
+  // bare area name ("Nusa Dua", "Kuta") still resolves when live OSM
+  // is unreachable. Live results keep priority; these only fill gaps.
+  const headlines = new Map(PAWCAB_ZONES.map((z) => [z.id, z.areasHeadline]));
+  for (const a of (coverageAreas as { areas?: Array<{ id: string; name: string; lat: number; lon: number; zoneId: number }> }).areas ?? []) {
+    if (typeof a.lat !== "number" || typeof a.lon !== "number") continue;
+    curated.push({
+      lat: a.lat,
+      lon: a.lon,
+      name: `${a.name}, Bali`,
+      short: a.name,
+      // Indonesian card names ("KUTA SELATAN", "DENPASAR KOTA") match here.
+      alias: headlines.get(a.zoneId) ?? "",
+      source: "local",
+    });
+  }
 
   // OSM stays primary; curated + scraped entries fill the gaps.
   // A repeat of a previously scraped query matches instantly on the
@@ -248,13 +274,24 @@ export async function GET(req: NextRequest) {
       "sourceQuery" in p &&
       (p as { sourceQuery: string }).sourceQuery === normalizedQuery,
   );
-  const localHits = [
-    ...repeatHits,
-    ...tokenMatch(
-      query,
-      local.map((p) => ({ name: p.short, address: p.name })),
-    ).map((i) => local[i]),
-  ];
+  // Exact area names rank first, so "Kuta" resolves to Kuta town and
+  // not to a scraped shop whose address merely mentions Kuta Selatan.
+  const rankHit = (p: { short: string }) => {
+    const name = p.short.toLowerCase();
+    if (name === normalizedQuery) return 0;
+    if (name.includes(normalizedQuery)) return 1;
+    return 2;
+  };
+  const fuzzyHits = tokenMatch(
+    query,
+    local.map((p) => ({
+      name: p.short,
+      address: [p.name, (p as { alias?: string }).alias ?? ""].join(" "),
+    })),
+  )
+    .map((i) => local[i])
+    .sort((a, b) => rankHit(a) - rankHit(b));
+  const localHits = [...repeatHits, ...fuzzyHits];
 
   const seen = new Set<string>();
   const results: ApiPlace[] = [];

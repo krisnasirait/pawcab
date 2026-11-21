@@ -20,7 +20,7 @@ Rules implemented in `src/data/fareCalculatorData.ts` (`quoteZoneFare`):
 - **Zone of a trip** = the higher-numbered pickup/drop-off zone, which has the higher fixed and
   per-km rates on the supplied card. Direction does not change the rate. Both endpoints must
   resolve to configured zones; either endpoint outside/unknown requires a manual quote.
-  Each address is mapped to the nearest of the 29 listed service areas (`zoneForPoint`). A point
+  Each address is mapped to the nearest of the 30 listed service areas (`zoneForPoint`). A point
   more than 25 km from every area is treated as outside. This remains a proximity heuristic,
   not polygon containment or administrative-boundary lookup; points near borders can differ from
   the custom display map. No zoning algorithm or directory changes were authorised in this update.
@@ -80,10 +80,13 @@ message with empty Location / Pets / Dates fields.
   card's number, previously retired). Every WhatsApp link on all five routes now carries the number, so no
   link opens a bare contact picker: verified 4/4 on `/`, 5/5 on `/stories`, 5/5 on pet transport,
   7/7 on dog walking, 7/7 on pet sitting.
-- **Zone lists follow the card.** Ubud and Gianyar were added as their own Zone 4 areas (29 areas
-  total, up from 27), with OSM coordinates, so they resolve in the calculator, appear as dots on the
-  coverage map, and show in the Zone 4 detail. "Sukawati / South Ubud" became "Sukawati" now that
-  Ubud stands alone. The zone chips read 6 / 8 / 5 / 10.
+- **Zone lists follow the card.** Ubud and Gianyar were added as their own Zone 4 areas,
+  Peguyangan as a Zone 1 area after a Peguyangan Kangin drop-off misresolved to Zone 2, and
+  Seseh Beach / South Pecatu / South Abiansemal as Zone 4 anchors after the 100-case zone test
+  exposed beach/south-Bukit/south-district miszones (33 areas total, up from 27). All resolve in
+  the calculator, appear as dots on the coverage map, and show in their zone detail.
+  "Sukawati / South Ubud" became "Sukawati" now that Ubud stands alone.
+  The zone chips read 7 / 8 / 5 / 13.
 
 ## Still open
 

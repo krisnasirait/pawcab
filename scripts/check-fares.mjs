@@ -20,7 +20,30 @@ vm.runInNewContext(outputText, {
     throw new Error(`Unexpected calculator dependency: ${id}`);
   },
 });
-const { quoteZoneFare, zoneForPoint, ZONE_RATES, FIXED_TIER_MAX_KM, QUOTED_BEYOND_KM } = exports;
+const { quoteZoneFare, zoneForPoint, resolveFareDistance, ZONE_RATES, FIXED_TIER_MAX_KM, QUOTED_BEYOND_KM } = exports;
+
+// Same sandbox trick for the search matcher (pure functions only).
+const routingSource = readFileSync(new URL("../src/lib/routing.ts", import.meta.url), "utf8");
+const { outputText: routingJs } = ts.transpileModule(routingSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, esModuleInterop: true },
+});
+const routingExports = {};
+vm.runInNewContext(routingJs, {
+  exports: routingExports,
+  require(id) {
+    if (id === "@/data/bali-places.json") return readJson("../src/data/bali-places.json");
+    if (id === "@/data/fareCalculatorData") return exports;
+    throw new Error(`Unexpected routing dependency: ${id}`);
+  },
+});
+const { tokenMatches } = routingExports;
+// kuta must NOT match Kota Denpasar addresses (the Uluwatu misfire).
+assert.equal(tokenMatches("Kuta", "Savaya Bali", "96MF+C39, Jl. Antasura, Peguyangan Kangin, Denpasar Utara, Kota Denpasar, Bali"), false);
+assert.equal(tokenMatches("Kuta", "Kuta, Badung, Bali", "Kuta, Badung, Bali"), true);
+assert.equal(tokenMatches("Sanur", "Sanur, Denpasar Selatan", "Sanur, Denpasar Selatan, Bali"), true);
+assert.equal(tokenMatches("Nusa Dua", "Nusa Dua, Bali", "Nusa Dua, Bali"), true);
+// Useful typo tolerance survives: 5+ letter tokens still allow distance 1.
+assert.equal(tokenMatches("Sanour", "Sanur, Denpasar", "Sanur, Bali"), true);
 const card = {
   1: { fixedUpTo5km: 50000, perKm: 12000 },
   2: { fixedUpTo5km: 65000, perKm: 13000 },
@@ -75,4 +98,16 @@ for (const [distanceKm, total] of [[5, 70000], [10, 140000], [15, 210000]]) {
   console.log(`Denpasar ↔ South Kuta, ${distanceKm} km: Zone 3, Rp${total.toLocaleString("id-ID")}`);
 }
 assert.equal(quoteZoneFare({ distanceKm: 10, pickupZone, dropoffZone, waitingHours: 2 }).total, 170000);
-console.log(`PASS: ${cases} matrix/endpoint/location cases, owner examples, waiting fee and outside-area check.`);
+// Distance guard: Sanur Kauh to Peguyangan, OSRM 15.0 km vs 9.72 km straight
+// (ratio 1.54) is capped to 9.72 x 1.4 = 13.6 km, near Google's 13.7 km.
+const kulukPeg = resolveFareDistance(15.0, -8.7009715, 115.2452959, -8.6164693, 115.222729);
+assert.equal(kulukPeg.capped, true);
+assert.ok(Math.abs(kulukPeg.distanceKm - 13.6) < 0.05, `capped distance ${kulukPeg.distanceKm}`);
+// Normal routes pass through untouched, including the exact boundary.
+for (const [osrm, a, b, c, d] of [[12, -8.7, 115.24, -8.62, 115.22], [0, -8.7, 115.24, -8.7, 115.24]]) {
+  const r = resolveFareDistance(osrm, a, b, c, d);
+  assert.equal(r.distanceKm, osrm);
+  assert.equal(r.capped, false);
+}
+cases += 8; // 3 distance-guard + 5 matcher cases
+console.log(`PASS: ${cases} matrix/endpoint/location/distance-guard/matcher cases, owner examples, waiting fee and outside-area check.`);
