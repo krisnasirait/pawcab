@@ -5,6 +5,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PetTransportPricing from "@/components/PetTransportPricing";
+import ZoneRateCard from "@/components/ZoneRateCard";
 import PetTransportFAQ from "@/components/PetTransportFAQ";
 import { PiArrowRight, PiCarProfile, PiCheckCircleFill, PiPawPrint, PiSnowflake, PiUser } from "react-icons/pi";
 import contentData from "@/lib/content";
@@ -243,6 +244,11 @@ export default function PetTransportPage() {
             </div>
           </div>
         </section>
+
+        {/* ========================================================
+            PRICELIST (printed SERVICES & RATES card)
+            ======================================================== */}
+        <ZoneRateCard />
 
         {/* ========================================================
             PRICING SECTION (Zone-Based Fare & Maps)

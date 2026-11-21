@@ -162,6 +162,18 @@
   }
 }
 
+/* Elfsight renders inside shadow DOM, so this page cannot style it.
+   Cage the host instead: even a runaway widget keeps its width and
+   can never widen the page or shove neighboring sections around. */
+.elfsight-frame {
+  max-width: 100%;
+  overflow-x: clip;
+}
+.elfsight-frame [class*="elfsight-app"] {
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
 /* R-39: non-essential motion stops when the user asks it to. */
 @media (prefers-reduced-motion: reduce) {
   *,

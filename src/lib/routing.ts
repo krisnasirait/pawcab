@@ -227,8 +227,8 @@ export function calculateFlatFare(distanceKm: number, minimumFare = 65000): {
   };
 }
 
-export function osmLinkFor(lat: number, lon: number): string {
-  return `https://www.openstreetmap.org/?mlat=${lat.toFixed(5)}&mlon=${lon.toFixed(5)}#map=16/${lat.toFixed(5)}/${lon.toFixed(5)}`;
+export function osmToGoogleMaps(lat: number, lon: number) {
+  return `https://www.google.com/maps?q=${lat},${lon}`;
 }
 
 export interface GeoCoords {

@@ -17,7 +17,7 @@ import {
   getCurrentPosition,
   geolocationErrorMessage,
   reverseGeocodeBali,
-  osmLinkFor,
+  osmToGoogleMaps,
   type OsmPlace,
 } from "@/lib/routing";
 import contentData from "@/lib/content";
@@ -262,10 +262,10 @@ export default function PetTransportPricing() {
   const waMessage = useMemo(() => {
     let msg = `Hi PawCab, I would like to book a Pet Transport:\n\n`;
     if (fromPlace) {
-      msg += `PICKUP: ${fromPlace.name}\nMaps: ${osmLinkFor(fromPlace.lat, fromPlace.lon)}\n\n`;
+      msg += `PICKUP: ${fromPlace.name}\nMaps: ${osmToGoogleMaps(fromPlace.lat, fromPlace.lon)}\n\n`;
     }
     if (toPlace) {
-      msg += `DROP-OFF: ${toPlace.name}\nMaps: ${osmLinkFor(toPlace.lat, toPlace.lon)}\n\n`;
+      msg += `DROP-OFF: ${toPlace.name}\nMaps: ${osmToGoogleMaps(toPlace.lat, toPlace.lon)}\n\n`;
     }
     msg += `DISTANCE: ~${distanceKm.toFixed(1)} km (~${Math.round(durationMin)} min drive)\n`;
     if (pickupZone !== null) msg += `PICKUP ZONE: ${pickupZone}\n`;
