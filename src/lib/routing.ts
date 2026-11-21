@@ -231,6 +231,19 @@ export function osmToGoogleMaps(lat: number, lon: number) {
   return `https://www.google.com/maps?q=${lat},${lon}`;
 }
 
+export function googleMapsDirections(
+  pickup: { lat: number; lon: number },
+  dropoff: { lat: number; lon: number },
+) {
+  const params = new URLSearchParams({
+    api: "1",
+    origin: `${pickup.lat},${pickup.lon}`,
+    destination: `${dropoff.lat},${dropoff.lon}`,
+    travelmode: "driving",
+  });
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
+
 export interface GeoCoords {
   lat: number;
   lon: number;

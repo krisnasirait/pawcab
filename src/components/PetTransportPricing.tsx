@@ -18,6 +18,7 @@ import {
   geolocationErrorMessage,
   reverseGeocodeBali,
   osmToGoogleMaps,
+  googleMapsDirections,
   type OsmPlace,
 } from "@/lib/routing";
 import contentData from "@/lib/content";
@@ -266,6 +267,9 @@ export default function PetTransportPricing() {
     }
     if (toPlace) {
       msg += `DROP-OFF: ${toPlace.name}\nMaps: ${osmToGoogleMaps(toPlace.lat, toPlace.lon)}\n\n`;
+    }
+    if (fromPlace && toPlace) {
+      msg += `ROUTE: ${googleMapsDirections(fromPlace, toPlace)}\n\n`;
     }
     msg += `DISTANCE: ~${distanceKm.toFixed(1)} km (~${Math.round(durationMin)} min drive)\n`;
     if (pickupZone !== null) msg += `PICKUP ZONE: ${pickupZone}\n`;
