@@ -137,10 +137,21 @@ export interface AreaItem {
   popular?: boolean;
 }
 
+export interface ZoneRateItem {
+  fixedUpTo5km: number;
+  perKm: number;
+}
+
 export interface PricingConfig {
   heading: string;
   subheading: string;
   badge: string;
+  /** Zone rate card: fixed fare to fixedTierMaxKm, then the zone rate per km. */
+  zoneRates?: Record<string, ZoneRateItem>;
+  fixedTierMaxKm?: number;
+  quotedBeyondKm?: number;
+  waitingFeePerHour?: number;
+  /** Legacy floor, superseded by the zone rate card. */
   minimumFare: number;
   perExtraPetFee: number;
   maxPets: number;

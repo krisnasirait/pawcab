@@ -1,19 +1,12 @@
 import React from "react";
-import { BsArrowRight, BsCheckCircleFill, BsInfoCircle } from "react-icons/bs";
-import { PiPawPrint, PiTreePalm } from "react-icons/pi";
+import { PiInfo } from "react-icons/pi";
 import contentData from "@/lib/content";
-
-const planIcons: Record<string, React.ReactNode> = {
-  neighborhood: <PiPawPrint className="text-2xl text-deep-midnight" />,
-  beach: <PiTreePalm className="text-2xl text-deep-midnight" />,
-};
 
 export default function DogWalkingPricing() {
   const cmsPlans = contentData.servicesPages?.dogWalking?.pricingPlans;
 
   const plans = cmsPlans && cmsPlans.length > 0 ? cmsPlans.map((p) => ({
     id: p.id,
-    icon: planIcons[p.id] || <PiPawPrint className="text-2xl text-deep-midnight" />,
     title: p.title,
     subtitle: p.subtitle,
     features: p.features,
@@ -23,7 +16,6 @@ export default function DogWalkingPricing() {
   })) : [
     {
       id: "neighborhood",
-      icon: <PiPawPrint className="text-2xl text-deep-midnight" />,
       title: "Neighborhood Walk",
       subtitle: "1 Hour Session",
       features: [
@@ -38,7 +30,6 @@ export default function DogWalkingPricing() {
     },
     {
       id: "beach",
-      icon: <PiTreePalm className="text-2xl text-deep-midnight" />,
       title: "Beach Walk",
       subtitle: "1 Hour Session",
       features: [
@@ -56,92 +47,76 @@ export default function DogWalkingPricing() {
   return (
     <section
       id="pricing"
-      className="py-20 md:py-28 px-6 md:px-10 bg-soft-white border-t border-sand-beige/40"
+      aria-labelledby="walking-rates-title"
+      className="py-16 md:py-24 px-6 md:px-10 bg-surface scroll-mt-24"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-14 md:mb-16">
-          <div className="mb-3">
-            <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
-              PRICING
-            </p>
-          </div>
-          <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-bold leading-tight mb-4">
-            Dog Walking Fares
+        <div className="max-w-3xl mb-10 md:mb-12">
+          <p className="flex items-center gap-3 text-[14px] font-medium text-deepgreen mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-deepgreen" />
+            Walk rates
+          </p>
+          <h2 id="walking-rates-title" className="font-display text-4xl md:text-[52px] text-forest font-normal leading-[1.08] mb-4">
+            One hour walks, priced by zone
           </h2>
-          <p className="text-warm-taupe font-light text-base md:text-lg leading-relaxed">
-            Our walking services are available in two options. Choose the one that
-            best suits your dog&apos;s needs.
+          <p className="text-ink font-normal text-base md:text-lg leading-relaxed">
+            A private one hour walk in your own neighbourhood, for up to two dogs.
+            Pick the zone you live in.
           </p>
         </div>
 
-        {/* 2 Pricing Cards Grid */}
-        <div className="grid max-w-4xl mx-auto grid-cols-1 md:grid-cols-2 gap-8 mb-14">
+        <ul role="list" className="border-t border-forest/25 mb-8">
           {plans.map((plan) => (
-            <div
+            <li
               key={plan.id}
-              className="bg-white rounded-3xl p-7 sm:p-9 border border-sand-beige/40 shadow-sm hover:shadow-xl hover:border-pawcab-gold/60 transition-all duration-300 flex flex-col justify-between group"
+              className="grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] md:gap-x-10 items-start py-8 md:py-10 border-b border-forest/25"
             >
               <div>
-                {/* Header with Circular Badge */}
-                <div className="flex items-center gap-4 mb-7 pb-6 border-b border-sand-beige/30">
-                  <div className="w-14 h-14 rounded-2xl bg-warm-ivory border border-sand-beige/40 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
-                    {plan.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight">
-                      {plan.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-warm-taupe font-medium mt-0.5">
-                      {plan.subtitle}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Checklist Features */}
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <BsCheckCircleFill className="text-brass shrink-0 text-base" />
-                      <span className="text-deep-midnight/85 text-sm sm:text-[15px] font-normal">
-                        {feat}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="font-display text-[32px] md:text-[38px] font-normal leading-[1.1] text-forest mb-3">
+                  {plan.title}
+                </h3>
+                <p className="text-base leading-relaxed text-ink max-w-sm">
+                  {plan.subtitle}
+                </p>
               </div>
 
-              {/* Bottom Price & CTA */}
-              <div className="pt-6 border-t border-sand-beige/30">
-                <div className="mb-6">
-                  <p className="font-playfair text-3xl sm:text-4xl font-bold text-deep-midnight leading-none">
+              <ul role="list" className="space-y-2 text-sm md:text-[15px] leading-relaxed text-ink">
+                {plan.features.map((feat, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span aria-hidden="true" className="mt-2.5 size-1 rounded-full bg-forest shrink-0" />
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="md:col-span-2 lg:col-span-1 flex flex-wrap lg:flex-col items-start justify-between lg:items-end gap-5">
+                <div className="lg:text-right">
+                  <p className="text-[30px] md:text-[34px] font-normal tabular-nums leading-tight text-forest">
                     {plan.price}
                   </p>
-                  <p className="text-xs sm:text-sm text-warm-taupe font-light mt-1.5">
-                    {plan.unit}
-                  </p>
+                  <p className="text-sm text-ink mt-1">{plan.unit}</p>
                 </div>
-
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(plan.waText)}`}
+                  href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent(plan.waText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-deep-midnight text-soft-white hover:bg-pawcab-navy py-3.5 px-6 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all duration-300 shadow-sm group-hover:shadow-md"
+                  aria-label={`Book a walk: ${plan.title}`}
+                  className="inline-flex min-h-12 items-center justify-center bg-forest text-white hover:bg-deepgreen py-3 px-6 rounded-full text-[15px] font-medium transition-colors duration-200"
                 >
-                  Book Now
-                  <BsArrowRight className="text-sm group-hover:translate-x-1 transition-transform" />
+                  Book a walk
                 </a>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        {/* Note / Disclaimer Banner */}
-        <div className="max-w-4xl mx-auto p-5 sm:p-6 rounded-2xl bg-warm-ivory/70 border border-sand-beige/40 flex items-start sm:items-center gap-3.5 text-xs sm:text-sm text-warm-taupe">
-          <BsInfoCircle className="text-lg text-warm-taupe shrink-0 mt-0.5 sm:mt-0" />
+        <div className="max-w-3xl flex items-start gap-3 text-sm leading-relaxed text-ink">
+          <PiInfo aria-hidden="true" className="text-lg text-deepgreen shrink-0 mt-0.5" />
           <p>
-            All sessions include fresh drinking water, gentle paw cleaning after the
-            walk, and real-time photo/video updates sent directly to your WhatsApp.
+            Walks stay inside your neighbourhood, up to two dogs per walk, and
+            include fresh drinking water plus a gentle paw cleaning afterwards. A
+            beach walk, or a walk outside your residence, adds a transport fee.
+            Requests outside these three zones are quoted on WhatsApp.
           </p>
         </div>
       </div>

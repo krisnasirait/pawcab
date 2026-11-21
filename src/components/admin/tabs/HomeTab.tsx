@@ -635,14 +635,6 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
 
             <div>
               <ImageField
-                label="Zone Map Illustration"
-                value={content.home?.coverage?.mapImage || ""}
-                onChange={(val) => updateCoverage("mapImage", val)}
-              />
-            </div>
-
-            <div>
-              <ImageField
                 label="Side Landscape Photo"
                 value={content.home?.coverage?.sideImage || ""}
                 onChange={(val) => updateCoverage("sideImage", val)}

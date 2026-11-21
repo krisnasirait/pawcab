@@ -5,6 +5,7 @@
 // ============================================================================
 
 import contentData from "@/lib/content";
+import coverageAreas from "@/data/coverage-areas.json";
 
 export interface ZoneDefinition {
   id: number;
@@ -85,7 +86,9 @@ export const PAWCAB_AREAS: AreaLocation[] =
   { id: "tabanan-kerambitan", name: "Tabanan (Kerambitan)", zoneId: 4 },
   { id: "mengwi", name: "Mengwi", zoneId: 4 },
   { id: "abiansemal", name: "Abiansemal", zoneId: 4 },
-  { id: "sukawati", name: "Sukawati / South Ubud", zoneId: 4, popular: true },
+  { id: "sukawati", name: "Sukawati", zoneId: 4, popular: true },
+  { id: "ubud", name: "Ubud", zoneId: 4, popular: true },
+  { id: "gianyar", name: "Gianyar", zoneId: 4 },
   { id: "pecatu-uluwatu", name: "Pecatu / Uluwatu", zoneId: 4, popular: true },
 ];
 
@@ -333,3 +336,142 @@ export function formatRupiah(amount: number): string {
   }).format(amount);
 }
 
+
+// ============================================================================
+// 5. ZONE RATE CARD
+// Source: the printed SERVICES & RATES card (2026-11). A ride of 5 km or less
+// is a fixed zone fare; 5.1 to 15 km is the zone rate per kilometre; anything
+// longer, outside the four zones, or a full-day booking is quoted by hand.
+// The zone used is the outer of the two endpoints, so a cross-zone trip is
+// never under-quoted.
+// ============================================================================
+export interface ZoneRate {
+  fixedUpTo5km: number;
+  perKm: number;
+}
+
+const DEFAULT_ZONE_RATES: Record<number, ZoneRate> = {
+  1: { fixedUpTo5km: 50000, perKm: 12000 },
+  2: { fixedUpTo5km: 65000, perKm: 13000 },
+  3: { fixedUpTo5km: 70000, perKm: 14000 },
+  4: { fixedUpTo5km: 75000, perKm: 15000 },
+};
+
+const rateConfig = contentData?.servicesPages?.petTransport?.pricingConfig as
+  | {
+      zoneRates?: Record<string, ZoneRate>;
+      fixedTierMaxKm?: number;
+      quotedBeyondKm?: number;
+      waitingFeePerHour?: number;
+    }
+  | undefined;
+
+export const ZONE_RATES: Record<number, ZoneRate> = rateConfig?.zoneRates
+  ? Object.fromEntries(
+      Object.entries(rateConfig.zoneRates).map(([k, v]) => [Number(k), v]),
+    )
+  : DEFAULT_ZONE_RATES;
+
+export const FIXED_TIER_MAX_KM = rateConfig?.fixedTierMaxKm ?? 5;
+export const QUOTED_BEYOND_KM = rateConfig?.quotedBeyondKm ?? 15;
+export const WAITING_FEE_PER_HOUR = rateConfig?.waitingFeePerHour ?? 15000;
+
+/** Coordinates per service area, for locating an arbitrary address. */
+const AREA_COORDS: Record<string, { lat: number; lon: number }> = Object.fromEntries(
+  (coverageAreas.areas as { id: string; lat: number; lon: number }[])
+    .filter((a) => typeof a.lat === "number" && typeof a.lon === "number")
+    .map((a) => [a.id, { lat: a.lat, lon: a.lon }]),
+);
+
+/** A point further than this from every listed area is treated as outside the zones. */
+const MAX_ZONE_DISTANCE_KM = 25;
+
+function haversineKm(aLat: number, aLon: number, bLat: number, bLon: number) {
+  const R = 6371;
+  const dLat = ((bLat - aLat) * Math.PI) / 180;
+  const dLon = ((bLon - aLon) * Math.PI) / 180;
+  const la1 = (aLat * Math.PI) / 180;
+  const la2 = (bLat * Math.PI) / 180;
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(la1) * Math.cos(la2) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+/** Zone of a coordinate: nearest listed service area, or null when it is outside Bali's zones. */
+export function zoneForPoint(lat: number, lon: number): number | null {
+  let bestZone: number | null = null;
+  let bestDistance = Infinity;
+  for (const area of PAWCAB_AREAS) {
+    const coords = AREA_COORDS[area.id];
+    if (!coords) continue;
+    const d = haversineKm(lat, lon, coords.lat, coords.lon);
+    if (d < bestDistance) {
+      bestDistance = d;
+      bestZone = area.zoneId;
+    }
+  }
+  return bestDistance <= MAX_ZONE_DISTANCE_KM ? bestZone : null;
+}
+
+export type FareTier = "fixed" | "per_km" | "quote";
+export type QuoteReason = "outside_zone" | "beyond_range" | null;
+
+export interface ZoneFare {
+  tier: FareTier;
+  reason: QuoteReason;
+  /** Outer zone of the two endpoints, when known. */
+  zone: number | null;
+  rate: ZoneRate | null;
+  base: number;
+  waitingHours: number;
+  waitingFee: number;
+  total: number;
+}
+
+/**
+ * Quote a ride from two endpoint zones. `waitingHours` is round-trip waiting
+ * time, billed at WAITING_FEE_PER_HOUR.
+ */
+export function quoteZoneFare({
+  distanceKm,
+  pickupZone,
+  dropoffZone,
+  waitingHours = 0,
+}: {
+  distanceKm: number;
+  pickupZone: number | null;
+  dropoffZone: number | null;
+  waitingHours?: number;
+}): ZoneFare {
+  // Both endpoints must be known; dropping an unknown endpoint can underquote a trip.
+  const zone = pickupZone !== null && dropoffZone !== null &&
+    ZONE_RATES[pickupZone] && ZONE_RATES[dropoffZone]
+    ? Math.max(pickupZone, dropoffZone)
+    : null;
+  const rate = zone ? (ZONE_RATES[zone] ?? null) : null;
+  const waiting = Math.max(0, waitingHours) * WAITING_FEE_PER_HOUR;
+
+  if (!rate) {
+    return { tier: "quote", reason: "outside_zone", zone: null, rate: null, base: 0, waitingHours: Math.max(0, waitingHours), waitingFee: waiting, total: 0 };
+  }
+  if (distanceKm > QUOTED_BEYOND_KM) {
+    return { tier: "quote", reason: "beyond_range", zone, rate, base: 0, waitingHours: Math.max(0, waitingHours), waitingFee: waiting, total: 0 };
+  }
+
+  const fixed = distanceKm <= FIXED_TIER_MAX_KM;
+  const base = fixed
+    ? rate.fixedUpTo5km
+    : Math.round((distanceKm * rate.perKm) / 1000) * 1000;
+
+  return {
+    tier: fixed ? "fixed" : "per_km",
+    reason: null,
+    zone,
+    rate,
+    base,
+    waitingHours: Math.max(0, waitingHours),
+    waitingFee: waiting,
+    total: base + waiting,
+  };
+}

@@ -15,26 +15,26 @@ export default function ComfortSection() {
   ];
 
   return (
-    <section className="bg-[#FFFEFA] py-16 md:py-24">
+    <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
-          <p className="flex items-center gap-3 text-[14px] font-medium text-[#0E6B5E] mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#0E6B5E]" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
             Inside the car
           </p>
-          <h2 className="text-4xl md:text-[52px] leading-[1.05] font-semibold text-[#0E2A21]" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-forest">
 Cool, clean, and room to lie down.
           </h2>
-          <dl className="mt-8 border-t border-[#0E2A21]/15">
+          <dl className="mt-8 border-t border-forest/20">
             {points.map((p) => (
-              <div key={p.title} className="py-4 border-b border-[#0E2A21]/15 grid sm:grid-cols-[200px_1fr] gap-1 sm:gap-4">
-                <dt className="font-bold text-[15px] text-[#0E2A21]">{p.title}</dt>
-                <dd className="text-[15px] leading-relaxed text-[#3F382E]">{p.desc}</dd>
+              <div key={p.title} className="py-4 border-b border-forest/20 grid sm:grid-cols-[200px_1fr] gap-1 sm:gap-4">
+                <dt className="font-medium text-[15px] text-forest">{p.title}</dt>
+                <dd className="text-[15px] leading-[1.45] text-ink">{p.desc}</dd>
               </div>
             ))}
           </dl>
         </div>
-        <div className="overflow-hidden rounded-xl aspect-[4/5] max-h-[640px] bg-[#D8C9AE]/30">
+        <div className="rounded-[28px] overflow-hidden aspect-[4/5] max-h-[640px] bg-sage">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={comfort?.image || "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop"}

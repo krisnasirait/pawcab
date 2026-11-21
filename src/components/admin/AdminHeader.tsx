@@ -119,7 +119,7 @@ export default function AdminHeader({
             {syncStatus === "error" && (
               <>
                 <BsExclamationCircleFill className="text-red-400 text-sm" />
-                <span className="text-red-300 font-medium">Sync Issue</span>
+                <span className="text-error-dark font-medium">Sync Issue</span>
               </>
             )}
           </div>
@@ -158,7 +158,7 @@ export default function AdminHeader({
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition cursor-pointer shadow-lg disabled:opacity-50 ${
               hasUnsavedChanges
                 ? "bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight ring-2 ring-pawcab-gold/40 animate-pulse"
-                : "bg-emerald-600 hover:bg-emerald-500 text-white"
+                : "bg-success hover:bg-emerald-500 text-white"
             }`}
           >
             <BsUpload className="text-sm" />

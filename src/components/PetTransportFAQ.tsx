@@ -1,9 +1,7 @@
-"use client";
-
-import React, { useState } from "react";
-import { BsChevronDown, BsWhatsapp } from "react-icons/bs";
-import { PiChatCircleDotsFill } from "react-icons/pi";
+import React from "react";
+import { PiWhatsappLogo } from "react-icons/pi";
 import contentData from "@/lib/content";
+import FAQList from "./FAQList";
 
 interface FAQItem {
   id: number;
@@ -134,184 +132,38 @@ export default function PetTransportFAQ() {
 
   const allFaqs = cmsFaqs && cmsFaqs.length > 0 ? (cmsFaqs as unknown as FAQItem[]) : defaultFaqs;
 
-  // Split into 2 balanced columns
-  const half = Math.ceil(allFaqs.length / 2);
-  const leftFaqs = allFaqs.slice(0, half);
-  const rightFaqs = allFaqs.slice(half);
-
-  // By default, open the first item
-  const [openIds, setOpenIds] = useState<number[]>([allFaqs[0]?.id || 1]);
-
-  const toggleItem = (id: number) => {
-    setOpenIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id],
-    );
-  };
-
-  const expandAll = () => {
-    setOpenIds(allFaqs.map((f) => f.id));
-  };
-
-  const collapseAll = () => {
-    setOpenIds([]);
-  };
-
-  const renderCard = (item: FAQItem) => {
-    const isOpen = openIds.includes(item.id);
-
-    return (
-      <div
-        key={item.id}
-        className={`group rounded-2xl border p-5 sm:p-6 transition-all duration-300 ${
-          isOpen
-            ? "bg-white border-pawcab-gold shadow-md ring-1 ring-pawcab-gold/30"
-            : "bg-soft-white/90 border-sand-beige/40 shadow-xs hover:border-sand-beige hover:shadow-sm hover:bg-white"
-        }`}
-      >
-        {/* Card Header: the whole header is one button, so keyboard,
-            screen reader, and pointer users all get the same control. */}
-        <button
-          type="button"
-          onClick={() => toggleItem(item.id)}
-          aria-expanded={isOpen}
-          className="flex w-full items-start justify-between gap-4 text-left"
-        >
-          <span className="flex items-start gap-3.5">
-            {/* Number Pill */}
-            <span
-              className={`shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center font-playfair font-bold text-xs sm:text-sm tracking-wider transition-all duration-300 ${
-                isOpen
-                  ? "bg-deep-midnight text-pawcab-gold shadow-sm"
-                  : "bg-sand-beige/30 text-deep-midnight group-hover:bg-sand-beige/60"
-              }`}
-            >
-              {item.number}
-            </span>
-
-            {/* Question Title */}
-            <span className="font-playfair text-base sm:text-lg font-bold text-deep-midnight leading-snug pt-0.5 group-hover:text-pawcab-navy transition-colors">
-              {item.question}
-            </span>
-          </span>
-
-          {/* Chevron Indicator */}
-          <span
-            aria-hidden="true"
-            className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 mt-0.5 ${
-              isOpen
-                ? "bg-deep-midnight text-pawcab-gold rotate-180 shadow-xs"
-                : "bg-sand-beige/30 text-warm-taupe group-hover:bg-sand-beige/60"
-            }`}
-          >
-            <BsChevronDown className="text-xs transition-transform duration-300" />
-          </span>
-        </button>
-
-        {/* Smooth Expand/Collapse Content Container via CSS Grid */}
-        <div
-          className={`grid transition-all duration-300 ease-in-out ${
-            isOpen
-              ? "grid-rows-[1fr] opacity-100 mt-4 pt-3.5 border-t border-sand-beige/40"
-              : "grid-rows-[0fr] opacity-0"
-          }`}
-        >
-          <div className="overflow-hidden">
-            <div className="pl-0 sm:pl-[46px] text-warm-taupe text-sm sm:text-base leading-relaxed font-normal">
-              <span className="inline-block px-2 py-0.5 rounded bg-pawcab-gold/20 text-deep-midnight font-bold text-xs uppercase tracking-wider mr-2">
-                Answer
-              </span>
-              {item.answer ? (
-                <span>{item.answer}</span>
-              ) : (
-                <>
-                  <span>{item.answerPrefix}</span>
-                  {item.answerBold && (
-                    <strong className="font-semibold text-deep-midnight">
-                      {item.answerBold}
-                    </strong>
-                  )}
-                  {item.answerMiddle}
-                  {item.answerBold2 && (
-                    <strong className="font-semibold text-deep-midnight">
-                      {item.answerBold2}
-                    </strong>
-                  )}
-                  {item.answerSuffix}
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <section
-      id="faq"
-      className="py-20 md:py-28 px-6 md:px-10 bg-warm-ivory relative overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16 pb-8 border-b border-sand-beige/40">
+    <section id="faq" aria-labelledby="faq-heading" className="py-16 md:py-24 px-6 md:px-10 bg-canvas scroll-mt-24">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-20 items-start">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sand-beige/35 border border-sand-beige/50 text-xs font-semibold uppercase tracking-[0.2em] text-warm-taupe mb-4">
-              <PiChatCircleDotsFill className="text-pawcab-navy text-sm" />
-              Pet Transport Guide
-            </div>
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-deep-midnight font-bold tracking-tight">
-              Frequently Asked <br className="hidden sm:inline" />
-              <span className="italic font-normal">Questions.</span>
+            <p className="text-sm font-medium text-deepgreen mb-4">Transport questions</p>
+            <h2 id="faq-heading" className="font-display text-4xl md:text-[52px] font-normal leading-[1.08] text-forest">
+              Frequently asked questions
             </h2>
           </div>
+          <FAQList items={allFaqs} />
         </div>
 
-        {/* 2-Column Responsive Staggered Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 items-start">
-          {/* Column 1 */}
-          <div className="space-y-4 sm:space-y-5">
-            {leftFaqs.map(renderCard)}
+        <div className="mt-12 md:mt-16 pt-8 border-t border-forest/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-deepgreen mb-3">Personal pet concierge</p>
+            <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest">
+              Have a unique question or custom itinerary?
+            </h3>
+            <p className="text-base leading-relaxed text-ink mt-3">
+              Whether you need multiple pick-ups, airport transfers with oversized crates, or special medical visits, our Bali team is here to assist.
+            </p>
           </div>
-
-          {/* Column 2 */}
-          <div className="space-y-4 sm:space-y-5">
-            {rightFaqs.map(renderCard)}
-          </div>
-        </div>
-
-        {/* Catchy Concierge Support Card at Bottom */}
-        <div className="mt-12 md:mt-16 bg-deep-midnight text-soft-white rounded-3xl p-8 sm:p-10 md:p-12 shadow-xl border border-soft-white/10 relative overflow-hidden">
-          {/* Background Gold Ambient Gradient */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-pawcab-gold/15 to-transparent pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-pawcab-gold text-xs font-semibold uppercase tracking-[0.2em] mb-2">
-                <PiChatCircleDotsFill className="text-base" />
-                Personal Pet Concierge
-              </div>
-              <h3 className="font-playfair text-2xl sm:text-3xl font-bold leading-snug">
-                Have a unique question or custom itinerary?
-              </h3>
-              <p className="text-soft-white/70 font-normal text-sm sm:text-base mt-2">
-                Whether you need multiple pick-ups, airport transfers with
-                oversized crates, or special medical visits, our Bali team is
-                here to assist.
-              </p>
-            </div>
-
-            <div className="shrink-0">
-              <a
-                href="https://wa.me/?text=Hi%20PawCab,%20I%20have%20questions%20about%20Pet%20Transportation%20service."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-pawcab-gold text-deep-midnight px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                <BsWhatsapp className="text-base" />
-                Chat with Concierge
-              </a>
-            </div>
-          </div>
+          <a
+            href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=Hi%20PawCab,%20I%20have%20questions%20about%20Pet%20Transportation%20service.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex min-h-12 items-center justify-center gap-2.5 bg-forest text-white hover:bg-deepgreen px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"
+          >
+            <PiWhatsappLogo aria-hidden="true" className="text-lg" />
+            Chat with Concierge
+          </a>
         </div>
       </div>
     </section>

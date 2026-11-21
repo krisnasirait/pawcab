@@ -1,21 +1,23 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { getContent } from "@/lib/content";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Public_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Fraunces({
+// Display serif: thin, high-contrast, used at weight 300 for every headline
+// (stands in for the reference site's licensed argent-cf).
+const display = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const montserrat = DM_Sans({
+// Body grotesk: the same face the reference site pairs with its serif.
+const text = Public_Sans({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-public-sans",
   display: "swap",
 });
 
@@ -97,14 +99,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body className={`${playfair.variable} ${montserrat.variable} antialiased bg-[#FBF8F1]`}>
+      <body className={`${display.variable} ${text.variable} antialiased bg-white`}>
         {children}
       </body>
     </html>

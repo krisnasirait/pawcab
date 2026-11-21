@@ -51,13 +51,13 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen bg-deep-midnight flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden">
+    <div data-surface="forest" className="min-h-screen bg-deep-midnight flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden">
       {/* Decorative background glow elements */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-pawcab-gold/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-sand-beige/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Main card */}
-      <div className="w-full max-w-md bg-warm-ivory/95 backdrop-blur-md rounded-3xl shadow-2xl border border-sand-beige/40 p-8 sm:p-10 relative z-10">
+      <div data-surface="light" className="w-full max-w-md bg-warm-ivory/95 backdrop-blur-md rounded-3xl shadow-2xl border border-sand-beige/40 p-8 sm:p-10 relative z-10">
         {/* Header with Logo */}
         <div className="flex flex-col items-center text-center mb-8">
           <Link href="/" className="inline-block mb-4 group">
@@ -87,7 +87,7 @@ function LoginForm() {
 
         {/* Error notification */}
         {error && (
-          <div className="mb-6 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2.5">
+          <div className="mb-6 p-3.5 rounded-xl bg-red-50 border border-red-200 text-error text-xs flex items-start gap-2.5">
             <div className="w-4 h-4 rounded-full bg-red-500 text-white flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-bold">
               !
             </div>
@@ -111,7 +111,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password..."
                 autoFocus
-                className="w-full pl-10 pr-11 py-3 bg-white/90 border border-warm-taupe rounded-xl text-deep-midnight text-sm placeholder:text-warm-taupe focus:outline-none focus:ring-2 focus:ring-pawcab-gold/70 focus:border-pawcab-gold transition"
+                className="w-full pl-10 pr-11 py-3 bg-white/90 border border-warm-taupe rounded-xl text-deep-midnight text-sm placeholder:text-warm-taupe focus:ring-2 focus:ring-pawcab-gold/70 focus:border-pawcab-gold transition"
               />
               <button
                 type="button"

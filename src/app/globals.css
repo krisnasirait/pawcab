@@ -1,59 +1,132 @@
 @import "tailwindcss";
 
 @theme {
-  /* PawCab hospitality ledger. R-31 reasons:
-     canopy: dusk foliage ink, owns the night-drive hero, 15:1 with paper.
-     lagoon: shallow-water secondary, cool counterpoint to warm paper.
-     marigold: taxi-mark CTA only, never body decoration.
-     paper: guesthouse paper, warmer than white, cooler than cream-tell.
-     rattan: woven-cane hairlines that structure without boxes.
-     bark: volcanic-soil secondary text, 7:1 on paper. */
-  --color-pawcab-navy: #16453a;
-  --color-deep-midnight: #0e2a21;
-  --color-pawcab-gold: #ffc61a;
-  --color-brass: #6d5300;
-  --color-warm-ivory: #fbf8f1;
-  --color-sand-beige: #d8c9ae;
-  --color-warm-taupe: #3f382e;
-  --color-soft-white: #fffefa;
-  --color-canopy: #0e2a21;
-  --color-lagoon: #0e6b5e;
-  --color-rattan: #d8c9ae;
-  --color-bark: #3f382e;
-  --color-paper: #fbf8f1;
-  --font-playfair: var(--font-fraunces), Georgia, serif;
-  --font-montserrat: var(--font-dm-sans), system-ui, sans-serif;
-  --font-fraunces: var(--font-fraunces), Georgia, serif;
-  --font-dm-sans: var(--font-dm-sans), system-ui, sans-serif;
-  --font-elmessiri: "El Messiri", serif;
+  /* Logo amber anchors the brand; forest is its accessible ink.
+     Roles and measured contrast pairs are documented in DESIGN.md. */
+  --color-canvas: #fbf6f1;
+  --color-accent: #febb00;
+  --color-accent-hover: #ffc61a;
+  --color-forest: #1c3f1d;
+  --color-accent-ink: var(--color-forest);
+  --color-deepgreen: #2a4726;
+  --color-sage: #cee2c5;
+  --color-sagewash: #f4f9ee;
+  --color-ink: #3d3d3d;
+  --color-line: #333333;
+  --color-surface: #ffffff;
+  --color-on-dark: var(--color-surface);
+  --color-focus: var(--color-forest);
+  --color-error: var(--color-red-700);
+  --color-error-dark: var(--color-red-300);
+  --color-success: var(--color-emerald-600);
+  --color-info: var(--color-blue-500);
+
+  /* Map categories, not additional brand accents. Labels repeat zone identity. */
+  --color-map-zone-1: var(--color-sage);
+  --color-map-zone-2: var(--color-accent);
+  --color-map-zone-3: #ede6c9;
+  --color-map-zone-4: #8fbdb0;
+
+  /* Compatibility aliases: existing CMS/admin utilities retain their values. */
+  --color-pawcab-gold: var(--color-accent);
+  --color-pawcab-navy: var(--color-forest);
+  --color-deep-midnight: var(--color-forest);
+  --color-brass: var(--color-deepgreen);
+  --color-warm-ivory: var(--color-surface);
+  --color-sand-beige: var(--color-sage);
+  --color-warm-taupe: var(--color-ink);
+  --color-soft-white: var(--color-surface);
+  --color-canopy: var(--color-forest);
+  --color-lagoon: var(--color-deepgreen);
+  --color-rattan: var(--color-sage);
+  --color-bark: var(--color-ink);
+  --color-paper: var(--color-surface);
+
+  /* Type: Cormorant Garamond stands in for Typekit's licensed argent-cf;
+     Public Sans is the body face. Alias names are kept for compatibility only,
+     see DESIGN.md "Aliases kept on purpose". */
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-text: var(--font-public-sans), system-ui, sans-serif;
+  --font-fraunces: var(--font-cormorant), Georgia, serif;
+  --font-playfair: var(--font-cormorant), Georgia, serif;
+  --font-dm-sans: var(--font-public-sans), system-ui, sans-serif;
+  --font-montserrat: var(--font-public-sans), system-ui, sans-serif;
 }
 
-.font-elmessiri {
-  font-family: "El Messiri", serif !important;
+/* The wordmark uses the display face; the old class name is gone. */
+.font-display {
+  font-family: var(--font-display) !important;
 }
 
 @layer base {
+  /* Public scope: warm canvas, stronger editorial type. Admin/login keep
+     the neutral body defaults below. */
+  main[data-ui="public"] {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-public-sans), system-ui, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  /* Shared public chrome (header/footer) renders outside main, so the
+     aliases and public text defaults live on the page body instead.
+     Admin/login have no public main and keep today's rendering. */
+  body:has(main[data-ui="public"]) {
+    font-weight: 400;
+    line-height: 1.55;
+    --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+    --font-fraunces: var(--font-cormorant), Georgia, serif;
+    --font-playfair: var(--font-cormorant), Georgia, serif;
+    --font-text: var(--font-public-sans), system-ui, sans-serif;
+    --font-dm-sans: var(--font-public-sans), system-ui, sans-serif;
+    --font-montserrat: var(--font-public-sans), system-ui, sans-serif;
+  }
+
+  main[data-ui="public"] :is(h1, h2, h3) {
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--color-forest);
+    text-wrap: balance;
+  }
+
   body {
-    background-color: var(--color-warm-ivory);
-    color: var(--color-deep-midnight);
-    font-family: var(--font-dm-sans), system-ui, sans-serif;
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-public-sans), system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.35;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-fraunces), Georgia, serif;
-    color: var(--color-deep-midnight);
-    letter-spacing: -0.015em;
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--color-forest);
     text-wrap: balance;
+  }
+
+  /* Headings that sit on a dark band inherit that band's colour instead of
+     the page default, so a heading can never land forest-on-forest. */
+  [data-surface="forest"] :is(h1, h2, h3, h4, h5, h6) {
+    color: inherit;
   }
 
   p {
     text-wrap: pretty;
   }
 
-  /* R-39: every operable control shows it can be used. Set once in the
-     base layer, never per component. */
+  strong, b {
+    font-weight: 500;
+  }
+
+  /* R-39: every operable control shows it can be used. */
   button,
   a,
   summary,
@@ -68,21 +141,23 @@
     cursor: not-allowed;
   }
 
-  /* R-32: one visible focus indicator everywhere. Navy on light surfaces,
-     gold on midnight surfaces (each meets 3:1 against its background). */
+  /* R-32: one visible focus indicator everywhere. */
   :focus-visible {
-    outline: 3px solid var(--color-pawcab-navy);
+    outline: 3px solid var(--color-focus);
     outline-offset: 2px;
   }
 
-  header :focus-visible,
-  .bg-deep-midnight :focus-visible {
-    outline-color: var(--color-pawcab-gold);
+  [data-surface="forest"],
+  [data-theme="admin"] {
+    --color-focus: var(--color-accent);
   }
 
-  /* Placeholders are text too: full-strength taupe, never faint grey. */
+  [data-surface="light"] {
+    --color-focus: var(--color-forest);
+  }
+
   ::placeholder {
-    color: var(--color-warm-taupe);
+    color: var(--color-ink);
     opacity: 1;
   }
 }

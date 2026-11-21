@@ -31,6 +31,22 @@
       "lat": -8.428549,
       "lon": 115.2798755,
       "source": "osm"
+    },
+    {
+      "id": "ubud",
+      "name": "Ubud",
+      "address": "Ubud, Gianyar, Bali, Indonesia",
+      "lat": -8.5170195,
+      "lon": 115.2550507,
+      "source": "osm"
+    },
+    {
+      "id": "gianyar",
+      "name": "Gianyar",
+      "address": "Gianyar, Bali, Indonesia",
+      "lat": -8.4821436,
+      "lon": 115.2855901,
+      "source": "osm"
     }
   ]
 }

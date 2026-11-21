@@ -11,8 +11,7 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { IoClose } from "react-icons/io5";
-import { PiCrosshair, PiMapPin, PiNavigationArrow } from "react-icons/pi";
+import { PiCrosshair, PiMapPin, PiNavigationArrow, PiX } from "react-icons/pi";
 import {
   reverseGeocodeBali,
   getCurrentPosition,
@@ -45,9 +44,9 @@ function pin(color: string, border: string, label: string) {
   });
 }
 
-const PICKUP_PIN = () => pin("#FDC300", "#14233F", "Pickup");
-const DROPOFF_PIN = () => pin("#14233F", "#ffffff", "Drop-off");
-const CANDIDATE_PIN = () => pin("#283B70", "#FDC300", "Chosen point");
+const PICKUP_PIN = () => pin("var(--color-accent)", "var(--color-forest)", "Pickup");
+const DROPOFF_PIN = () => pin("var(--color-forest)", "var(--color-surface)", "Drop-off");
+const CANDIDATE_PIN = () => pin("var(--color-deepgreen)", "var(--color-accent)", "Chosen point");
 
 function ClickToPick({
   onPick,
@@ -98,6 +97,7 @@ export default function MapPickerModal({
   const [locating, setLocating] = useState(false);
   const [flyTo, setFlyTo] = useState<[number, number] | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<Element | null>(null);
 
   // Focus the dialog on open; hand focus back when it unmounts.
@@ -105,7 +105,32 @@ export default function MapPickerModal({
     openerRef.current = document.activeElement;
     closeRef.current?.focus();
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const root = dialogRef.current;
+      if (!root) return;
+      const items = Array.from(
+        root.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.getClientRects().length > 0);
+      if (items.length === 0) {
+        e.preventDefault();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     const previousOverflow = document.body.style.overflow;
@@ -179,17 +204,18 @@ export default function MapPickerModal({
       role="dialog"
       aria-modal="true"
       aria-label="Choose location on map"
+      ref={dialogRef}
       className="fixed inset-0 z-[60] bg-deep-midnight/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
       <div
-        className="bg-soft-white rounded-3xl w-full max-w-3xl max-h-[92vh] overflow-y-auto shadow-2xl relative"
+        className="bg-soft-white rounded-2xl w-full max-w-3xl max-h-[92vh] overflow-y-auto relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between gap-3 p-5 sm:p-6 pb-4">
           <div>
-            <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight">
+            <h3 className="font-playfair text-xl sm:text-2xl font-medium text-deep-midnight">
               Choose on Map
             </h3>
             <p className="text-xs sm:text-sm text-warm-taupe mt-1">
@@ -203,13 +229,13 @@ export default function MapPickerModal({
             aria-label="Close map picker"
             className="w-11 h-11 shrink-0 rounded-full bg-deep-midnight/5 hover:bg-deep-midnight/10 text-deep-midnight flex items-center justify-center transition-colors"
           >
-            <IoClose aria-hidden="true" className="text-2xl" />
+            <PiX aria-hidden="true" className="text-2xl" />
           </button>
         </div>
 
         {/* Target toggle */}
         <div className="px-5 sm:px-6 pb-4 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-warm-taupe mr-1">
+          <span className="text-xs font-medium text-warm-taupe mr-1">
             Setting:
           </span>
           {(
@@ -223,9 +249,9 @@ export default function MapPickerModal({
               type="button"
               onClick={() => onTargetChange(t.id)}
               aria-pressed={target === t.id}
-              className={`inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full text-xs font-bold uppercase tracking-wider transition-colors ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full text-xs font-medium transition-colors ${
                 target === t.id
-                  ? "bg-deep-midnight text-soft-white"
+                  ? "bg-forest text-white"
                   : "bg-deep-midnight/5 text-deep-midnight hover:bg-deep-midnight/10"
               }`}
             >
@@ -250,7 +276,7 @@ export default function MapPickerModal({
 
         {/* Map */}
         <div className="px-5 sm:px-6">
-          <div className="rounded-2xl overflow-hidden border border-sand-beige/60 shadow-sm">
+          <div className="rounded-2xl overflow-hidden border border-sand-beige/60">
             <MapContainer
               center={initialCenter}
               zoom={focusPlace ? 14 : 10}
@@ -327,7 +353,7 @@ export default function MapPickerModal({
               type="button"
               onClick={handleLocate}
               disabled={locating}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-deep-midnight/25 text-deep-midnight text-xs font-bold uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-colors disabled:opacity-60"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-deep-midnight/25 text-deep-midnight text-xs font-medium hover:bg-deep-midnight hover:text-soft-white transition-colors disabled:opacity-60"
             >
               {locating ? (
                 <span
@@ -343,7 +369,7 @@ export default function MapPickerModal({
               type="button"
               disabled={!candidatePlace || resolving}
               onClick={() => candidatePlace && onConfirm(candidatePlace, target)}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full bg-pawcab-gold text-deep-midnight text-xs font-bold uppercase tracking-wider hover:bg-yellow-400 transition-colors disabled:opacity-40"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[48px] rounded-full bg-accent text-forest text-sm font-medium border-2 border-line hover:bg-accent-hover transition-colors disabled:opacity-40"
             >
               Set as {target === "pickup" ? "Pickup" : "Drop-off"}
             </button>

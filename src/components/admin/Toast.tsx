@@ -43,7 +43,7 @@ function ToastItem({
     success: <BsCheckCircleFill className="text-emerald-500 text-lg shrink-0 mt-0.5" />,
     error: <BsXCircleFill className="text-red-500 text-lg shrink-0 mt-0.5" />,
     warning: <BsExclamationTriangleFill className="text-amber-500 text-lg shrink-0 mt-0.5" />,
-    info: <BsCheckCircleFill className="text-blue-500 text-lg shrink-0 mt-0.5" />,
+    info: <BsCheckCircleFill className="text-info text-lg shrink-0 mt-0.5" />,
   };
 
   const borderColors = {

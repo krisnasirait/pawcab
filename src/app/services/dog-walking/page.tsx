@@ -5,15 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DogWalkingPricing from "@/components/DogWalkingPricing";
 import DogWalkingFAQ from "@/components/DogWalkingFAQ";
-import { BsArrowRight } from "react-icons/bs";
-import {
-  PiHouse,
-  PiTreePalm,
-  PiDog,
-  PiCamera,
-  PiDrop,
-  PiPawPrint,
-} from "react-icons/pi";
+import { PiArrowRight, PiCamera, PiDog, PiDrop, PiHouse, PiPawPrint, PiTreePalm } from "react-icons/pi";
+import contentData from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Dog Walking Services in Bali | The PawCab",
@@ -77,38 +70,13 @@ export default function DogWalkingPage() {
       {/* Light Theme Navbar */}
       <Header theme="light" />
 
-      <main className="flex-grow">
+      <main data-ui="public" className="flex-grow bg-canvas">
         {/* ========================================================
             HERO / HEADER SECTION (With Unsplash Photo & Smooth Blend)
             ======================================================== */}
-        <section className="relative min-h-[620px] lg:min-h-[680px] w-full flex items-center pt-32 md:pt-40 pb-16 md:pb-24 px-6 md:px-10 overflow-hidden bg-warm-ivory">
-          {/* Background Image on the Right */}
-          <div className="absolute right-0 top-0 bottom-0 w-full md:w-[58%] lg:w-[54%] h-full">
-            <img
-              src="https://images.unsplash.com/photo-1782067128048-1e2f7c18bcf1?q=80&w=1170&auto=format&fit=crop"
-              alt="Person walking happy dog outdoors on a leash"
-              fetchPriority="high"
-              className="w-full h-full object-cover object-center"
-            />
-            {/* Soft edge blend gradient on the left edge into warm-ivory */}
-            <div
-              className="absolute inset-0 pointer-events-none hidden md:block"
-              style={{
-                background:
-                  "linear-gradient(to right, #F7F2E8 0%, rgba(247, 242, 232, 0.95) 15%, rgba(247, 242, 232, 0.6) 30%, rgba(247, 242, 232, 0) 48%)",
-              }}
-            />
-            {/* Mobile overlay for 100% text readability */}
-            <div
-              className="absolute inset-0 pointer-events-none md:hidden"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(247, 242, 232, 0.97) 0%, rgba(247, 242, 232, 0.88) 55%, rgba(247, 242, 232, 0.25) 100%)",
-              }}
-            />
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <section className="w-full px-6 md:px-10 pt-12 md:pt-16 pb-12 md:pb-16 overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
               <Link
@@ -132,13 +100,13 @@ export default function DogWalkingPage() {
             <div className="max-w-2xl lg:max-w-xl">
               {/* Eyebrow Badge */}
               <div className="mb-4">
-                <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
+                <p className="tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
                   PET WALKING
                 </p>
               </div>
 
               {/* Headline */}
-              <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-[62px] text-deep-midnight font-bold leading-[1.14] tracking-tight mb-6">
+              <h1 className="font-playfair text-4xl sm:text-5xl md:text-[56px] text-forest font-normal leading-[1.08] tracking-tight mb-6">
                 Little Walks, <br />
                 Big Adventures.
               </h1>
@@ -154,22 +122,32 @@ export default function DogWalkingPage() {
               {/* CTA Button */}
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="https://wa.me/?text=Hi%20PawCab,%20I'd%20like%20to%20book%20a%20Dog%20Walking%20session%20for%20my%20pet."
+                  href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=Hi%20PawCab,%20I'd%20like%20to%20book%20a%20Dog%20Walking%20session%20for%20my%20pet.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-deep-midnight text-soft-white px-8 py-4 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-pawcab-navy transition-all duration-300 shadow-md hover:shadow-xl group"
+                  className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-deepgreen transition-colors duration-200 group"
                 >
                   Book a Walk
-                  <BsArrowRight className="text-base group-hover:translate-x-1 transition-transform duration-300" />
+                  <PiArrowRight className="text-base group-hover:translate-x-1 transition-transform duration-200 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
                 </a>
 
                 <a
                   href="#pricing"
-                  className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-all duration-300 bg-warm-ivory/60 backdrop-blur-sm"
+                  className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm hover:bg-deep-midnight hover:text-soft-white transition-colors duration-200 bg-white/60"
                 >
                   View Fares
                 </a>
               </div>
+            </div>
+            </div>
+            <div className="relative rounded-[28px] overflow-hidden bg-sage aspect-[4/3]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1782067128048-1e2f7c18bcf1?q=80&w=1170&auto=format&fit=crop"
+                alt="Person walking happy dog outdoors on a leash"
+                fetchPriority="high"
+                className="w-full h-full object-cover object-center"
+              />
             </div>
           </div>
         </section>
@@ -183,14 +161,14 @@ export default function DogWalkingPage() {
               {walkOptions.map((opt) => (
                 <div
                   key={opt.id}
-                  className="bg-white rounded-3xl overflow-hidden border border-sand-beige/40 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col"
+                  className="bg-white rounded-[32px] overflow-hidden border border-sand-beige/40 transition-colors duration-200 group flex flex-col"
                 >
                   {/* Top Image Container */}
                   <div className="relative h-64 sm:h-72 md:h-80 w-full overflow-hidden bg-sand-beige/20">
                     <img
                       src={opt.image}
                       alt={opt.imageAlt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-deep-midnight/20 via-transparent to-transparent pointer-events-none" />
                   </div>
@@ -199,13 +177,13 @@ export default function DogWalkingPage() {
                   <div className="p-7 sm:p-9 pt-0 relative flex-grow flex flex-col justify-between">
                     {/* Floating Circular Badge Overlapping Image */}
                     <div className="-mt-8 mb-5 relative z-10 flex">
-                      <div className="w-16 h-16 rounded-2xl bg-warm-ivory border-2 border-white shadow-md flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                      <div className="w-16 h-16 rounded-2xl bg-warm-ivory border-2 border-white flex items-center justify-center shrink-0 group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100">
                         {opt.icon}
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-deep-midnight mb-3">
+                      <h3 className="font-playfair text-2xl sm:text-3xl font-normal text-deep-midnight mb-3">
                         {opt.title}
                       </h3>
                       <p className="text-warm-taupe font-normal text-sm sm:text-base leading-relaxed">
@@ -214,14 +192,14 @@ export default function DogWalkingPage() {
                     </div>
 
                     <div className="mt-6 pt-5 border-t border-sand-beige/30 flex items-center justify-between">
-                      <span className="text-xs uppercase tracking-widest text-warm-taupe font-semibold">
+                      <span className="text-xs text-warm-taupe font-semibold">
                         1 Hour Duration
                       </span>
                       <a
                         href="#pricing"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-deep-midnight group-hover:text-pawcab-navy transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-deep-midnight group-hover:text-deepgreen transition-colors"
                       >
-                        See Pricing <BsArrowRight />
+                        See Pricing <PiArrowRight />
                       </a>
                     </div>
                   </div>
@@ -231,54 +209,24 @@ export default function DogWalkingPage() {
           </div>
         </section>
 
-        {/* ========================================================
-            FEATURE HIGHLIGHTS ROW (4 Columns with Circular Icons)
-            ======================================================== */}
-        <section
-          className="relative py-16 md:py-20 px-6 md:px-10 overflow-hidden bg-white"
-          style={{
-            background:
-              "linear-gradient(180deg, #F7F2E8 0%, rgba(255, 255, 255, 0.85) 15%, #FFFFFF 28%, #FFFFFF 72%, rgba(255, 255, 255, 0.85) 85%, #F7F2E8 100%)",
-          }}
-        >
-          {/* Top Smooth Gradient Overlay */}
-          <div
-            className="absolute inset-x-0 top-0 h-16 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to bottom, #F7F2E8 0%, rgba(255, 255, 255, 0) 100%)",
-            }}
-          />
-
-          {/* Bottom Smooth Gradient Overlay */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to top, #F7F2E8 0%, rgba(255, 255, 255, 0) 100%)",
-            }}
-          />
-
-          <div className="relative z-10 max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
-              {highlights.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center text-center p-3 transition-transform hover:-translate-y-1 duration-300"
-                >
-                  <div className="w-16 h-16 rounded-full bg-warm-ivory/80 flex items-center justify-center mb-4 shadow-sm border border-sand-beige/40">
-                    {item.icon}
-                  </div>
-                  <h3 className="font-playfair text-lg md:text-xl font-bold text-deep-midnight mb-1">
+        <section aria-label="Walking care included" className="py-10 md:py-16 px-6 md:px-10 bg-canvas">
+          <ul role="list" className="max-w-7xl mx-auto grid md:grid-cols-2 md:gap-x-16 border-t border-forest/20">
+            {highlights.map((item) => (
+              <li key={item.title} className="flex items-start gap-5 py-7 md:py-9 border-b border-forest/20">
+                <span aria-hidden="true" className="shrink-0 mt-1 text-forest [&>svg]:size-6">
+                  {item.icon}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-warm-taupe font-normal max-w-[200px]">
+                  <p className="text-base leading-relaxed text-ink">
                     {item.subtitle}
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* ========================================================

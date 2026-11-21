@@ -4,17 +4,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PetSittingFAQ from "@/components/PetSittingFAQ";
-import { BsArrowRight, BsCheckCircleFill } from "react-icons/bs";
-import {
-  PiHouse,
-  PiBowlFood,
-  PiTennisBall,
-  PiShieldCheck,
-  PiFileText,
-  PiChatCircleDots,
-  PiCalendarCheck,
-  PiHeart,
-} from "react-icons/pi";
+import { PiArrowRight, PiBowlFood, PiCheckCircleFill, PiClock, PiHouse, PiMapPin, PiPawPrint, PiShieldCheck, PiTennisBall, PiWhatsappLogo } from "react-icons/pi";
 import contentData from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -78,25 +68,21 @@ export default function PetSittingPage() {
   const steps = [
     {
       num: 1,
-      icon: <PiFileText className="text-2xl text-deep-midnight" />,
       title: "Share Your Details",
       desc: "Tell us your location, preferred dates, and your pet's needs.",
     },
     {
       num: 2,
-      icon: <PiChatCircleDots className="text-2xl text-deep-midnight" />,
       title: "Get a Quotation",
       desc: "We'll provide a personalized quote based on your request.",
     },
     {
       num: 3,
-      icon: <PiCalendarCheck className="text-2xl text-deep-midnight" />,
       title: "Confirm Booking",
       desc: "Once confirmed, our team will take care of the rest.",
     },
     {
       num: 4,
-      icon: <PiHeart className="text-2xl text-deep-midnight" />,
       title: "We Take Care",
       desc: "Your pet will receive loving care while you're away.",
     },
@@ -107,38 +93,13 @@ export default function PetSittingPage() {
       {/* Light Theme Navbar */}
       <Header theme="light" />
 
-      <main className="flex-grow">
+      <main data-ui="public" className="flex-grow bg-canvas">
         {/* ========================================================
             HERO / HEADER SECTION (With Unsplash Photo & Smooth Blend)
             ======================================================== */}
-        <section className="relative min-h-[620px] lg:min-h-[680px] w-full flex items-center pt-32 md:pt-40 pb-16 md:pb-24 px-6 md:px-10 overflow-hidden bg-warm-ivory">
-          {/* Background Image on the Right */}
-          <div className="absolute right-0 top-0 bottom-0 w-full md:w-[58%] lg:w-[54%] h-full">
-            <img
-              src="https://images.unsplash.com/photo-1455287278107-115faab3eafa?q=80&w=1171&auto=format&fit=crop"
-              alt="Golden retriever dog resting comfortably at home on a bed"
-              fetchPriority="high"
-              className="w-full h-full object-cover object-center"
-            />
-            {/* Soft edge blend gradient on the left edge into warm-ivory */}
-            <div
-              className="absolute inset-0 pointer-events-none hidden md:block"
-              style={{
-                background:
-                  "linear-gradient(to right, #F7F2E8 0%, rgba(247, 242, 232, 0.95) 15%, rgba(247, 242, 232, 0.6) 30%, rgba(247, 242, 232, 0) 48%)",
-              }}
-            />
-            {/* Mobile overlay for 100% text readability */}
-            <div
-              className="absolute inset-0 pointer-events-none md:hidden"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(247, 242, 232, 0.97) 0%, rgba(247, 242, 232, 0.88) 55%, rgba(247, 242, 232, 0.25) 100%)",
-              }}
-            />
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <section className="w-full px-6 md:px-10 pt-12 md:pt-16 pb-12 md:pb-16 overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
               <Link
@@ -162,13 +123,13 @@ export default function PetSittingPage() {
             <div className="max-w-2xl lg:max-w-xl">
               {/* Eyebrow Badge */}
               <div className="mb-4">
-                <p className="uppercase tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
+                <p className="tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
                   PET SITTING
                 </p>
               </div>
 
               {/* Headline */}
-              <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl lg:text-[62px] text-deep-midnight font-bold leading-[1.14] tracking-tight mb-6">
+              <h1 className="font-playfair text-4xl sm:text-5xl md:text-[56px] text-forest font-normal leading-[1.08] tracking-tight mb-6">
                 Loving Care, <br />
                 Right at Home.
               </h1>
@@ -185,74 +146,54 @@ export default function PetSittingPage() {
               {/* CTA Button */}
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href="https://wa.me/?text=Hi%20PawCab,%20I'd%20like%20to%20request%20a%20quote%20for%20In-Home%20Pet%20Sitting."
+                  href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-deep-midnight text-soft-white px-8 py-4 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-pawcab-navy transition-all duration-300 shadow-md hover:shadow-xl group"
+                  className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-deepgreen transition-colors duration-200 group"
                 >
                   Request a Quote
-                  <BsArrowRight className="text-base group-hover:translate-x-1 transition-transform duration-300" />
+                  <PiArrowRight className="text-base group-hover:translate-x-1 transition-transform duration-200 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
                 </a>
 
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-deep-midnight hover:text-soft-white transition-all duration-300 bg-warm-ivory/60 backdrop-blur-sm"
+                  className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm hover:bg-deep-midnight hover:text-soft-white transition-colors duration-200 bg-white/60"
                 >
                   How It Works
                 </a>
               </div>
             </div>
+            </div>
+            <div className="relative rounded-[28px] overflow-hidden bg-sage aspect-[4/3]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1455287278107-115faab3eafa?q=80&w=1171&auto=format&fit=crop"
+                alt="Golden retriever dog resting comfortably at home on a bed"
+                fetchPriority="high"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
           </div>
         </section>
 
-        {/* ========================================================
-            HIGHLIGHTS ROW (4 Columns with Circular Icons)
-            ======================================================== */}
-        <section
-          className="relative py-16 md:py-20 px-6 md:px-10 overflow-hidden bg-white"
-          style={{
-            background:
-              "linear-gradient(180deg, #F7F2E8 0%, rgba(255, 255, 255, 0.85) 15%, #FFFFFF 28%, #FFFFFF 72%, rgba(255, 255, 255, 0.85) 85%, #F7F2E8 100%)",
-          }}
-        >
-          {/* Top Smooth Gradient Overlay */}
-          <div
-            className="absolute inset-x-0 top-0 h-16 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to bottom, #F7F2E8 0%, rgba(255, 255, 255, 0) 100%)",
-            }}
-          />
-
-          {/* Bottom Smooth Gradient Overlay */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(to top, #F7F2E8 0%, rgba(255, 255, 255, 0) 100%)",
-            }}
-          />
-
-          <div className="relative z-10 max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
-              {highlights.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center text-center p-3 transition-transform hover:-translate-y-1 duration-300"
-                >
-                  <div className="w-16 h-16 rounded-full bg-warm-ivory/80 flex items-center justify-center mb-4 shadow-sm border border-sand-beige/40">
-                    {item.icon}
-                  </div>
-                  <h3 className="font-playfair text-lg md:text-xl font-bold text-deep-midnight mb-1">
+        <section aria-label="In-home sitting care" className="py-10 md:py-16 px-6 md:px-10 bg-canvas">
+          <ul role="list" className="max-w-7xl mx-auto grid md:grid-cols-2 md:gap-x-16 border-t border-forest/20">
+            {highlights.map((item) => (
+              <li key={item.title} className="flex items-start gap-5 py-7 md:py-9 border-b border-forest/20">
+                <span aria-hidden="true" className="shrink-0 mt-1 text-forest [&>svg]:size-6">
+                  {item.icon}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-warm-taupe font-normal max-w-[200px]">
+                  <p className="text-base leading-relaxed text-ink">
                     {item.subtitle}
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* ========================================================
@@ -263,11 +204,11 @@ export default function PetSittingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column: Image */}
               <div className="lg:col-span-6">
-                <div className="relative rounded-3xl overflow-hidden shadow-xl border border-sand-beige/40 bg-sand-beige/20 aspect-[4/3] sm:aspect-[4/3] lg:aspect-[4/3] w-full group">
+                <div className="relative rounded-[32px] overflow-hidden border border-sand-beige/40 bg-sand-beige/20 aspect-[4/3] sm:aspect-[4/3] lg:aspect-[4/3] w-full group">
                   <img
                     src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=1200&auto=format&fit=crop"
                     alt="Caregiver petting a happy calm pet at home"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep-midnight/20 via-transparent to-transparent pointer-events-none" />
                 </div>
@@ -275,8 +216,8 @@ export default function PetSittingPage() {
 
               {/* Right Column: Card */}
               <div className="lg:col-span-6">
-                <div className="bg-white rounded-3xl p-8 sm:p-10 md:p-12 shadow-sm border border-sand-beige/40">
-                  <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[40px] font-bold text-deep-midnight mb-4 leading-tight">
+                <div className="bg-white rounded-[32px] p-8 sm:p-10 md:p-12 border border-sand-beige/40">
+                  <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[40px] font-normal text-deep-midnight mb-4 leading-tight">
                     Personalized Care
                   </h2>
 
@@ -289,7 +230,7 @@ export default function PetSittingPage() {
                   <ul className="space-y-4 mb-8">
                     {careFeatures.map((feat, idx) => (
                       <li key={idx} className="flex items-center gap-3.5">
-                        <BsCheckCircleFill className="text-deep-midnight text-xl shrink-0" />
+                        <PiCheckCircleFill className="text-deep-midnight text-xl shrink-0" />
                         <span className="text-deep-midnight font-medium text-sm sm:text-base">
                           {feat}
                         </span>
@@ -299,7 +240,7 @@ export default function PetSittingPage() {
 
                   <div className="pt-6 border-t border-sand-beige/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-warm-taupe font-semibold">
+                      <p className="text-xs text-warm-taupe font-semibold">
                         Ready to book sitting?
                       </p>
                       <p className="text-xs text-warm-taupe font-normal mt-0.5">
@@ -307,12 +248,12 @@ export default function PetSittingPage() {
                       </p>
                     </div>
                     <a
-                      href="https://wa.me/?text=Hi%20PawCab,%20I'd%20like%20to%20request%20a%20quote%20for%20In-Home%20Pet%20Sitting."
+                      href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-midnight hover:text-pawcab-navy transition-colors"
+                      className="inline-flex items-center gap-2 text-xs font-medium text-deep-midnight hover:text-pawcab-navy transition-colors"
                     >
-                      Request a Quote <BsArrowRight />
+                      Request a Quote <PiArrowRight />
                     </a>
                   </div>
                 </div>
@@ -322,68 +263,123 @@ export default function PetSittingPage() {
         </section>
 
         {/* ========================================================
+            SITTING RATES (quote factors, no invented prices)
+            ======================================================== */}
+        <section id="rates" aria-labelledby="sitting-rates-heading" className="py-16 md:py-24 px-6 md:px-10 bg-sagewash scroll-mt-24">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-20 items-start">
+              <div>
+                <p className="text-sm font-medium text-forest mb-4">Sitting rates</p>
+                <h2 id="sitting-rates-heading" className="font-display text-4xl md:text-[52px] text-forest font-normal leading-[1.08] mb-5">
+                  Priced around your pet, not a package
+                </h2>
+                <p className="text-ink text-base md:text-lg leading-relaxed max-w-sm">
+                  Every sitting booking is quoted on three things. Tell us those
+                  three and you get one number back on WhatsApp.
+                </p>
+              </div>
+
+              <ul role="list" className="border-t border-forest/25">
+                {[
+                  {
+                    title: "Location",
+                    desc: "Where in Bali your pet stays. Travel time to your gate is part of the quote.",
+                    icon: <PiMapPin className="size-6" />,
+                  },
+                  {
+                    title: "Number of pets",
+                    desc: "One pet or a full household, cats and dogs both.",
+                    icon: <PiPawPrint className="size-6" />,
+                  },
+                  {
+                    title: "Duration",
+                    desc: "A single visit, a full day, an overnight, or several days in a row.",
+                    icon: <PiClock className="size-6" />,
+                  },
+                ].map((factor) => (
+                  <li key={factor.title} className="flex items-start gap-5 py-7 md:py-8 border-b border-forest/25">
+                    <span aria-hidden="true" className="shrink-0 mt-1 text-forest">
+                      {factor.icon}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest mb-2">
+                        {factor.title}
+                      </h3>
+                      <p className="text-base leading-relaxed text-ink max-w-prose">{factor.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-10 md:mt-14 pt-8 border-t border-forest/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <p className="text-base leading-relaxed text-ink max-w-2xl">
+                Multi-day stays, medication routines and nervous pets are all
+                fine. Send the dates, the address and how many pets, and we reply
+                with a personalised quotation.
+              </p>
+              <a
+                href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a pet sitting quote. Location: ... Pets: ... Dates: ...")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2.5 bg-accent text-forest px-7 py-3.5 min-h-[48px] rounded-full font-medium text-[15px] border-2 border-line hover:bg-accent-hover transition-colors duration-200"
+              >
+                <PiWhatsappLogo className="text-base" aria-hidden="true" />
+                Request a Quote
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================
             HOW IT WORKS SECTION (4 Steps)
             ======================================================== */}
         <section
           id="how-it-works"
-          className="py-20 md:py-28 px-6 md:px-10 bg-soft-white border-t border-sand-beige/40"
+          aria-labelledby="sitting-process-heading"
+          className="py-16 md:py-24 px-6 md:px-10 bg-surface scroll-mt-24"
         >
           <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
-            <div className="mb-14 md:mb-16">
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-bold leading-tight">
-                How It Works
-              </h2>
-            </div>
+            <h2 id="sitting-process-heading" className="font-display text-4xl md:text-[52px] text-forest font-normal leading-[1.08] mb-10 md:mb-12">
+              How It Works
+            </h2>
 
-            {/* 4 Steps Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-16">
+            <ol role="list" className="border-t border-forest/25">
               {steps.map((step) => (
-                <div
+                <li
                   key={step.num}
-                  className="flex flex-col items-center text-center p-6 rounded-3xl bg-white border border-sand-beige/30 shadow-xs hover:shadow-md transition-all duration-300 group"
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] md:grid-cols-[3rem_minmax(0,0.8fr)_minmax(0,1.2fr)] gap-x-5 md:gap-x-8 gap-y-2 items-baseline py-7 md:py-8 border-b border-forest/25"
                 >
-                  {/* Circular Icon Badge */}
-                  <div className="w-16 h-16 rounded-full bg-warm-ivory flex items-center justify-center mb-5 shadow-xs border border-sand-beige/40 group-hover:scale-105 transition-transform">
-                    {step.icon}
-                  </div>
-
-                  {/* Step Number */}
-                  <span className="font-playfair text-xl font-bold text-deep-midnight mb-2">
+                  <span aria-hidden="true" className="text-xl font-medium tabular-nums text-deepgreen">
                     {step.num}
                   </span>
-
-                  {/* Step Title */}
-                  <h3 className="font-playfair text-lg font-bold text-deep-midnight mb-2">
+                  <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest">
                     {step.title}
                   </h3>
-
-                  {/* Step Description */}
-                  <p className="text-xs sm:text-sm text-warm-taupe font-normal leading-relaxed max-w-[220px]">
+                  <p className="col-start-2 md:col-start-3 text-base leading-relaxed text-ink max-w-prose">
                     {step.desc}
                   </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ol>
 
-            {/* CTA Banner inside How It Works */}
-            <div className="max-w-4xl mx-auto bg-warm-ivory rounded-3xl p-8 sm:p-10 border border-sand-beige/40 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="mt-10 md:mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>
-                <h3 className="font-playfair text-xl sm:text-2xl font-bold text-deep-midnight mb-1">
+                <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest mb-3">
                   Ready to arrange care for your pet?
                 </h3>
-                <p className="text-warm-taupe font-normal text-sm">
+                <p className="text-ink text-base leading-relaxed">
                   Let us know your dates and location for an instant quote.
                 </p>
               </div>
               <a
-                href="https://wa.me/?text=Hi%20PawCab,%20I'd%20like%20to%20request%20a%20quote%20for%20In-Home%20Pet%20Sitting."
+                href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2.5 bg-deep-midnight text-soft-white hover:bg-pawcab-navy px-8 py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-md"
+                className="shrink-0 inline-flex items-center gap-2.5 bg-forest text-white hover:bg-deepgreen min-h-12 px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"
               >
                 Request a Quote
-                <BsArrowRight className="text-sm" />
+                <PiArrowRight aria-hidden="true" className="text-base" />
               </a>
             </div>
           </div>

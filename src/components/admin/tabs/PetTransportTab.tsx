@@ -271,26 +271,85 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
               <span>Fare Calculator Base Parameters</span>
             </h3>
             <p className="text-xs text-neutral-400">
-              Set minimum ride fare, extra pet companion fee, maximum pets, and booking rules.
+              Set the four-zone rate card, the km thresholds, the waiting fee, extra pet fee and booking rules.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-2">
-                Minimum Base Fare (IDR)
-              </label>
-              <input
-                type="number"
-                value={pricing?.minimumFare || 65000}
-                onChange={(e) => updatePricingConfig("minimumFare", parseInt(e.target.value, 10) || 0)}
-                className="w-full px-4 py-2.5 bg-neutral-950 border border-neutral-700/80 rounded-xl text-pawcab-gold font-bold text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
-              />
-              <span className="text-[11px] text-neutral-500 mt-1 block">
-                Minimum charge even if distance fare is lower
-              </span>
+          {/* Zone rate card: the four rows of the printed SERVICES & RATES card */}
+          <div className="rounded-2xl border border-neutral-800 p-4 sm:p-5">
+            <p className="text-xs font-semibold text-neutral-300 mb-1">Zone rate card</p>
+            <p className="text-[11px] text-neutral-500 mb-4">
+              Fixed fare up to the km threshold, then the zone rate per kilometre.
+              A cross-zone trip uses the outer zone.
+            </p>
+            <div className="space-y-3">
+              {[1, 2, 3, 4].map((zone) => {
+                const rate = pricing?.zoneRates?.[String(zone)] || {
+                  fixedUpTo5km: [0, 50000, 65000, 70000, 75000][zone],
+                  perKm: [0, 12000, 13000, 14000, 15000][zone],
+                };
+                const setRate = (field: "fixedUpTo5km" | "perKm", val: number) => {
+                  const next = { ...(pricing?.zoneRates || {}) };
+                  next[String(zone)] = { ...rate, [field]: val };
+                  updatePricingConfig("zoneRates", next);
+                };
+                return (
+                  <div key={zone} className="grid grid-cols-1 sm:grid-cols-[80px_1fr_1fr] items-center gap-3">
+                    <span className="text-xs font-semibold text-pawcab-gold">Zone {zone}</span>
+                    <label className="flex items-center gap-2 text-[11px] text-neutral-400">
+                      <span className="w-28 shrink-0">Fixed, 0 to 5 km</span>
+                      <input
+                        type="number"
+                        value={rate.fixedUpTo5km}
+                        onChange={(e) => setRate("fixedUpTo5km", parseInt(e.target.value, 10) || 0)}
+                        className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700/80 rounded-xl text-pawcab-gold font-bold text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
+                      />
+                    </label>
+                    <label className="flex items-center gap-2 text-[11px] text-neutral-400">
+                      <span className="w-28 shrink-0">Per km, 5.1 to 15</span>
+                      <input
+                        type="number"
+                        value={rate.perKm}
+                        onChange={(e) => setRate("perKm", parseInt(e.target.value, 10) || 0)}
+                        className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700/80 rounded-xl text-pawcab-gold font-bold text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
+                      />
+                    </label>
+                  </div>
+                );
+              })}
             </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 pt-4 border-t border-neutral-800">
+              <label className="flex items-center gap-2 text-[11px] text-neutral-400">
+                <span className="w-28 shrink-0">Fixed up to km</span>
+                <input
+                  type="number"
+                  value={pricing?.fixedTierMaxKm ?? 5}
+                  onChange={(e) => updatePricingConfig("fixedTierMaxKm", parseInt(e.target.value, 10) || 0)}
+                  className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700/80 rounded-xl text-pawcab-gold font-bold text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
+                />
+              </label>
+              <label className="flex items-center gap-2 text-[11px] text-neutral-400">
+                <span className="w-28 shrink-0">Quote beyond km</span>
+                <input
+                  type="number"
+                  value={pricing?.quotedBeyondKm ?? 15}
+                  onChange={(e) => updatePricingConfig("quotedBeyondKm", parseInt(e.target.value, 10) || 0)}
+                  className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700/80 rounded-xl text-pawcab-gold font-bold text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
+                />
+              </label>
+              <label className="flex items-center gap-2 text-[11px] text-neutral-400">
+                <span className="w-28 shrink-0">Waiting fee / hour</span>
+                <input
+                  type="number"
+                  value={pricing?.waitingFeePerHour ?? 15000}
+                  onChange={(e) => updatePricingConfig("waitingFeePerHour", parseInt(e.target.value, 10) || 0)}
+                  className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700/80 rounded-xl text-pawcab-gold font-bold text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
+                />
+              </label>
+            </div>
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300 mb-2">
                 Extra Pet Companion Fee (IDR)

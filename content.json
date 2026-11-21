@@ -140,7 +140,6 @@
       "description": "One island, one flat rate per kilometre. Type two addresses and see the fare.",
       "ctaText": "View Zones & Rates",
       "ctaHref": "/services/pet-transport#pricing",
-      "mapImage": "/images/map-zone.png",
       "sideImage": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1938&auto=format&fit=crop",
       "sideQuoteLines": [
         "Scenic routes.",
@@ -310,41 +309,41 @@
         "Regular sanitization after every ride"
       ],
       "pricingConfig": {
-        "heading": "One flat rate, measured live.",
-        "subheading": "Type pickup and drop-off. The map measures the driving distance at Rp 10.000 per kilometre.",
-        "badge": "TRANSPARENT PRICING",
+        "heading": "Zone rates, measured live.",
+        "subheading": "Type pickup and drop-off. The map measures the real driving distance, and the fare follows the zone rate card below.",
+        "badge": "ZONE 1 TO 4 RATES",
         "minimumFare": 65000,
         "perExtraPetFee": 35000,
         "maxPets": 3,
         "notes": [
-          "Fares are calculated per kilometer based on the origin and destination zones.",
-          "Minimum base fare is Rp 65,000 for short rides.",
-          "Waiting fee is Rp 40,000 per 30 minutes if you require round-trip waiting service."
+          "A ride of 5 km or less is a fixed zone fare. From 5.1 to 15 km the fare is the zone rate per kilometre.",
+          "Round trips can include waiting time at Rp 15.000 per hour.",
+          "Trips beyond 15 km, outside the four zones, or a full-day booking are quoted on WhatsApp."
         ],
         "zones": [
           {
             "id": 1,
             "name": "Zone 1",
-            "areasHeadline": "KOTA DENPASAR - SANUR - SEMINYAK - LEGIAN - KUTA",
-            "description": "Pusat kota, area pesisir selatan-tengah, dan sentra wisata utama."
+            "areasHeadline": "DENPASAR - KUTA - LEGIAN - SEMINYAK - SANUR",
+            "description": "City centre, the south-central coast, and the main visitor districts."
           },
           {
             "id": 2,
             "name": "Zone 2",
-            "areasHeadline": "KUTA UTARA - SEMPIDI - DARMASABA - BATU BULAN",
-            "description": "Area Kuta Utara, Canggu, Kerobokan, dan koridor barat-tengah."
+            "areasHeadline": "KEROBOKAN - DALUNG - CANGGU",
+            "description": "Kerobokan, Dalung, Canggu and the west-central corridor."
           },
           {
             "id": 3,
             "name": "Zone 3",
-            "areasHeadline": "KUTA SELATAN - NUSA DUA",
-            "description": "Semenanjung bukit selatan, Jimbaran, Nusa Dua, dan Benoa."
+            "areasHeadline": "JIMBARAN - NUSA DUA - BENOA",
+            "description": "The southern hill peninsula: Jimbaran, Nusa Dua and Benoa."
           },
           {
             "id": 4,
             "name": "Zone 4",
-            "areasHeadline": "TANAH LOT - SESEH - TABANAN (KEDIRI, KERAMBITAN) - MENGWI - ABIANSEMAL - SUKAWATI - PECATU",
-            "description": "Wilayah barat Tabanan, Mengwi, Gianyar barat (Sukawati), dan Pecatu."
+            "areasHeadline": "TABANAN - UBUD - GIANYAR",
+            "description": "West Tabanan, Mengwi, Ubud and Gianyar, plus the outer runs."
           }
         ],
         "areas": [
@@ -483,7 +482,7 @@
           },
           {
             "id": "sukawati",
-            "name": "Sukawati / South Ubud",
+            "name": "Sukawati",
             "zoneId": 4,
             "popular": true
           },
@@ -492,6 +491,17 @@
             "name": "Pecatu / Uluwatu",
             "zoneId": 4,
             "popular": true
+          },
+          {
+            "id": "ubud",
+            "name": "Ubud",
+            "zoneId": 4,
+            "popular": true
+          },
+          {
+            "id": "gianyar",
+            "name": "Gianyar",
+            "zoneId": 4
           }
         ],
         "ratesPerKm": {
@@ -607,7 +617,28 @@
           "sukawati_batubulan": 6.5,
           "sukawati_denpasar_kota": 13,
           "sukawati_abiansemal": 15
-        }
+        },
+        "zoneRates": {
+          "1": {
+            "fixedUpTo5km": 50000,
+            "perKm": 12000
+          },
+          "2": {
+            "fixedUpTo5km": 65000,
+            "perKm": 13000
+          },
+          "3": {
+            "fixedUpTo5km": 70000,
+            "perKm": 14000
+          },
+          "4": {
+            "fixedUpTo5km": 75000,
+            "perKm": 15000
+          }
+        },
+        "fixedTierMaxKm": 5,
+        "quotedBeyondKm": 15,
+        "waitingFeePerHour": 15000
       },
       "faqs": [
         {
@@ -673,34 +704,49 @@
       ],
       "pricingPlans": [
         {
-          "id": "neighborhood",
-          "title": "Neighborhood Walk",
-          "subtitle": "1 Hour Session",
-          "price": 150000,
-          "unit": "/ session",
+          "id": "zone-1",
+          "title": "Zone 1",
+          "subtitle": "Denpasar, Kuta, Legian, Seminyak, Sanur",
+          "price": 80000,
+          "unit": "/ hour",
           "features": [
-            "Up to 2 dogs per session",
-            "Within your neighborhood",
-            "No transportation required",
-            "Paw cleaning & hydration included"
+            "Private one hour walk",
+            "Up to 2 dogs per walk",
+            "Within your neighbourhood",
+            "Paw cleaning and water included"
           ],
           "popular": false,
-          "waText": "Hi PawCab, I'd like to book a Neighborhood Walk (1 Hour Session - Rp 150,000)."
+          "waText": "Hi PawCab, I'd like to book a dog walk in Zone 1 (Rp 80.000 per hour)."
         },
         {
-          "id": "beach",
-          "title": "Beach Walk",
-          "subtitle": "1 Hour Session + Transport",
-          "price": 250000,
-          "unit": "/ session",
+          "id": "zone-2",
+          "title": "Zone 2",
+          "subtitle": "Kerobokan, Dalung, Canggu",
+          "price": 90000,
+          "unit": "/ hour",
           "features": [
-            "Up to 2 dogs per session",
-            "Includes private round-trip transportation",
-            "Visit a suitable nearby dog-friendly beach",
-            "Full paw & coat rinse after walk"
+            "Private one hour walk",
+            "Up to 2 dogs per walk",
+            "Within your neighbourhood",
+            "Paw cleaning and water included"
           ],
-          "popular": true,
-          "waText": "Hi PawCab, I'd like to book a Beach Walk (1 Hour Session - Rp 250,000)."
+          "popular": false,
+          "waText": "Hi PawCab, I'd like to book a dog walk in Zone 2 (Rp 90.000 per hour)."
+        },
+        {
+          "id": "zone-3",
+          "title": "Zone 3",
+          "subtitle": "Jimbaran, Nusa Dua, Benoa",
+          "price": 100000,
+          "unit": "/ hour",
+          "features": [
+            "Private one hour walk",
+            "Up to 2 dogs per walk",
+            "Within your neighbourhood",
+            "Paw cleaning and water included"
+          ],
+          "popular": false,
+          "waText": "Hi PawCab, I'd like to book a dog walk in Zone 3 (Rp 100.000 per hour)."
         }
       ],
       "faqs": [
@@ -749,49 +795,43 @@
       ],
       "services": [
         {
-          "id": "drop-in",
-          "title": "Drop-in Visit",
-          "subtitle": "45 Mins Session",
-          "price": 120000,
-          "unit": "/ visit",
+          "id": "factor-location",
+          "title": "Location",
+          "subtitle": "Where your pet stays",
+          "price": 0,
+          "unit": "",
           "features": [
-            "Fresh food & water refill",
-            "Litter box cleaning / potty break",
-            "Playtime & companionship",
-            "Photo & video check-in"
+            "Your area in Bali",
+            "Travel time to your gate"
           ],
           "popular": false,
-          "waText": "Hi PawCab, I'd like to book a Drop-in Pet Sitting Visit (Rp 120,000)."
+          "waText": "Hi PawCab, I'd like a pet sitting quote."
         },
         {
-          "id": "half-day",
-          "title": "Half-Day In-Home Care",
-          "subtitle": "4 Hours Session",
-          "price": 300000,
-          "unit": "/ 4 hours",
+          "id": "factor-pets",
+          "title": "Number of pets",
+          "subtitle": "How many we care for",
+          "price": 0,
+          "unit": "",
           "features": [
-            "Continuous companionship",
-            "1 neighborhood walk included",
-            "Feeding, medication & play",
-            "House plant watering & mail check"
-          ],
-          "popular": true,
-          "waText": "Hi PawCab, I'd like to book Half-Day In-Home Pet Care (Rp 300,000)."
-        },
-        {
-          "id": "overnight",
-          "title": "Overnight House Sitting",
-          "subtitle": "12 Hours (19:00 - 07:00)",
-          "price": 450000,
-          "unit": "/ night",
-          "features": [
-            "Full overnight presence",
-            "Evening & morning walks/feeding",
-            "Emergency transport standby",
-            "Complete peace of mind"
+            "One pet or a full household",
+            "Cats, dogs, or both"
           ],
           "popular": false,
-          "waText": "Hi PawCab, I'd like to book Overnight Pet Sitting (Rp 450,000)."
+          "waText": "Hi PawCab, I'd like a pet sitting quote."
+        },
+        {
+          "id": "factor-duration",
+          "title": "Duration",
+          "subtitle": "How long you need us",
+          "price": 0,
+          "unit": "",
+          "features": [
+            "Single visit or full days",
+            "Overnight and multi-day stays"
+          ],
+          "popular": false,
+          "waText": "Hi PawCab, I'd like a pet sitting quote."
         }
       ],
       "faqs": [

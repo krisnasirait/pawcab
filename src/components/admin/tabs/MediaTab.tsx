@@ -163,7 +163,7 @@ export default function MediaTab() {
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-xl bg-red-950/50 border border-red-800 text-red-300 text-xs flex items-center gap-2">
+          <div className="p-3.5 rounded-xl bg-red-950/50 border border-red-800 text-error-dark text-xs flex items-center gap-2">
             <BsExclamationTriangle className="text-red-400 text-sm shrink-0" />
             <span>{error}</span>
           </div>

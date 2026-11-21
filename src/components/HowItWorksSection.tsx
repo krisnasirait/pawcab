@@ -3,8 +3,8 @@ import Button from "./Button";
 import contentData from "@/lib/content";
 
 // R-31: booking IS a sequence, so numbered steps are honest here
-// (frontend-design allows numbers for real sequences). Rendered as a
-// vertical timeline with one connecting line, not three round-icon cards.
+// (frontend-design allows numbers for real sequences). Each step is a
+// hard-surface card: lime step mark, 1px ink border, solid offset shadow.
 export default function HowItWorksSection() {
   const howItWorks = contentData.home?.howItWorks;
   const steps = howItWorks?.steps?.length
@@ -16,14 +16,14 @@ export default function HowItWorksSection() {
       ];
 
   return (
-    <section className="bg-[#FFFEFA] py-16 md:py-24 border-t border-[#D8C9AE]/60">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-10">
+    <section className="bg-white py-16 md:py-24 border-t border-sage">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16">
         <div>
-          <p className="flex items-center gap-3 text-[14px] font-medium text-[#0E6B5E] mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#0E6B5E]" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
             How booking works
           </p>
-          <h2 className="text-4xl md:text-[52px] leading-[1.05] font-semibold text-[#0E2A21]" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-forest">
             Priced in a minute, booked on WhatsApp.
           </h2>
           <div className="mt-8">
@@ -35,16 +35,27 @@ export default function HowItWorksSection() {
             >
               Chat on WhatsApp
             </Button>
-            <p className="mt-3 text-[13.5px] text-[#3F382E]">Daily 07.00 to 21.00 WITA. Real humans, plus dogs in the office.</p>
+            <p className="mt-4 text-[13.5px] text-ink">Real humans, plus dogs in the office.</p>
           </div>
         </div>
-        <ol className="relative border-l border-[#0E2A21]/20 ml-2 space-y-0">
+
+        <ol className="border-t border-forest/20">
           {steps.map((s, i) => (
-            <li key={i} className="relative pl-8 pb-8 last:pb-0">
-              <span aria-hidden="true" className="absolute -left-[9px] top-1 h-[17px] w-[17px] rounded-full bg-[#FFFEFA] border-[3px] border-[#0E6B5E]" />
-              <p className="text-[13px] font-bold text-[#0E6B5E]">Step {s.number || i + 1}</p>
-              <h3 className="text-[19px] font-bold text-[#0E2A21] mt-1">{s.title}</h3>
-              <p className="text-[15px] leading-relaxed text-[#3F382E] mt-1 max-w-md">{s.description}</p>
+            <li
+              key={i}
+              className="flex items-start gap-4 px-1 py-5 md:py-6 border-b border-forest/20"
+            >
+              <span
+                aria-hidden="true"
+                className="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-accent text-forest font-medium text-[15px] border-2 border-forest"
+              >
+                {s.number || i + 1}
+              </span>
+              <div>
+                <p className="text-[12.5px] font-medium text-deepgreen">Step {s.number || i + 1}</p>
+                <h3 className="text-[20px] font-normal leading-[1.25] text-forest mt-0.5">{s.title}</h3>
+                <p className="text-[15px] leading-[1.45] text-ink mt-1 max-w-md">{s.description}</p>
+              </div>
             </li>
           ))}
         </ol>

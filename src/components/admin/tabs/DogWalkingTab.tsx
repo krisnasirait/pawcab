@@ -135,7 +135,7 @@ export default function DogWalkingTab({ content, onChange }: DogWalkingTabProps)
             <div>
               <h3 className="font-playfair text-xl font-bold text-white">Dog Walking Packages</h3>
               <p className="text-xs text-neutral-400">
-                Manage rates, session durations, and bullet features for dog walking services.
+                Manage the three zone rates, their areas, and the bullet features for each walk.
               </p>
             </div>
             <button

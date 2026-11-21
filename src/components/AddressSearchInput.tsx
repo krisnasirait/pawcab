@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { BsSearch, BsX } from "react-icons/bs";
-import { PiCrosshair, PiMapPin } from "react-icons/pi";
+import { PiCrosshair, PiMagnifyingGlass, PiMapPin, PiX } from "react-icons/pi";
 import { searchPlaces, type OsmPlace } from "@/lib/routing";
 
 interface AddressSearchInputProps {
@@ -139,14 +138,14 @@ export default function AddressSearchInput({
       {/* Field Label */}
       <label
         htmlFor={inputId}
-        className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-warm-taupe font-bold mb-2"
+        className="flex items-center gap-1.5 text-sm text-warm-taupe font-medium mb-2"
       >
         {icon}
         {label}
       </label>
 
       <div className="relative">
-        <BsSearch
+        <PiMagnifyingGlass
           aria-hidden="true"
           className="absolute left-3.5 top-1/2 -translate-y-1/2 text-warm-taupe text-xs pointer-events-none"
         />
@@ -180,7 +179,7 @@ export default function AddressSearchInput({
             if (results.length > 0) setOpen(true);
           }}
           placeholder={placeholder}
-          className="w-full bg-white border border-warm-taupe rounded-xl pl-9 pr-12 py-3 text-xs sm:text-sm font-medium text-deep-midnight placeholder:text-warm-taupe focus:outline-none focus:border-pawcab-navy focus:ring-1 focus:ring-pawcab-navy transition-all"
+          className="w-full min-h-[48px] bg-white border border-line rounded-xl pl-9 pr-12 py-3 text-sm font-normal text-forest placeholder:text-ink focus:border-forest transition-colors"
         />
         {query ? (
           <button
@@ -189,7 +188,7 @@ export default function AddressSearchInput({
             aria-label={`Clear ${label}`}
             className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-sm text-warm-taupe hover:text-deep-midnight transition-colors"
           >
-            <BsX aria-hidden="true" className="text-lg" />
+            <PiX aria-hidden="true" className="text-lg" />
           </button>
         ) : (
           onLocate && (
@@ -217,7 +216,7 @@ export default function AddressSearchInput({
 
       {/* Suggestions Panel */}
       {showPanel && (
-        <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white rounded-2xl shadow-2xl border border-sand-beige/70 overflow-hidden">
+        <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white rounded-2xl border border-sand-beige/70 overflow-hidden">
           {status === "searching" && (
             <div
               className="flex items-center gap-3 px-4 py-4 text-xs sm:text-sm text-warm-taupe font-medium"
@@ -287,7 +286,7 @@ export default function AddressSearchInput({
                     setOpen(false);
                     onPickOnMap();
                   }}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full bg-deep-midnight text-soft-white text-xs font-bold uppercase tracking-wider hover:bg-pawcab-navy transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full bg-forest text-white text-xs font-medium hover:bg-deepgreen transition-colors"
                 >
                   <PiMapPin aria-hidden="true" className="text-sm" />
                   Pick on Map Instead
@@ -307,7 +306,7 @@ export default function AddressSearchInput({
                   setStatus("searching");
                   setAttempt((n) => n + 1);
                 }}
-                className="shrink-0 px-4 py-2 min-h-[44px] rounded-full bg-deep-midnight text-soft-white text-xs font-bold uppercase tracking-wider hover:bg-pawcab-navy transition-colors"
+                className="shrink-0 px-4 py-2 min-h-[44px] rounded-full bg-forest text-white text-xs font-medium hover:bg-deepgreen transition-colors"
               >
                 Retry
               </button>

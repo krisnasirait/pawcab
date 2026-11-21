@@ -20,7 +20,7 @@ export default function Home() {
   const reviews = contentData.home?.reviews;
   const elfsightAppId = reviews?.elfsightAppId?.trim();
   return (
-    <main className="min-h-screen relative bg-[#FFFEFA]">
+    <main data-ui="public" className="min-h-screen relative bg-canvas">
       <Header />
       <Hero />
       <FeaturesRow />
@@ -31,13 +31,13 @@ export default function Home() {
       <GallerySection />
       <ComfortSection />
       <HowItWorksSection />
-      <section className="bg-[#FFFEFA] py-16 md:py-20 px-5 md:px-8 border-t border-[#D8C9AE]/60">
+      <section className="bg-white py-16 md:py-20 px-5 md:px-8 border-t border-sage">
         <div className="max-w-7xl mx-auto">
-          <p className="flex items-center gap-3 text-[14px] font-medium text-[#0E6B5E] mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#0E6B5E]" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
             {reviews?.badge || "Guestbook"}
           </p>
-          <h2 className="text-4xl md:text-[44px] leading-tight font-semibold text-[#0E2A21] mb-8" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+          <h2 className="text-4xl md:text-[52px] leading-[1.08] font-normal text-forest mb-8" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
             {reviews?.heading || "Notes from the back seat."}
           </h2>
           {elfsightAppId ? (
@@ -46,13 +46,13 @@ export default function Home() {
               <div className={elfsightAppId} data-elfsight-app-lazy />
             </>
           ) : (
-            <p className="text-[15px] leading-relaxed text-[#3F382E] max-w-lg">
+            <p className="text-[15px] leading-[1.45] text-ink max-w-lg">
               Daily rides and passenger hellos live on{" "}
               <a
                 href={contentData.site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-[#0E6B5E] underline underline-offset-4"
+                className="font-medium text-forest underline underline-offset-4 decoration-forest decoration-2"
               >
                 Instagram @{contentData.site.instagram}
               </a>.

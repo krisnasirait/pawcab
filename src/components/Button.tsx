@@ -1,7 +1,7 @@
 import React from "react";
 
-// R-31: radius is hierarchy. Primary booking keeps the taxi-token pill.
-// Secondary and quiet actions use a small 10px radius so pills mean "book".
+// R-31: radius is hierarchy. Every action is a flat pill; only fill and
+// border separate primary from secondary. No offset shadows, no lifts.
 type ButtonProps = {
   variant?: "primary" | "secondary" | "outline" | "quiet";
   children: React.ReactNode;
@@ -22,17 +22,17 @@ export default function Button({
   rel,
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center gap-2.5 px-7 py-3.5 min-h-[48px] font-semibold transition-colors duration-200 text-[15px] tracking-normal";
+    "inline-flex items-center justify-center gap-2.5 px-[22px] py-3 min-h-[48px] font-medium transition-colors duration-200 text-[16px] tracking-normal";
 
   const variants = {
     primary:
-      "bg-[#FFC61A] text-[#0E2A21] rounded-full hover:bg-[#ffd14d] shadow-[0_2px_12px_rgba(14,42,33,0.18)]",
+      "bg-accent text-forest border-2 border-line rounded-full hover:bg-accent-hover",
     secondary:
-      "bg-[#0E2A21] text-[#FFFEFA] rounded-[10px] hover:bg-[#16453a]",
+      "bg-forest text-white border-2 border-forest rounded-full hover:bg-deepgreen hover:border-deepgreen",
     outline:
-      "border border-[#0E2A21]/25 text-[#0E2A21] rounded-[10px] hover:border-[#0E2A21] hover:bg-[#0E2A21] hover:text-[#FFFEFA]",
+      "bg-transparent text-forest border-2 border-forest/35 rounded-full hover:border-forest hover:bg-forest hover:text-white",
     quiet:
-      "text-[#0E6B5E] underline underline-offset-4 decoration-1 hover:text-[#0E2A21] px-2 py-2 min-h-[44px]",
+      "text-forest underline underline-offset-4 decoration-1 decoration-accent hover:decoration-2 px-2 py-2 min-h-[44px]",
   };
 
   const classes = `${baseClasses} ${variants[variant]} ${className}`;

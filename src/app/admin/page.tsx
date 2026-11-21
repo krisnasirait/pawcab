@@ -338,7 +338,7 @@ export default function AdminPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans selection:bg-pawcab-gold selection:text-deep-midnight">
+    <div data-theme="admin" className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans selection:bg-pawcab-gold selection:text-deep-midnight">
       {/* Top Navbar */}
       <AdminHeader
         hasUnsavedChanges={hasUnsavedChanges}

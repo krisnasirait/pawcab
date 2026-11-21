@@ -102,7 +102,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
               : "text-neutral-400 hover:text-white"
           }`}
         >
-          Care Packages ({(petSitting?.services || []).length})
+          Quote factors ({(petSitting?.services || []).length})
         </button>
         <button
           type="button"

@@ -6,6 +6,7 @@ import Link from "next/link";
 import contentData from "@/lib/content";
 
 interface HeaderProps {
+  /** Kept for call sites that still pass a theme; the lime bar is now opaque everywhere. */
   theme?: "dark" | "light";
 }
 
@@ -17,71 +18,62 @@ const NAV_LINKS = [
   { label: "Fare", href: "/#fare" },
 ];
 
-export default function Header({ theme = "dark" }: HeaderProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function Header({ theme }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  void theme;
 
   const ctaHref =
     contentData.navigation?.ctaButton?.href ||
     "https://wa.me/6282266383800?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.";
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 16);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+  // Escape dismisses the menu and focus returns to the trigger (R-32).
   useEffect(() => {
     if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      e.stopPropagation();
+      setMenuOpen(false);
+      triggerRef.current?.focus();
+    };
     window.addEventListener("keydown", onKey);
     panelRef.current?.querySelector("a")?.focus();
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
-  const isLight = theme === "light" && !isScrolled;
-
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#FFFEFA]/95 backdrop-blur-md border-b border-[#D8C9AE]/60 text-[#0E2A21] py-3"
-          : isLight
-            ? "bg-transparent text-[#0E2A21] py-5"
-            : "bg-gradient-to-b from-[#0E2A21]/85 to-transparent text-[#FFFEFA] py-5"
-      }`}
+      className="sticky top-0 left-0 w-full z-30 bg-canvas/95 backdrop-blur text-forest border-b border-forest/15"
+      data-surface="light"
     >
-      <div className="max-w-7xl mx-auto w-full px-5 md:px-8 flex justify-between items-center">
-        <Link href="/" className="flex items-center gap-2.5" aria-label="The PawCab home">
-          <Image
-            src="/images/logo-pawcab.png"
-            alt="The PawCab logo"
-            width={40}
-            height={40}
-            className="object-contain shrink-0 rounded-full bg-[#FFFEFA] p-0.5"
-          />
+      <div className="max-w-7xl mx-auto w-full px-5 md:px-8 flex justify-between items-center min-h-[72px] md:min-h-[80px] py-3">
+        <Link href="/" className="flex items-center gap-2.5 min-h-[44px]" aria-label="The PawCab home">
+          <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-forest shrink-0">
+            <Image
+              src="/images/logo-pawcab.png"
+              alt="The PawCab logo"
+              width={32}
+              height={32}
+              className="object-contain"
+            />
+          </span>
           <span className="flex flex-col leading-none">
-            <span
-              className="font-elmessiri text-lg md:text-xl font-bold tracking-wide"
-              style={{ fontFamily: "'El Messiri', serif" }}
-            >
+            <span className="font-display text-lg md:text-[22px] font-medium tracking-wide text-forest">
               THE PAWCAB
             </span>
-            <span className={`text-[11px] font-medium tracking-wide ${isScrolled || isLight ? "text-[#3F382E]/80" : "text-white/70"}`}>
+            <span className="text-[11px] font-medium tracking-wide text-ink mt-0.5">
               Private pet rides, Bali
             </span>
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[16px] font-medium">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className={`transition-colors hover:text-[#0E6B5E] ${
-                isScrolled || isLight ? "text-[#0E2A21]" : "text-[#FFFEFA]/90"
-              }`}
+              className="text-forest underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-accent hover:underline transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -89,14 +81,11 @@ export default function Header({ theme = "dark" }: HeaderProps) {
         </nav>
 
         <div className="flex items-center gap-3">
-          <span className={`hidden md:block text-[13px] font-medium ${isScrolled || isLight ? "text-[#3F382E]" : "text-white/75"}`}>
-            Daily 07.00 to 21.00
-          </span>
           <a
             href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center min-h-[44px] rounded-full bg-[#FFC61A] text-[#0E2A21] font-bold text-[14px] px-5 py-2.5 hover:bg-[#ffd14d] transition-colors"
+            className="hidden sm:inline-flex items-center min-h-[44px] rounded-full bg-accent text-forest font-medium text-[15px] px-5 py-2.5 border-2 border-accent hover:bg-accent-hover hover:border-accent-hover transition-colors duration-200"
           >
             Book a ride
           </a>
@@ -106,11 +95,8 @@ export default function Header({ theme = "dark" }: HeaderProps) {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className={`lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-[10px] border transition-colors ${
-              isScrolled || isLight
-                ? "border-[#0E2A21]/20 text-[#0E2A21]"
-                : "border-white/30 text-white"
-            }`}
+            ref={triggerRef}
+            className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-forest/35 text-forest hover:border-forest transition-colors"
           >
             <span aria-hidden="true" className="text-xl leading-none">{menuOpen ? "✕" : "☰"}</span>
           </button>
@@ -121,7 +107,7 @@ export default function Header({ theme = "dark" }: HeaderProps) {
         <div
           id="mobile-nav"
           ref={panelRef}
-          className="lg:hidden mx-4 mt-3 rounded-2xl bg-[#0E2A21] text-[#FFFEFA] border border-white/10 shadow-2xl overflow-hidden"
+          data-surface="light" className="lg:hidden mx-4 mb-3 rounded-2xl bg-white text-forest border border-forest/20 overflow-hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col p-3">
             {NAV_LINKS.map((link) => (
@@ -129,7 +115,7 @@ export default function Header({ theme = "dark" }: HeaderProps) {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="px-5 py-3.5 min-h-[48px] flex items-center rounded-xl text-[16px] font-medium hover:bg-white/10 transition-colors"
+                className="px-5 py-3.5 min-h-[48px] flex items-center rounded-xl text-[16px] font-medium text-forest hover:bg-sagewash hover:text-deepgreen transition-colors"
               >
                 {link.label}
               </Link>
@@ -138,7 +124,7 @@ export default function Header({ theme = "dark" }: HeaderProps) {
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 mb-2 inline-flex items-center justify-center rounded-full bg-[#FFC61A] text-[#0E2A21] font-bold px-5 py-3.5 min-h-[48px] text-[15px]"
+              className="mt-2 mb-2 inline-flex items-center justify-center rounded-full bg-accent text-forest font-medium px-5 py-3.5 min-h-[48px] text-[15px] border-2 border-line"
             >
               Book a ride
             </a>

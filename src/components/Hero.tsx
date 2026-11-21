@@ -3,85 +3,102 @@ import Image from "next/image";
 import Button from "./Button";
 import contentData from "@/lib/content";
 
-// R-31: hero opens with the most characteristic thing in this world:
-// a calm dog riding shotgun in the PawCab SUV, plus the one action
-// that matters (price the ride). No single-word accent, no eyebrow pill.
-// Headline is one thought set in Fraunces; the fare panel is the focal point.
 export default function Hero() {
   const hero = contentData.home.hero;
   const site = contentData.site;
 
   return (
-    <section className="relative w-full bg-[#0E2A21] text-[#FFFEFA] overflow-hidden">
-      <Image
-        src={hero.bgImage}
-        alt="Dog riding calmly in The PawCab pet taxi in Bali"
-        fill
-        priority
-        fetchPriority="high"
-        sizes="100vw"
-        className="object-cover opacity-70"
-      />
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#0E2A21] via-[#0E2A21]/72 to-[#0E2A21]/18" />
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-[#0E2A21]/85 via-transparent to-[#0E2A21]/25" />
-
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-5 md:px-8 pt-32 md:pt-40 pb-10 md:pb-14 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-end">
-        <div className="max-w-2xl">
-          <p className="flex items-center gap-3 text-[14px] font-medium text-[#FFFEFA]/85 mb-5">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-[#FFC61A]" />
-            Private pet mobility across Bali
-          </p>
-          <h1 className="font-semibold text-[#FFFEFA] text-[42px] leading-[1.02] sm:text-6xl lg:text-[76px] mb-6" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
-            Calm rides for dogs who hate traffic.
-          </h1>
-          <p className="text-[17px] md:text-lg leading-relaxed text-[#FFFEFA]/85 max-w-xl mb-8">
-            {hero.description} Pricing is one flat rate per kilometre, measured live from the map.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <Button variant="primary" href={hero.primaryCtaHref}>
-              {hero.primaryCtaText}
-            </Button>
-            <a
-              href="#fare"
-              className="inline-flex items-center justify-center min-h-[48px] px-7 py-3.5 rounded-[10px] border border-white/30 text-[#FFFEFA] font-semibold text-[15px] hover:bg-white/10 transition-colors"
+    <section
+      aria-labelledby="hero-heading"
+      className="bg-canvas pt-10 sm:pt-14 lg:pt-16 pb-10 sm:pb-14"
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="grid lg:grid-cols-[1fr_1.05fr] gap-9 sm:gap-12 lg:gap-14 items-center">
+          <div className="max-w-xl">
+            <p className="text-[14px] sm:text-[15px] font-medium text-deepgreen mb-5 sm:mb-6">
+              Private pet mobility across Bali
+            </p>
+            <h1
+              id="hero-heading"
+              className="font-normal text-forest text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02] tracking-[-0.02em] mb-6"
             >
-              Check your fare
-            </a>
+              Calm rides for dogs who hate traffic.
+            </h1>
+            <p className="text-[17px] sm:text-[18px] leading-[1.55] text-ink max-w-lg">
+              {hero.description} The fare follows the zone rate card, measured live from the map.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 mt-7 sm:mt-8">
+              <Button variant="primary" href={hero.primaryCtaHref}>
+                {hero.primaryCtaText}
+              </Button>
+              <a
+                href="#fare"
+                className="inline-flex items-center justify-center min-h-[48px] px-5 py-3 rounded-full border-2 border-forest text-forest font-medium text-[16px] hover:bg-forest hover:text-on-dark transition-colors"
+              >
+                Check your fare
+              </a>
+            </div>
+            <p className="mt-6 text-[13px] sm:text-[14px] leading-relaxed text-ink max-w-sm">
+              {site.serviceArea}
+            </p>
           </div>
-          <p className="mt-5 text-[13.5px] text-[#FFFEFA]/70">
-            {site.operatingHours} · {site.serviceArea}
-          </p>
+
+          <div className="relative aspect-[5/4] sm:aspect-[4/3] lg:aspect-[6/5] rounded-[28px] overflow-hidden bg-sage group">
+            <Image
+              src={hero.bgImage}
+              alt="Dog looking out of a car window"
+              fill
+              priority
+              fetchPriority="high"
+              sizes="(min-width: 1280px) 608px, (min-width: 1024px) 48vw, (min-width: 640px) calc(100vw - 64px), calc(100vw - 40px)"
+              className="object-cover object-[60%_center] transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            />
+          </div>
         </div>
 
-        {/* Boarding-pass fare teaser: the single focal object. */}
-        <aside aria-label="Fare preview" className="bg-[#FFFEFA] text-[#0E2A21] rounded-2xl p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.35)] max-w-md w-full justify-self-end">
-          <div className="flex items-baseline justify-between gap-4 pb-4 border-b border-dashed border-[#D8C9AE]">
-            <p className="font-semibold text-[15px]">The fare, upfront</p>
-            <p className="text-[13px] text-[#3F382E]">Measured live from the map</p>
+        <aside
+          aria-labelledby="hero-fare-heading"
+          className="mt-10 sm:mt-12 lg:mt-14 pt-6 sm:pt-7 border-t border-forest/25"
+        >
+          <div className="grid lg:grid-cols-[0.9fr_2fr] gap-6 lg:gap-10">
+            <div>
+              <h2 id="hero-fare-heading" className="font-text font-medium text-[18px] leading-snug tracking-normal">
+                The fare, upfront
+              </h2>
+              <p className="text-[13px] text-ink mt-1.5">Measured live from the map</p>
+            </div>
+            <dl className="grid sm:grid-cols-3 gap-4 sm:gap-5 text-[14px]">
+              <div className="flex justify-between items-baseline gap-4 sm:block">
+                <dt className="text-ink">0 to 5 km</dt>
+                <dd className="font-medium text-forest sm:mt-2 text-right sm:text-left">
+                  Rp 50.000 to 75.000
+                </dd>
+              </div>
+              <div className="flex justify-between items-baseline gap-4 sm:block">
+                <dt className="text-ink">5.1 to 15 km</dt>
+                <dd className="font-medium text-forest sm:mt-2 text-right sm:text-left">
+                  Rp 12.000 to 15.000 / km
+                </dd>
+              </div>
+              <div className="flex justify-between items-baseline gap-4 sm:block">
+                <dt className="text-ink">Round trip waiting</dt>
+                <dd className="font-medium text-forest sm:mt-2 text-right sm:text-left">
+                  Rp 15.000 / hour
+                </dd>
+              </div>
+            </dl>
           </div>
-          <dl className="py-4 space-y-3 text-[15px]">
-            <div className="flex justify-between gap-4">
-              <dt className="text-[#3F382E]">Flat rate</dt>
-              <dd className="font-bold">Rp 10.000 / km</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt className="text-[#3F382E]">Minimum fare</dt>
-              <dd className="font-bold">Rp 65.000</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt className="text-[#3F382E]">Cabin</dt>
-              <dd className="font-bold text-right">Private, cool, up to 3 dogs</dd>
-            </div>
-          </dl>
-          <a
-            href="#fare"
-            className="flex items-center justify-center min-h-[48px] rounded-[10px] bg-[#0E2A21] text-[#FFFEFA] font-semibold text-[15px] hover:bg-[#16453a] transition-colors"
-          >
-            Price my ride below
-          </a>
-          <p className="mt-3 text-[13px] leading-relaxed text-[#3F382E]">
-            Type two Bali addresses and the map measures the real driving distance. The WhatsApp message writes itself.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-6 pt-4 border-t border-forest/15">
+            <p className="text-[13px] leading-relaxed text-ink max-w-2xl">
+              Type two Bali addresses and the map measures the real driving distance. The WhatsApp message writes itself.
+            </p>
+            <a
+              href="#fare"
+              className="inline-flex items-center min-h-[44px] shrink-0 self-start font-medium text-[14px] text-forest underline underline-offset-4 decoration-forest/50 hover:decoration-forest rounded-sm"
+            >
+              Price my ride below
+            </a>
+          </div>
         </aside>
       </div>
     </section>

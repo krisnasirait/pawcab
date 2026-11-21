@@ -165,7 +165,7 @@ export default function StoriesTab({
                   <button
                     type="button"
                     onClick={() => handleDeleteStory(idx)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 text-xs text-red-400 hover:text-red-300 hover:bg-red-950/40 rounded-lg transition cursor-pointer w-fit"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 text-xs text-red-400 hover:text-error-dark hover:bg-red-950/40 rounded-lg transition cursor-pointer w-fit"
                   >
                     <BsTrash3 /> Delete Story
                   </button>
