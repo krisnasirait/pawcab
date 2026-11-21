@@ -120,7 +120,7 @@ export default function DogWalkingFAQ() {
             </p>
           </div>
           <a
-            href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=Hi%20PawCab,%20I%20have%20a%20question%20about%20your%20dog%20walking%20services.`}
+            href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=Hi%20PawCab,%20I%20have%20a%20question%20about%20your%20dog%20walking%20services.`}
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 inline-flex min-h-12 items-center justify-center gap-2.5 bg-forest text-white hover:bg-deepgreen px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"

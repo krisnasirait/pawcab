@@ -146,7 +146,7 @@ export default function PetSittingPage() {
               {/* CTA Button */}
               <div className="flex flex-wrap items-center gap-4">
                 <a
-                  href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
+                  href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-deepgreen transition-colors duration-200 group"
@@ -248,7 +248,7 @@ export default function PetSittingPage() {
                       </p>
                     </div>
                     <a
-                      href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
+                      href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-xs font-medium text-deep-midnight hover:text-pawcab-navy transition-colors"
@@ -319,7 +319,7 @@ export default function PetSittingPage() {
                 with a personalised quotation.
               </p>
               <a
-                href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a pet sitting quote. Location: ... Pets: ... Dates: ...")}`}
+                href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent("Hi PawCab, I would like a pet sitting quote. Location: ... Pets: ... Dates: ...")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2.5 bg-accent text-forest px-7 py-3.5 min-h-[48px] rounded-full font-medium text-[15px] border-2 border-line hover:bg-accent-hover transition-colors duration-200"
@@ -373,7 +373,7 @@ export default function PetSittingPage() {
                 </p>
               </div>
               <a
-                href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
+                href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent("Hi PawCab, I would like a quote for in-home pet sitting. Location: ... Pets: ... Dates: ...")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center gap-2.5 bg-forest text-white hover:bg-deepgreen min-h-12 px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"

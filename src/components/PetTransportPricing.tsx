@@ -81,7 +81,8 @@ function CoverageEmbed({ outerZone, endpoints }: {
   }, [visible]);
   return (
     <div ref={ref}>
-      <div role="region" aria-label="Trip zones on the PawCab service map" className="w-full h-[300px] sm:h-[350px] md:h-[380px] bg-sagewash/40">
+      {/* relative z-0 traps Leaflet's high internal z-indexes below the sticky header (z-30). */}
+      <div role="region" aria-label="Trip zones on the PawCab service map" className="relative z-0 w-full h-[300px] sm:h-[350px] md:h-[380px] bg-sagewash/40">
         {visible ? (
           <EstimatorMap
             activeZone={outerZone}
@@ -494,7 +495,7 @@ export default function PetTransportPricing() {
             {bothSelected && routeStatus === "ready" && (
               <div data-surface="forest" className="rounded-2xl bg-forest text-on-dark p-6 sm:p-8 border border-white/10 relative overflow-hidden">
 
-                <p className="text-xs text-soft-white/60 font-semibold mb-3">
+                <p className="text-xs text-soft-white/60 font-semibold mb-3 break-words">
                   {fromPlace?.short} to {toPlace?.short}
                 </p>
 
@@ -639,10 +640,10 @@ export default function PetTransportPricing() {
                   </div>
 
                   <a
-                    href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent(waMessage)}`}
+                    href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent(waMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-accent hover:bg-accent-hover text-forest font-medium px-7 py-3.5 min-h-[48px] rounded-full text-[15px] border-2 border-line transition-colors duration-200"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 whitespace-nowrap bg-accent hover:bg-accent-hover text-forest font-medium px-7 py-3.5 min-h-[48px] rounded-full text-[15px] border-2 border-line transition-colors duration-200"
                   >
                     <PiWhatsappLogo aria-hidden="true" className="text-base" />
                     Book This Ride

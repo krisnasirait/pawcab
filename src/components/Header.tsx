@@ -26,7 +26,7 @@ export default function Header({ theme }: HeaderProps) {
 
   const ctaHref =
     contentData.navigation?.ctaButton?.href ||
-    "https://wa.me/6282266383800?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.";
+    "https://wa.me/6285857883906?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.";
 
   // Escape dismisses the menu and focus returns to the trigger (R-32).
   useEffect(() => {

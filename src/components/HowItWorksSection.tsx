@@ -29,7 +29,7 @@ export default function HowItWorksSection() {
           <div className="mt-8">
             <Button
               variant="secondary"
-              href={contentData.site?.whatsapp ? `https://wa.me/${contentData.site.whatsapp}` : "https://wa.me/6282266383800"}
+              href={contentData.site?.whatsapp ? `https://wa.me/${contentData.site.whatsapp}` : "https://wa.me/6285857883906"}
               target="_blank"
               rel="noopener noreferrer"
             >

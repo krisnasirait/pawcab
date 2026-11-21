@@ -2,8 +2,8 @@
   "site": {
     "name": "The PawCab Bali",
     "tagline": "Private Pet Mobility & Care Across Bali",
-    "phone": "+62 822-6638-3800",
-    "whatsapp": "6282266383800",
+    "phone": "+62 858-5788-3906",
+    "whatsapp": "6285857883906",
     "defaultWhatsappMessage": "Hello The PawCab! I would like to inquire about booking a ride / service for my pet.",
     "instagram": "thepawcab",
     "instagramUrl": "https://instagram.com/thepawcab",
@@ -44,7 +44,7 @@
     ],
     "ctaButton": {
       "label": "Book a Ride",
-      "href": "https://wa.me/6282266383800?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet."
+      "href": "https://wa.me/6285857883906?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet."
     }
   },
   "home": {
@@ -55,7 +55,7 @@
       "title3Accent": "Together",
       "description": "A private, air-conditioned SUV with a trained handler, anywhere in Bali. You can ride along.",
       "primaryCtaText": "Book a Ride",
-      "primaryCtaHref": "https://wa.me/6282266383800?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.",
+      "primaryCtaHref": "https://wa.me/6285857883906?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.",
       "secondaryCtaText": "Our Services",
       "secondaryCtaHref": "/#services",
       "bgImage": "https://images.unsplash.com/photo-1518155317743-a8ff43ea6a5f?q=80&w=1170&auto=format&fit=crop",
@@ -1040,8 +1040,8 @@
       },
       {
         "platform": "WhatsApp",
-        "url": "https://wa.me/6282266383800",
-        "label": "+62 822-6638-3800"
+        "url": "https://wa.me/6285857883906",
+        "label": "+62 858-5788-3906"
       },
       {
         "platform": "Email",

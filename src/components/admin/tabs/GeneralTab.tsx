@@ -91,7 +91,7 @@ export default function GeneralTab({ content, onChange }: GeneralTabProps) {
               type="text"
               value={content.site?.phone || ""}
               onChange={(e) => updateSite("phone", e.target.value)}
-              placeholder="+62 822-xxxx-xxxx"
+              placeholder="+62 858-xxxx-xxxx"
               className="w-full px-4 py-2.5 bg-neutral-950 border border-neutral-700/80 rounded-xl text-neutral-100 text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold"
             />
           </div>
@@ -104,7 +104,7 @@ export default function GeneralTab({ content, onChange }: GeneralTabProps) {
               type="text"
               value={content.site?.whatsapp || ""}
               onChange={(e) => updateSite("whatsapp", e.target.value.replace(/\D/g, ""))}
-              placeholder="6282266383800"
+              placeholder="6285857883906"
               className="w-full px-4 py-2.5 bg-neutral-950 border border-neutral-700/80 rounded-xl text-neutral-100 text-sm focus:outline-none focus:ring-1 focus:ring-pawcab-gold font-mono"
             />
           </div>

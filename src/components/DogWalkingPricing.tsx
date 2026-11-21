@@ -97,7 +97,7 @@ export default function DogWalkingPricing() {
                   <p className="text-sm text-ink mt-1">{plan.unit}</p>
                 </div>
                 <a
-                  href={`https://wa.me/${contentData.site?.whatsapp || "6282266383800"}?text=${encodeURIComponent(plan.waText)}`}
+                  href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=${encodeURIComponent(plan.waText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Book a walk: ${plan.title}`}

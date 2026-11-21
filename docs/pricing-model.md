@@ -76,8 +76,8 @@ message with empty Location / Pets / Dates fields.
 
 ## Owner decisions (2026-11-21)
 
-- **Phone number stays `+62 822-6638-3800`** (the one the site already used). The printed card's
-  `0858-5788-3906` is retired. Every WhatsApp link on all five routes now carries the number, so no
+- **Phone/WhatsApp is now `+62 858-5788-3906` / `6285857883906`** (owner update 2026-11-21; the printed
+  card's number, previously retired). Every WhatsApp link on all five routes now carries the number, so no
   link opens a bare contact picker: verified 4/4 on `/`, 5/5 on `/stories`, 5/5 on pet transport,
   7/7 on dog walking, 7/7 on pet sitting.
 - **Zone lists follow the card.** Ubud and Gianyar were added as their own Zone 4 areas (29 areas

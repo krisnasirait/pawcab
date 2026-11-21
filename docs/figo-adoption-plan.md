@@ -61,7 +61,7 @@ Preserve existing visible words, including non-CMS literals, unless an explicit 
 
 Important mismatch: CMS has headline fields that several current components do not consume. Home has `hero.title1/title2/title3Accent`, service/about/comfort headings and `comfort.features`; current Hero, Services, About and Comfort contain literal editorial headings/features. Do not silently switch to stored text during a visual redesign. Produce a field-to-visible-content ledger and flag existing CMS-editability gaps separately.
 
-Keep existing hidden CMS fields, types, stored operating hours and JSON-LD hours unchanged. No visible hours should reappear. Preserve current phone `+62 822-6638-3800`, WhatsApp destination `6282266383800`, email and Instagram data.
+Keep existing hidden CMS fields, types, stored operating hours and JSON-LD hours unchanged. No visible hours should reappear. Preserve current phone `+62 858-5788-3906`, WhatsApp destination `6285857883906` (owner update 2026-11-21), email and Instagram data.
 
 Do not add press logos, ratings, review counts, testimonials, customer portraits or verification language. Existing story/quote provenance remains an owner-confirmation issue; styling must not imply new verification.
 
