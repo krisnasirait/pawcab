@@ -183,8 +183,8 @@ export default function PetTransportPage() {
               <div className="lg:col-span-6">
                 <div className="relative rounded-[32px] overflow-hidden border border-sand-beige/40 bg-sand-beige/20 aspect-[4/5] sm:aspect-[4/4] lg:aspect-[4/5] max-h-[580px] w-full group">
                   <Image
-                    src="/images/pet-crate.jpg"
-                    alt="Comfortable golden retriever inside safe car pet crate"
+                    src="/images/ride-sunroof-gaze.jpeg"
+                    alt="Black dog calmly looking up through the car sunroof"
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
