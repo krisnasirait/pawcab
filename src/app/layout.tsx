@@ -1,24 +1,24 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 import { getContent } from "@/lib/content";
-import { Cormorant_Garamond, Public_Sans } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import FirebaseAnalytics from "@/components/FirebaseAnalytics";
 import "./globals.css";
 
-// Display serif: thin, high-contrast, used at weight 300 for every headline
-// (stands in for the reference site's licensed argent-cf).
-const display = Cormorant_Garamond({
+// Display serif: Playfair Display per the brand board (headlines, wordmark).
+const display = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-cormorant",
-  weight: ["300", "400", "500"],
+  variable: "--font-playfair",
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-// Body grotesk: the same face the reference site pairs with its serif.
-const text = Public_Sans({
+// Body face: Montserrat per the brand board (subheads, body, UI).
+const text = Montserrat({
   subsets: ["latin"],
-  variable: "--font-public-sans",
+  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
     url: "/",
     title: "The PawCab | Exclusive Pet Mobility in Bali",
     description: DESCRIPTION,
-    images: [{ url: "/images/hero.jpeg", alt: "The PawCab pet transport in Bali" }],
+    images: [{ url: "/images/hero-ride.jpeg", alt: "The PawCab pet transport in Bali" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The PawCab | Exclusive Pet Mobility in Bali",
     description: DESCRIPTION,
-    images: ["/images/hero.jpeg"],
+    images: ["/images/hero-ride.jpeg"],
   },
   robots: {
     index: true,
@@ -78,7 +78,7 @@ const jsonLd = {
   name: SITE_NAME,
   description: DESCRIPTION,
   url: SITE_URL,
-  image: `${SITE_URL}/images/hero.jpeg`,
+  image: `${SITE_URL}/images/hero-ride.jpeg`,
   logo: `${SITE_URL}/images/logo-pawcab.png`,
   telephone: site.phone,
   email: site.email,

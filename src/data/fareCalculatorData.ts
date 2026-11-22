@@ -126,7 +126,7 @@ export const ZONE_RATES_PER_KM: Record<string, number> =
 
 // Minimal tarif order agar driver & operasional tetap tercover (Sync with content.json)
 export const MINIMUM_FARE =
-  contentData?.servicesPages?.petTransport?.pricingConfig?.minimumFare ?? 65000;
+  contentData?.servicesPages?.petTransport?.pricingConfig?.minimumFare ?? 66000;
 
 // 4. MATRIKS JARAK REALISTIS ANTAR DAERAH (Sync with content.json with fallback)
 // Format key: `${fromAreaId}_${toAreaId}` (dua arah/bidirectional)
@@ -355,10 +355,10 @@ export interface ZoneRate {
 }
 
 const DEFAULT_ZONE_RATES: Record<number, ZoneRate> = {
-  1: { fixedUpTo5km: 50000, perKm: 12000 },
-  2: { fixedUpTo5km: 65000, perKm: 13000 },
-  3: { fixedUpTo5km: 70000, perKm: 14000 },
-  4: { fixedUpTo5km: 75000, perKm: 15000 },
+  1: { fixedUpTo5km: 51000, perKm: 13000 },
+  2: { fixedUpTo5km: 66000, perKm: 14000 },
+  3: { fixedUpTo5km: 71000, perKm: 15000 },
+  4: { fixedUpTo5km: 76000, perKm: 16000 },
 };
 
 const rateConfig = contentData?.servicesPages?.petTransport?.pricingConfig as
@@ -458,8 +458,9 @@ export interface ZoneFare {
 }
 
 /**
- * Quote a ride from two endpoint zones. `waitingHours` is round-trip waiting
- * time, billed at WAITING_FEE_PER_HOUR.
+ * Quote a ride from two endpoint zones. Any `waitingHours` above zero marks
+a round trip: the driver waits on site and the total is twice the one-way
+ * base, instead of an hourly waiting fee.
  */
 export function quoteZoneFare({
   distanceKm,
@@ -478,19 +479,20 @@ export function quoteZoneFare({
     ? Math.max(pickupZone, dropoffZone)
     : null;
   const rate = zone ? (ZONE_RATES[zone] ?? null) : null;
-  const waiting = Math.max(0, waitingHours) * WAITING_FEE_PER_HOUR;
+  const roundTrip = Math.max(0, waitingHours) > 0;
 
   if (!rate) {
-    return { tier: "quote", reason: "outside_zone", zone: null, rate: null, base: 0, waitingHours: Math.max(0, waitingHours), waitingFee: waiting, total: 0 };
+    return { tier: "quote", reason: "outside_zone", zone: null, rate: null, base: 0, waitingHours: Math.max(0, waitingHours), waitingFee: 0, total: 0 };
   }
   if (distanceKm > QUOTED_BEYOND_KM) {
-    return { tier: "quote", reason: "beyond_range", zone, rate, base: 0, waitingHours: Math.max(0, waitingHours), waitingFee: waiting, total: 0 };
+    return { tier: "quote", reason: "beyond_range", zone, rate, base: 0, waitingHours: Math.max(0, waitingHours), waitingFee: 0, total: 0 };
   }
 
   const fixed = distanceKm <= FIXED_TIER_MAX_KM;
   const base = fixed
     ? rate.fixedUpTo5km
     : Math.round((distanceKm * rate.perKm) / 1000) * 1000;
+  const waitingFee = roundTrip ? base : 0;
 
   return {
     tier: fixed ? "fixed" : "per_km",
@@ -499,7 +501,7 @@ export function quoteZoneFare({
     rate,
     base,
     waitingHours: Math.max(0, waitingHours),
-    waitingFee: waiting,
-    total: base + waiting,
+    waitingFee,
+    total: base + waitingFee,
   };
 }

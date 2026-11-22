@@ -45,10 +45,10 @@ assert.equal(tokenMatches("Nusa Dua", "Nusa Dua, Bali", "Nusa Dua, Bali"), true)
 // Useful typo tolerance survives: 5+ letter tokens still allow distance 1.
 assert.equal(tokenMatches("Sanour", "Sanur, Denpasar", "Sanur, Bali"), true);
 const card = {
-  1: { fixedUpTo5km: 50000, perKm: 12000 },
-  2: { fixedUpTo5km: 65000, perKm: 13000 },
-  3: { fixedUpTo5km: 70000, perKm: 14000 },
-  4: { fixedUpTo5km: 75000, perKm: 15000 },
+  1: { fixedUpTo5km: 51000, perKm: 13000 },
+  2: { fixedUpTo5km: 66000, perKm: 14000 },
+  3: { fixedUpTo5km: 71000, perKm: 15000 },
+  4: { fixedUpTo5km: 76000, perKm: 16000 },
 };
 assert.deepEqual(JSON.parse(JSON.stringify(ZONE_RATES)), card, "CMS rates must match the supplied card");
 assert.equal(FIXED_TIER_MAX_KM, 5);
@@ -92,12 +92,12 @@ const pickupZone = zoneForPoint(denpasar.lat, denpasar.lon);
 const dropoffZone = zoneForPoint(southKuta.lat, southKuta.lon);
 assert.equal(pickupZone, 1);
 assert.equal(dropoffZone, 3);
-for (const [distanceKm, total] of [[5, 70000], [10, 140000], [15, 210000]]) {
+for (const [distanceKm, total] of [[5, 71000], [10, 150000], [15, 225000]]) {
   assert.equal(quoteZoneFare({ distanceKm, pickupZone, dropoffZone }).total, total);
   assert.equal(quoteZoneFare({ distanceKm, pickupZone: dropoffZone, dropoffZone: pickupZone }).total, total);
   console.log(`Denpasar ↔ South Kuta, ${distanceKm} km: Zone 3, Rp${total.toLocaleString("id-ID")}`);
 }
-assert.equal(quoteZoneFare({ distanceKm: 10, pickupZone, dropoffZone, waitingHours: 2 }).total, 170000);
+assert.equal(quoteZoneFare({ distanceKm: 10, pickupZone, dropoffZone, waitingHours: 2 }).total, 300000);
 // Distance guard: Sanur Kauh to Peguyangan, OSRM 15.0 km vs 9.72 km straight
 // (ratio 1.54) is capped to 9.72 x 1.4 = 13.6 km, near Google's 13.7 km.
 const kulukPeg = resolveFareDistance(15.0, -8.7009715, 115.2452959, -8.6164693, 115.222729);
@@ -110,4 +110,4 @@ for (const [osrm, a, b, c, d] of [[12, -8.7, 115.24, -8.62, 115.22], [0, -8.7, 1
   assert.equal(r.capped, false);
 }
 cases += 8; // 3 distance-guard + 5 matcher cases
-console.log(`PASS: ${cases} matrix/endpoint/location/distance-guard/matcher cases, owner examples, waiting fee and outside-area check.`);
+console.log(`PASS: ${cases} matrix/endpoint/location/distance-guard/matcher cases, owner examples, round-trip double and outside-area check.`);

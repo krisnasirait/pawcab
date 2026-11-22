@@ -58,7 +58,7 @@
       "primaryCtaHref": "https://wa.me/6285857883906?text=Hello%20The%20PawCab!%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.",
       "secondaryCtaText": "Our Services",
       "secondaryCtaHref": "/#services",
-      "bgImage": "https://images.unsplash.com/photo-1518155317743-a8ff43ea6a5f?q=80&w=1170&auto=format&fit=crop",
+      "bgImage": "/images/hero-ride.jpeg",
       "bottomQuoteLines": [
         "Safe places.",
         "Happier pets.",
@@ -96,7 +96,7 @@
       "headingLine1": "Designed",
       "headingLine2": "Around Them.",
       "description": "The PawCab is a private pet mobility service created for pets who deserve a safer, calmer, and more comfortable journey, whether it's a vet visit, beach trip, grooming day, or just a little adventure around Bali.",
-      "image": "/images/about.jpg",
+      "image": "/images/about-shepherd.jpeg",
       "ctaText": "See passenger stories",
       "ctaHref": "/stories",
       "bottomQuoteLines": [
@@ -237,7 +237,7 @@
         "Medium crate on request",
         "Notes kept on every regular"
       ],
-      "image": "/images/pet-crate.jpg",
+      "image": "/images/cabin-pack.jpeg",
       "quoteText": "We drive like there is a sleeping puppy in the back. There usually is."
     },
     "reviews": {
@@ -317,7 +317,7 @@
         "maxPets": 3,
         "notes": [
           "A ride of 5 km or less is a fixed zone fare. From 5.1 to 15 km the fare is the zone rate per kilometre.",
-          "Round trips can include waiting time at Rp 15.000 per hour.",
+          "Round trips double the one-way fare; the driver waits on site.",
           "Trips beyond 15 km, outside the four zones, or a full-day booking are quoted on WhatsApp."
         ],
         "zones": [
@@ -640,25 +640,25 @@
         },
         "zoneRates": {
           "1": {
-            "fixedUpTo5km": 50000,
-            "perKm": 12000
-          },
-          "2": {
-            "fixedUpTo5km": 65000,
+            "fixedUpTo5km": 51000,
             "perKm": 13000
           },
-          "3": {
-            "fixedUpTo5km": 70000,
+          "2": {
+            "fixedUpTo5km": 66000,
             "perKm": 14000
           },
-          "4": {
-            "fixedUpTo5km": 75000,
+          "3": {
+            "fixedUpTo5km": 71000,
             "perKm": 15000
+          },
+          "4": {
+            "fixedUpTo5km": 76000,
+            "perKm": 16000
           }
         },
         "fixedTierMaxKm": 5,
         "quotedBeyondKm": 15,
-        "waitingFeePerHour": 15000
+        "waitingFeePerHour": 16000
       },
       "faqs": [
         {

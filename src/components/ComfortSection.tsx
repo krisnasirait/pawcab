@@ -18,27 +18,27 @@ export default function ComfortSection() {
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div>
-          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-navy mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-navy" />
             Inside the car
           </p>
-          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-forest">
+          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-navy">
 Cool, clean, and room to lie down.
           </h2>
-          <dl className="mt-8 border-t border-forest/20">
+          <dl className="mt-8 border-t border-navy/20">
             {points.map((p) => (
-              <div key={p.title} className="py-4 border-b border-forest/20 grid sm:grid-cols-[200px_1fr] gap-1 sm:gap-4">
-                <dt className="font-medium text-[15px] text-forest">{p.title}</dt>
+              <div key={p.title} className="py-4 border-b border-navy/20 grid sm:grid-cols-[200px_1fr] gap-1 sm:gap-4">
+                <dt className="font-medium text-[15px] text-navy">{p.title}</dt>
                 <dd className="text-[15px] leading-[1.45] text-ink">{p.desc}</dd>
               </div>
             ))}
           </dl>
         </div>
-        <div className="rounded-[28px] overflow-hidden aspect-[4/5] max-h-[640px] bg-sage">
+        <div className="rounded-[28px] overflow-hidden aspect-[4/5] max-h-[640px] bg-sand">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={comfort?.image || "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1974&auto=format&fit=crop"}
-            alt="Dog resting comfortably in the PawCab cabin"
+            alt="Four dogs sitting together in the open boot of an SUV"
             loading="lazy"
             className="h-full w-full object-cover"
           />
