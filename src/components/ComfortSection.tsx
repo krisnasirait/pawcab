@@ -23,7 +23,7 @@ export default function ComfortSection() {
             Inside the car
           </p>
           <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-navy">
-Cool, clean, and room to lie down.
+            Cool, clean, and room to lie down.
           </h2>
           <dl className="mt-8 border-t border-navy/20">
             {points.map((p) => (

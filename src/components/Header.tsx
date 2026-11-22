@@ -3,10 +3,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { PiList, PiX } from "react-icons/pi";
 import contentData from "@/lib/content";
 
+// R-31: the bar is chrome, not content. Solid navy (no frosted blur),
+// one-line lockup (mark plus wordmark, no badge box or tagline),
+// borderless burger with a hover wash. The gold CTA stays the single
+// memorable element; everything else stays quiet.
 interface HeaderProps {
-  /** Kept for call sites that still pass a theme; the lime bar is now opaque everywhere. */
+  /** Accepted for compatibility; the header is a single navy bar on every page. */
   theme?: "dark" | "light";
 }
 
@@ -44,27 +49,20 @@ export default function Header({ theme }: HeaderProps) {
 
   return (
     <header
-      className="sticky top-0 left-0 w-full z-30 bg-navy/95 backdrop-blur text-white border-b border-white/10"
+      className="sticky top-0 w-full z-30 bg-navy text-white border-b border-white/10"
       data-surface="navy"
     >
-      <div className="max-w-7xl mx-auto w-full px-5 md:px-8 flex justify-between items-center min-h-[72px] md:min-h-[80px] py-3">
+      <div className="max-w-7xl mx-auto w-full px-5 md:px-8 flex justify-between items-center min-h-[64px] md:min-h-[72px] py-2">
         <Link href="/" className="flex items-center gap-2.5 min-h-[44px]" aria-label="The PawCab home">
-          <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 border border-white/15 shrink-0">
-            <Image
-              src="/images/logo-pawcab.png"
-              alt="The PawCab logo"
-              width={32}
-              height={32}
-              className="object-contain"
-            />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-lg md:text-[22px] font-medium tracking-wide text-white">
-              THE PAWCAB
-            </span>
-            <span className="text-[11px] font-medium tracking-wide text-white/70 mt-0.5">
-              Private pet rides, Bali
-            </span>
+          <Image
+            src="/images/logo-pawcab.png"
+            alt="The PawCab logo"
+            width={32}
+            height={32}
+            className="object-contain shrink-0"
+          />
+          <span className="font-display text-lg md:text-[22px] font-medium tracking-wide text-white leading-none">
+            THE PAWCAB
           </span>
         </Link>
 
@@ -96,9 +94,13 @@ export default function Header({ theme }: HeaderProps) {
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             ref={triggerRef}
-            className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-white/30 text-white hover:border-white transition-colors"
+            className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full text-white hover:bg-white/10 transition-colors"
           >
-            <span aria-hidden="true" className="text-xl leading-none">{menuOpen ? "✕" : "☰"}</span>
+            {menuOpen ? (
+              <PiX aria-hidden="true" className="text-xl" />
+            ) : (
+              <PiList aria-hidden="true" className="text-xl" />
+            )}
           </button>
         </div>
       </div>
@@ -110,6 +112,14 @@ export default function Header({ theme }: HeaderProps) {
           data-surface="light" className="lg:hidden mx-4 mb-3 rounded-2xl bg-white text-navy border border-navy/20 overflow-hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col p-3">
+            <a
+              href={ctaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mb-2 inline-flex items-center justify-center rounded-full bg-accent text-navy font-medium px-5 py-3.5 min-h-[48px] text-[15px] border-2 border-line"
+            >
+              Book a ride
+            </a>
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -120,14 +130,6 @@ export default function Header({ theme }: HeaderProps) {
                 {link.label}
               </Link>
             ))}
-            <a
-              href={ctaHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 mb-2 inline-flex items-center justify-center rounded-full bg-accent text-navy font-medium px-5 py-3.5 min-h-[48px] text-[15px] border-2 border-line"
-            >
-              Book a ride
-            </a>
           </nav>
         </div>
       )}

@@ -3,10 +3,15 @@ import Button from "./Button";
 import contentData from "@/lib/content";
 
 // R-31: booking IS a sequence, so numbered steps are honest here
-// (frontend-design allows numbers for real sequences). Each step is a
-// hard-surface card: lime step mark, 1px ink border, solid offset shadow.
+// (frontend-design allows numbers for real sequences). Ledger rows with
+// gold step pills; the number lives in the pill plus an sr-only prefix,
+// so sighted users never read it twice.
 export default function HowItWorksSection() {
   const howItWorks = contentData.home?.howItWorks;
+  const whatsappNumber = contentData.site?.whatsapp || "6285857883906";
+  const chatText =
+    contentData.site?.defaultWhatsappMessage ||
+    "Hello The PawCab! I would like to book a ride for my pet.";
   const steps = howItWorks?.steps?.length
     ? howItWorks.steps
     : [
@@ -29,7 +34,7 @@ export default function HowItWorksSection() {
           <div className="mt-8">
             <Button
               variant="secondary"
-              href={contentData.site?.whatsapp ? `https://wa.me/${contentData.site.whatsapp}` : "https://wa.me/6285857883906"}
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(chatText)}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -52,8 +57,7 @@ export default function HowItWorksSection() {
                 {s.number || i + 1}
               </span>
               <div>
-                <p className="text-[12.5px] font-medium text-midnight">Step {s.number || i + 1}</p>
-                <h3 className="text-[20px] font-normal leading-[1.25] text-navy mt-0.5">{s.title}</h3>
+                <h3 className="text-[20px] font-normal leading-[1.25] text-navy mt-0.5"><span className="sr-only">Step {s.number || i + 1}: </span>{s.title}</h3>
                 <p className="text-[15px] leading-[1.45] text-ink mt-1 max-w-md">{s.description}</p>
               </div>
             </li>

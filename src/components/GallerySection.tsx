@@ -76,7 +76,7 @@ export default function GallerySection() {
   }, [lightboxOpen, showNext, showPrev]);
 
   return (
-    <section id="passengers" className="bg-navy text-white py-16 md:py-24 overflow-hidden" data-surface="navy">
+    <section id="passengers" className="bg-navy text-white py-16 md:py-24 overflow-hidden scroll-mt-16" data-surface="navy">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
           <div className="max-w-xl">
@@ -95,15 +95,14 @@ export default function GallerySection() {
       </div>
 
       <div className="max-w-7xl mx-auto pl-5 md:pl-8">
-        <div className="flex gap-4 overflow-x-auto pb-4 pr-5 snap-x snap-mandatory" role="list" aria-label="Passenger photos">
+        <ul className="flex gap-4 overflow-x-auto pb-4 pr-5 snap-x snap-mandatory" aria-label="Passenger photos">
           {items.map((item, idx) => (
+            <li key={idx} className="shrink-0 w-[220px] md:w-[260px] snap-start">
             <button
-              key={idx}
               type="button"
-              role="listitem"
               onClick={() => setLightboxIndex(idx)}
               aria-label={`View photo of ${item.name}`}
-              className="group relative shrink-0 w-[220px] md:w-[260px] snap-start text-left"
+              className="group relative block w-full text-left"
             >
               <span className="block overflow-hidden rounded-[28px] aspect-[4/5] bg-white/10 border border-white/25 transition-colors duration-200 group-hover:border-accent/70">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -119,8 +118,9 @@ export default function GallerySection() {
                 <span className="text-[12.5px] text-white/70">Ride {String(idx + 1).padStart(2, "0")}</span>
               </span>
             </button>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
 
       {lightboxOpen && items[lightboxIndex!] && (

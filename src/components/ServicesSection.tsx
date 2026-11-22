@@ -56,6 +56,7 @@ export default function ServicesSection() {
                   <p className="text-[16px] leading-[1.55] text-ink mt-3 max-w-md">{s.description}</p>
                   <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-navy">
                     <span className="underline underline-offset-4 decoration-navy decoration-2">See {s.title.toLowerCase()}</span>
+                    {/* R-08: the only arrow on the page. It marks the whole row as one link and nudges on hover. */}
                     <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0">→</span>
                   </span>
                 </div>
