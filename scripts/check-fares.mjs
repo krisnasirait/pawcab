@@ -45,10 +45,10 @@ assert.equal(tokenMatches("Nusa Dua", "Nusa Dua, Bali", "Nusa Dua, Bali"), true)
 // Useful typo tolerance survives: 5+ letter tokens still allow distance 1.
 assert.equal(tokenMatches("Sanour", "Sanur, Denpasar", "Sanur, Bali"), true);
 const card = {
-  1: { fixedUpTo5km: 51000, perKm: 13000 },
-  2: { fixedUpTo5km: 66000, perKm: 14000 },
-  3: { fixedUpTo5km: 71000, perKm: 15000 },
-  4: { fixedUpTo5km: 76000, perKm: 16000 },
+  1: { fixedUpTo5km: 60000, perKm: 13000 },
+  2: { fixedUpTo5km: 65000, perKm: 14000 },
+  3: { fixedUpTo5km: 70000, perKm: 15000 },
+  4: { fixedUpTo5km: 75000, perKm: 16000 },
 };
 assert.deepEqual(JSON.parse(JSON.stringify(ZONE_RATES)), card, "CMS rates must match the supplied card");
 assert.equal(FIXED_TIER_MAX_KM, 5);
@@ -92,7 +92,7 @@ const pickupZone = zoneForPoint(denpasar.lat, denpasar.lon);
 const dropoffZone = zoneForPoint(southKuta.lat, southKuta.lon);
 assert.equal(pickupZone, 1);
 assert.equal(dropoffZone, 3);
-for (const [distanceKm, total] of [[5, 71000], [10, 150000], [15, 225000]]) {
+for (const [distanceKm, total] of [[5, 70000], [10, 150000], [15, 225000]]) {
   assert.equal(quoteZoneFare({ distanceKm, pickupZone, dropoffZone }).total, total);
   assert.equal(quoteZoneFare({ distanceKm, pickupZone: dropoffZone, dropoffZone: pickupZone }).total, total);
   console.log(`Denpasar ↔ South Kuta, ${distanceKm} km: Zone 3, Rp${total.toLocaleString("id-ID")}`);

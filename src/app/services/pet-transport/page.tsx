@@ -145,7 +145,7 @@ export default function PetTransportPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={transport?.hero?.heroImage || "https://images.unsplash.com/photo-1703828654117-112baa788e51?q=80&w=1170&auto=format&fit=crop"}
-                alt="Golden retriever looking out car window"
+                alt="Black German Shepherd sitting in the back seat under an open sunroof"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-center"
               />

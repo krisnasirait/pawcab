@@ -167,8 +167,8 @@ export default function PetSittingPage() {
             <div className="relative rounded-[28px] overflow-hidden bg-sand aspect-[4/3]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1455287278107-115faab3eafa?q=80&w=1171&auto=format&fit=crop"
-                alt="Golden retriever dog resting comfortably at home on a bed"
+                src="/images/about-shepherd.jpeg"
+                alt="Black German Shepherd sitting calmly indoors"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-center"
               />
@@ -206,8 +206,8 @@ export default function PetSittingPage() {
               <div className="lg:col-span-6">
                 <div className="relative rounded-[32px] overflow-hidden border border-sand-beige/40 bg-sand-beige/20 aspect-[4/3] sm:aspect-[4/3] lg:aspect-[4/3] w-full group">
                   <img
-                    src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=1200&auto=format&fit=crop"
-                    alt="Caregiver petting a happy calm pet at home"
+                    src="/images/sitting-personal-care.jpeg"
+                    alt="Two German Shepherds sitting side by side receiving personal care"
                     className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-midnight/20 via-transparent to-transparent pointer-events-none" />

@@ -355,10 +355,10 @@ export interface ZoneRate {
 }
 
 const DEFAULT_ZONE_RATES: Record<number, ZoneRate> = {
-  1: { fixedUpTo5km: 51000, perKm: 13000 },
-  2: { fixedUpTo5km: 66000, perKm: 14000 },
-  3: { fixedUpTo5km: 71000, perKm: 15000 },
-  4: { fixedUpTo5km: 76000, perKm: 16000 },
+  1: { fixedUpTo5km: 60000, perKm: 13000 },
+  2: { fixedUpTo5km: 65000, perKm: 14000 },
+  3: { fixedUpTo5km: 70000, perKm: 15000 },
+  4: { fixedUpTo5km: 75000, perKm: 16000 },
 };
 
 const rateConfig = contentData?.servicesPages?.petTransport?.pricingConfig as

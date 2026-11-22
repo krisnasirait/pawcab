@@ -127,7 +127,7 @@ export default function StoriesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={storiesContent?.hero?.heroImage || "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1200&auto=format&fit=crop"}
-                alt="Happy dog enjoying a calm car journey"
+                alt="Three dogs playing together in shallow water at a Bali beach"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-center"
               />
@@ -167,8 +167,8 @@ export default function StoriesPage() {
               {/* Photo on Left */}
               <div className="w-full lg:w-5/12 relative aspect-[16/10] lg:aspect-[4/3] max-h-[260px] lg:max-h-[340px] overflow-hidden shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?q=80&w=1200&auto=format&fit=crop"
-                  alt="Dog running joyfully on sunny beach in Bali"
+                  src="/images/story-window-gaze.jpeg"
+                  alt="Happy dog gazing out of a car window"
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute top-4 left-4">

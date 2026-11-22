@@ -115,21 +115,21 @@
           "title": "Pet Transport",
           "description": "Door-to-door private transportation across Bali.",
           "href": "/services/pet-transport",
-          "image": "https://images.unsplash.com/photo-1638612844419-0a7a606290b1?q=80&w=1170&auto=format&fit=crop"
+          "image": "/images/transport-beach-day.jpeg"
         },
         {
           "id": "02",
           "title": "Dog Walking",
           "description": "Little adventure away from home.",
           "href": "/services/dog-walking",
-          "image": "https://images.unsplash.com/photo-1659639237692-2442096a1f04?q=80&w=1170&auto=format&fit=crop"
+          "image": "/images/dog-walking-handler.jpeg"
         },
         {
           "id": "03",
           "title": "Pet Sitting",
           "description": "Personal care while you're away.",
           "href": "/services/pet-sitting",
-          "image": "https://plus.unsplash.com/premium_photo-1661342557114-a67e3c6679a8?q=80&w=1170&auto=format&fit=crop"
+          "image": "/images/sitting-card-rest.jpeg"
         }
       ]
     },
@@ -278,7 +278,7 @@
         "badge": "Private Pet Transportation",
         "title": "Safe & Stress-Free Pet Rides in Bali",
         "subtitle": "Door-to-door private SUV rides for vet appointments, grooming sessions, airport transfers, and island adventures.",
-        "heroImage": "https://images.unsplash.com/photo-1703828654117-112baa788e51?q=80&w=1170&auto=format&fit=crop"
+        "heroImage": "/images/ride-backseat.jpeg"
       },
       "highlights": [
         {
@@ -640,19 +640,19 @@
         },
         "zoneRates": {
           "1": {
-            "fixedUpTo5km": 51000,
+            "fixedUpTo5km": 60000,
             "perKm": 13000
           },
           "2": {
-            "fixedUpTo5km": 66000,
+            "fixedUpTo5km": 65000,
             "perKm": 14000
           },
           "3": {
-            "fixedUpTo5km": 71000,
+            "fixedUpTo5km": 70000,
             "perKm": 15000
           },
           "4": {
-            "fixedUpTo5km": 76000,
+            "fixedUpTo5km": 75000,
             "perKm": 16000
           }
         },
@@ -690,6 +690,54 @@
           "number": "05",
           "question": "Do you provide pet transportation outside Bali?",
           "answer": "At the moment, our transportation service is dedicated to destinations across Bali island only."
+        },
+        {
+          "id": 6,
+          "number": "06",
+          "question": "What if my destination is outside your listed service zones but still within Bali?",
+          "answer": "No problem! Please contact us for a personalized quotation."
+        },
+        {
+          "id": 7,
+          "number": "07",
+          "question": "Do I need to book in advance?",
+          "answer": "Advance booking is highly recommended to secure your preferred date and time."
+        },
+        {
+          "id": 8,
+          "number": "08",
+          "question": "Do you accept same-day booking?",
+          "answer": "Yes, same-day bookings are welcome, subject to availability."
+        },
+        {
+          "id": 9,
+          "number": "09",
+          "question": "Do you provide round-trip service?",
+          "answer": "Yes. Both one-way and round-trip services are available."
+        },
+        {
+          "id": 10,
+          "number": "10",
+          "question": "Is there any additional fee if I need the driver to wait?",
+          "answer": "Yes. On a round trip the driver waits on site and the fare is twice the one-way fare."
+        },
+        {
+          "id": 11,
+          "number": "11",
+          "question": "Will my pet travel with other pets?",
+          "answer": "No. The PawCab provides private transportation."
+        },
+        {
+          "id": 12,
+          "number": "12",
+          "question": "Do you provide a pet crate?",
+          "answer": "Yes, a medium-sized pet crate is available upon request."
+        },
+        {
+          "id": 13,
+          "number": "13",
+          "question": "Can you transport my pet without me?",
+          "answer": "Absolutely! Your pet can travel with us without the owner present."
         }
       ]
     },
@@ -698,7 +746,7 @@
         "badge": "Active & Healthy",
         "title": "Dog Walking in Bali",
         "subtitle": "Enriching outdoor walks designed around your dog's pace, personality, and physical needs.",
-        "heroImage": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=1200&auto=format&fit=crop"
+        "heroImage": "/images/dog-walking-handler.jpeg"
       },
       "highlights": [
         {
@@ -781,6 +829,95 @@
           "number": "02",
           "question": "What if my dog is reactive to other dogs?",
           "answer": "Our walks are private and handlers are trained to manage space, choose quiet paths, and ensure zero confrontation with street dogs."
+        },
+        {
+          "id": 3,
+          "number": "03",
+          "question": "How many dogs can join each walking session?",
+          "answer": "Each session accommodates up to 2 dogs to ensure personalized attention and a comfortable experience."
+        },
+        {
+          "id": 4,
+          "number": "04",
+          "question": "How long is each walking session?",
+          "answer": "Our standard walking session lasts 1 hour."
+        },
+        {
+          "id": 5,
+          "number": "05",
+          "question": "Will my dog be walked with other dogs?",
+          "answer": "Our walking sessions are privately arranged."
+        },
+        {
+          "id": 6,
+          "number": "06",
+          "question": "Do I need to be home during the walk?",
+          "answer": "Not necessarily! We can walk your dog without you being present, as long as pick-up and access arrangements have been confirmed in advance."
+        },
+        {
+          "id": 7,
+          "number": "07",
+          "question": "Is transportation included in the walking fee?",
+          "answer": "Transportation is not required for Neighborhood Walks. For Beach Walks, an additional Pet Transportation fee applies based on your location."
+        },
+        {
+          "id": 8,
+          "number": "08",
+          "question": "Can I choose which beach my dog visits?",
+          "answer": "Of course! You can request your preferred beach, or we can recommend a suitable beach near your location."
+        },
+        {
+          "id": 9,
+          "number": "09",
+          "question": "Do you provide same-day booking?",
+          "answer": "Yes! Same-day bookings are welcome, subject to availability. However, advance booking is recommended."
+        },
+        {
+          "id": 10,
+          "number": "10",
+          "question": "What happens if it rains?",
+          "answer": "If weather conditions are unsuitable, we'll discuss rescheduling the walk to keep your dog safe and comfortable."
+        },
+        {
+          "id": 11,
+          "number": "11",
+          "question": "Will my dog be allowed off-leash?",
+          "answer": "For safety, dogs are kept on a leash during walks unless a safe, permitted area and suitable arrangements have been confirmed in advance."
+        },
+        {
+          "id": 12,
+          "number": "12",
+          "group": "Basic Obedience Add-On",
+          "question": "Can I add basic obedience training to my pet's session?",
+          "answer": "Absolutely! Basic obedience exercises can be added to your Pet Walking or Pet Sitting session upon request."
+        },
+        {
+          "id": 13,
+          "number": "13",
+          "group": "Basic Obedience Add-On",
+          "question": "What will my dog learn?",
+          "answer": "We focus on essential commands such as Sit, Down, Stay, Come, and basic leash manners, depending on your dog's needs."
+        },
+        {
+          "id": 14,
+          "number": "14",
+          "group": "Basic Obedience Add-On",
+          "question": "Is this a professional dog training program?",
+          "answer": "No. This is a light obedience reinforcement service designed to encourage good habits during your pet's regular activities."
+        },
+        {
+          "id": 15,
+          "number": "15",
+          "group": "Basic Obedience Add-On",
+          "question": "Is there an additional charge?",
+          "answer": "Yes. Basic Obedience is available as an optional add-on for an additional fee."
+        },
+        {
+          "id": 16,
+          "number": "16",
+          "group": "Basic Obedience Add-On",
+          "question": "Can my dog learn everything in one session?",
+          "answer": "Every dog learns at a different pace. Consistent practice and reinforcement at home are important for long-term progress."
         }
       ]
     },
@@ -789,7 +926,7 @@
         "badge": "Loving In-Home Care",
         "title": "Professional Pet Sitting",
         "subtitle": "Reliable, loving care for your cats and dogs in the comfort and familiarity of your home while you travel.",
-        "heroImage": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=1200&auto=format&fit=crop"
+        "heroImage": "/images/about-shepherd.jpeg"
       },
       "highlights": [
         {
@@ -866,6 +1003,101 @@
           "number": "02",
           "question": "Can you administer oral medication?",
           "answer": "Yes, our sitters are experienced in administering oral medications and supplements according to your vet's instructions."
+        },
+        {
+          "id": 3,
+          "number": "03",
+          "question": "Where does the pet sitting take place?",
+          "answer": "We provide in-home pet sitting at your house, villa or accommodation, so your pets can stay comfortable in a familiar environment."
+        },
+        {
+          "id": 4,
+          "number": "04",
+          "question": "Do you offer overnight pet sitting?",
+          "answer": "Overnight sitting may be arranged upon request, subject to availability and confirmation."
+        },
+        {
+          "id": 5,
+          "number": "05",
+          "question": "How long can I book a pet sitter?",
+          "answer": "Sitting arrangements can be tailored to your needs. Let us know your preferred dates and duration, and we'll help you find the most suitable option."
+        },
+        {
+          "id": 6,
+          "number": "06",
+          "question": "What does your Pet Sitting service include?",
+          "answer": "Our service focuses on companionship, supervision, feeding, fresh water, and basic daily care based on your pet's usual routine."
+        },
+        {
+          "id": 7,
+          "number": "07",
+          "question": "Can you follow my pet's feeding schedule?",
+          "answer": "Absolutely! We aim to follow your pet's regular feeding schedule and care instructions to keep their routine consistent."
+        },
+        {
+          "id": 8,
+          "number": "08",
+          "question": "Will my pet receive individual attention?",
+          "answer": "Yes! We focus on personalized care, ensuring your pet receives attention, companionship, and care suited to their individual needs."
+        },
+        {
+          "id": 9,
+          "number": "09",
+          "question": "Will I receive updates about my pet?",
+          "answer": "Updates and photos can be arranged during the sitting session, so you can stay connected while you're away."
+        },
+        {
+          "id": 10,
+          "number": "10",
+          "question": "How much does pet sitting cost?",
+          "answer": "Our rates depend on your location, the number of pets, and duration of care."
+        },
+        {
+          "id": 11,
+          "number": "11",
+          "question": "Can you take my pet for a walk during the sitting session?",
+          "answer": "Dog walking can be arranged upon request. Additional charges may apply depending on the walking arrangements."
+        },
+        {
+          "id": 12,
+          "number": "12",
+          "question": "What information should I provide before booking?",
+          "answer": "Please share your location, preferred schedule, number of pets, feeding routine, temperament, and any special care requirements."
+        },
+        {
+          "id": 13,
+          "number": "13",
+          "group": "Basic Obedience Add-On",
+          "question": "Can I add basic obedience training to my pet's session?",
+          "answer": "Absolutely! Basic obedience exercises can be added to your Pet Walking or Pet Sitting session upon request."
+        },
+        {
+          "id": 14,
+          "number": "14",
+          "group": "Basic Obedience Add-On",
+          "question": "What will my dog learn?",
+          "answer": "We focus on essential commands such as Sit, Down, Stay, Come, and basic leash manners, depending on your dog's needs."
+        },
+        {
+          "id": 15,
+          "number": "15",
+          "group": "Basic Obedience Add-On",
+          "question": "Is this a professional dog training program?",
+          "answer": "No. This is a light obedience reinforcement service designed to encourage good habits during your pet's regular activities."
+        },
+        {
+          "id": 16,
+          "number": "16",
+          "group": "Basic Obedience Add-On",
+          "question": "Is there an additional charge?",
+          "answer": "Yes. Basic Obedience is available as an optional add-on for an additional fee."
+        },
+        {
+          "id": 17,
+          "number": "17",
+          "group": "Basic Obedience Add-On",
+          "question": "Can my dog learn everything in one session?",
+          "answer": "Every dog learns at a different pace. Consistent practice and reinforcement at home are important for long-term progress."
         }
       ]
     }
@@ -875,7 +1107,7 @@
       "badge": "PawCab Community",
       "title": "Real Stories, Happy Paws",
       "subtitle": "Real experiences of pets and their humans traveling safely, comfortably, and happily across Bali.",
-      "heroImage": "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1200&auto=format&fit=crop"
+      "heroImage": "/images/stories-beach-pack.jpeg"
     },
     "highlights": [
       {

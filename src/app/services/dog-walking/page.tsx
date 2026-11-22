@@ -46,9 +46,9 @@ export default function DogWalkingPage() {
       title: "Neighborhood Walk",
       description:
         "A relaxing walk around your home or villa, perfect for daily exercise and fresh air.",
-      image:
-        "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1000&auto=format&fit=crop",
-      imageAlt: "Dogs walking happily on an outdoor path",
+      image: "/images/walk-neighborhood-field.jpeg",
+      imageAlt: "German Shepherd in a pink bandana walking on grass",
+      imagePosition: "object-[50%_78%]",
       icon: <PiHouse className="text-2xl text-midnight" />,
       badgeBg: "bg-warm-ivory",
     },
@@ -57,9 +57,9 @@ export default function DogWalkingPage() {
       title: "Beach Walk",
       description:
         "A fun outdoor adventure with transportation to a suitable beach location.",
-      image:
-        "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?q=80&w=1000&auto=format&fit=crop",
-      imageAlt: "Dog joyfully running on a sunny beach near the ocean",
+      image: "/images/dog-beach-fetch.jpeg",
+      imageAlt: "Black dog fetching a red ball in the surf at a Bali beach",
+      imagePosition: "object-center",
       icon: <PiTreePalm className="text-2xl text-midnight" />,
       badgeBg: "bg-warm-ivory",
     },
@@ -143,8 +143,8 @@ export default function DogWalkingPage() {
             <div className="relative rounded-[28px] overflow-hidden bg-sand aspect-[4/3]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.unsplash.com/photo-1782067128048-1e2f7c18bcf1?q=80&w=1170&auto=format&fit=crop"
-                alt="Person walking happy dog outdoors on a leash"
+                src="/images/dog-walking-handler.jpeg"
+                alt="Handler standing with a German Shepherd on a leash"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-center"
               />
@@ -168,7 +168,7 @@ export default function DogWalkingPage() {
                     <img
                       src={opt.image}
                       alt={opt.imageAlt}
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      className={`w-full h-full object-cover ${opt.imagePosition || "object-center"} group-hover:scale-[1.02] transition-transform duration-300 motion-reduce:transition-none motion-reduce:group-hover:scale-100`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-midnight/20 via-transparent to-transparent pointer-events-none" />
                   </div>

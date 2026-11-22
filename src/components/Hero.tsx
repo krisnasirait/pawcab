@@ -70,7 +70,7 @@ export default function Hero() {
               <div>
                 <dt className="text-ink">0 to 5 km</dt>
                 <dd className="mt-1 font-semibold tabular-nums text-navy">
-                  Rp 51.000 to 76.000
+                  Rp 60.000 to 75.000
                 </dd>
               </div>
             </dl>
