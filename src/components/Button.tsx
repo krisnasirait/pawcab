@@ -26,13 +26,13 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-accent text-forest border-2 border-line rounded-full hover:bg-accent-hover",
+      "bg-accent text-navy border-2 border-line rounded-full hover:bg-accent-hover",
     secondary:
-      "bg-forest text-white border-2 border-forest rounded-full hover:bg-deepgreen hover:border-deepgreen",
+      "bg-navy text-white border-2 border-navy rounded-full hover:bg-midnight hover:border-midnight",
     outline:
-      "bg-transparent text-forest border-2 border-forest/35 rounded-full hover:border-forest hover:bg-forest hover:text-white",
+      "bg-transparent text-navy border-2 border-navy/35 rounded-full hover:border-navy hover:bg-navy hover:text-white",
     quiet:
-      "text-forest underline underline-offset-4 decoration-1 decoration-accent hover:decoration-2 px-2 py-2 min-h-[44px]",
+      "text-navy underline underline-offset-4 decoration-1 decoration-accent hover:decoration-2 px-2 py-2 min-h-[44px]",
   };
 
   const classes = `${baseClasses} ${variants[variant]} ${className}`;

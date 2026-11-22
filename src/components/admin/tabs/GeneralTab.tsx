@@ -37,7 +37,7 @@ export default function GeneralTab({ content, onChange }: GeneralTabProps) {
     <div className="space-y-8 animate-fadeIn">
       {/* Brand & Identity */}
       <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8">
-        <h3 className="font-playfair text-xl font-bold text-white mb-1 flex items-center gap-2">
+        <h3 className="font-display text-xl font-bold text-white mb-1 flex items-center gap-2">
           <BsGlobe className="text-pawcab-gold text-lg" />
           <span>Brand & Identity</span>
         </h3>
@@ -74,7 +74,7 @@ export default function GeneralTab({ content, onChange }: GeneralTabProps) {
 
       {/* Contact & WhatsApp */}
       <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8">
-        <h3 className="font-playfair text-xl font-bold text-white mb-1 flex items-center gap-2">
+        <h3 className="font-display text-xl font-bold text-white mb-1 flex items-center gap-2">
           <BsWhatsapp className="text-emerald-400 text-lg" />
           <span>Contact & Socials</span>
         </h3>
@@ -190,7 +190,7 @@ export default function GeneralTab({ content, onChange }: GeneralTabProps) {
 
       {/* Footer Settings */}
       <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8">
-        <h3 className="font-playfair text-xl font-bold text-white mb-1">Footer Configuration</h3>
+        <h3 className="font-display text-xl font-bold text-white mb-1">Footer Configuration</h3>
         <p className="text-xs text-neutral-400 mb-6">
           Footer brand description, copyright line, and links.
         </p>

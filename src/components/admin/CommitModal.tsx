@@ -50,7 +50,7 @@ export default function CommitModal({
             <BsGit className="text-xl" />
           </div>
           <div>
-            <h3 className="font-playfair text-xl font-bold text-white">Publish to GitHub</h3>
+            <h3 className="font-display text-xl font-bold text-white">Publish to GitHub</h3>
             <p className="text-xs text-neutral-400">
               Commit changes directly to your repository via GitHub Contents API
             </p>
@@ -112,12 +112,12 @@ export default function CommitModal({
             <button
               type="submit"
               disabled={isPublishing}
-              className="px-5 py-2.5 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight text-sm font-semibold transition cursor-pointer flex items-center gap-2 shadow-lg disabled:opacity-60"
+              className="px-5 py-2.5 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight text-sm font-semibold transition cursor-pointer flex items-center gap-2 shadow-lg disabled:opacity-60"
             >
               {isPublishing ? (
                 <>
                   <svg
-                    className="animate-spin h-4 w-4 text-deep-midnight"
+                    className="animate-spin h-4 w-4 text-midnight"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"

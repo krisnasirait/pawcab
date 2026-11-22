@@ -7,6 +7,7 @@ interface FAQItem {
   id: number;
   number: string;
   question: string;
+  group?: string;
   answer?: string;
   answerPrefix?: string;
   answerBold?: string;
@@ -22,56 +23,146 @@ export default function PetSittingFAQ() {
     {
       id: 1,
       number: "01",
-      question: "What does an in-home pet sitting visit include?",
-      answerPrefix: "Each visit covers ",
-      answerBold: "fresh food & water replenishment",
-      answerMiddle: ", litter box or pee pad cleaning, ",
-      answerBold2: "playtime, cuddles, and companionship",
-      answerSuffix: ", plus daily photo and video updates.",
+      question: "Where does the pet sitting take place?",
+      answerPrefix: "We provide ",
+      answerBold: "in-home pet sitting",
+      answerMiddle: " at your ",
+      answerBold2: "house, villa or accommodation",
+      answerSuffix: ", so your pets can stay comfortable in a familiar environment.",
     },
     {
       id: 2,
       number: "02",
-      question: "How long does the pet sitter stay during a visit?",
-      answerPrefix: "Standard visits range from ",
-      answerBold: "45 to 60 minutes",
-      answerMiddle: ". We also offer ",
-      answerBold2: "extended drop-in sessions or half-day stays",
-      answerSuffix: " depending on your pet's needs.",
+      question: "Do you offer overnight pet sitting?",
+      answerPrefix: "",
+      answerBold: "Overnight sitting may be arranged upon request",
+      answerSuffix: ", subject to availability and confirmation.",
     },
     {
       id: 3,
       number: "03",
-      question: "Can you take care of both dogs and cats?",
-      answerPrefix: "Yes! We care for ",
-      answerBold: "both dogs and cats",
-      answerSuffix: ", as well as other small pets. Our sitters are trained in gentle handling.",
+      question: "How long can I book a pet sitter?",
+      answerPrefix: "Sitting arrangements can be tailored to your needs. Let us know your ",
+      answerBold: "preferred dates and duration",
+      answerSuffix: ", and we'll help you find the most suitable option.",
     },
     {
       id: 4,
       number: "04",
-      question: "Can you administer medication?",
-      answerPrefix: "Yes, our team can administer ",
-      answerBold: "oral medication, supplements, and eye/ear drops",
-      answerSuffix: " according to your veterinarian's written instructions.",
+      question: "What does your Pet Sitting service include?",
+      answerPrefix: "Our service focuses on ",
+      answerBold: "companionship, supervision, feeding, fresh water, and basic daily care",
+      answerSuffix: " based on your pet's usual routine.",
     },
     {
       id: 5,
       number: "05",
-      question: "How do I receive updates while I am away?",
-      answerPrefix: "After every visit, your sitter sends ",
-      answerBold: "high-res photos, short videos, and a detailed check-in report",
-      answerSuffix: " directly via WhatsApp.",
+      question: "Can you follow my pet's feeding schedule?",
+      answerPrefix: "Absolutely! We aim to follow your pet's ",
+      answerBold: "regular feeding schedule",
+      answerSuffix: " and care instructions to keep their routine consistent.",
     },
     {
       id: 6,
       number: "06",
-      question: "How do I get a price quotation?",
-      answerPrefix: "Simply click ",
-      answerBold: "Request a Quote",
-      answerMiddle: " with your location, dates, and number of pets. We will provide a ",
-      answerBold2: "transparent personalized quotation",
-      answerSuffix: ". We reply on WhatsApp with the details.",
+      question: "Can you administer medication to my pet?",
+      answerPrefix: "Please let us know your pet's ",
+      answerBold: "medication requirements in advance",
+      answerSuffix: ". We can discuss whether our team can safely accommodate them.",
+    },
+    {
+      id: 7,
+      number: "07",
+      question: "Will my pet receive individual attention?",
+      answerPrefix: "Yes! We focus on ",
+      answerBold: "personalized care",
+      answerSuffix:
+        ", ensuring your pet receives attention, companionship, and care suited to their individual needs.",
+    },
+    {
+      id: 8,
+      number: "08",
+      question: "Will I receive updates about my pet?",
+      answerPrefix: "",
+      answerBold: "Updates and photos can be arranged",
+      answerSuffix: " during the sitting session, so you can stay connected while you're away.",
+    },
+    {
+      id: 9,
+      number: "09",
+      question: "How much does pet sitting cost?",
+      answerPrefix: "Our rates depend on your ",
+      answerBold: "location, the number of pets, and duration",
+      answerSuffix: " of care.",
+    },
+    {
+      id: 10,
+      number: "10",
+      question: "Can you take my pet for a walk during the sitting session?",
+      answerPrefix: "",
+      answerBold: "Dog walking can be arranged upon request",
+      answerSuffix: ". Additional charges may apply depending on the walking arrangements.",
+    },
+    {
+      id: 11,
+      number: "11",
+      question: "What information should I provide before booking?",
+      answerPrefix: "Please share your ",
+      answerBold:
+        "location, preferred schedule, number of pets, feeding routine, temperament, and any special care requirements",
+      answerSuffix: ".",
+    },
+    {
+      id: 12,
+      number: "12",
+      group: "Basic Obedience Add-On",
+      question: "Can I add basic obedience training to my pet's session?",
+      answerPrefix: "Absolutely! ",
+      answerBold: "Basic obedience exercises",
+      answerMiddle: " can be added to your ",
+      answerBold2: "Pet Walking or Pet Sitting session",
+      answerSuffix: " upon request.",
+    },
+    {
+      id: 13,
+      number: "13",
+      group: "Basic Obedience Add-On",
+      question: "What will my dog learn?",
+      answerPrefix: "We focus on essential commands such as ",
+      answerBold: "Sit, Down, Stay, Come",
+      answerMiddle: ", and ",
+      answerBold2: "basic leash manners",
+      answerSuffix: ", depending on your dog's needs.",
+    },
+    {
+      id: 14,
+      number: "14",
+      group: "Basic Obedience Add-On",
+      question: "Is this a professional dog training program?",
+      answerPrefix: "No. This is a ",
+      answerBold: "light obedience reinforcement service",
+      answerSuffix:
+        " designed to encourage good habits during your pet's regular activities.",
+    },
+    {
+      id: 15,
+      number: "15",
+      group: "Basic Obedience Add-On",
+      question: "Is there an additional charge?",
+      answerPrefix: "Yes. Basic Obedience is available as an ",
+      answerBold: "optional add-on",
+      answerSuffix: " for an additional fee.",
+    },
+    {
+      id: 16,
+      number: "16",
+      group: "Basic Obedience Add-On",
+      question: "Can my dog learn everything in one session?",
+      answerPrefix: "Every dog learns at a ",
+      answerBold: "different pace",
+      answerMiddle: ". ",
+      answerBold2: "Consistent practice and reinforcement at home",
+      answerSuffix: " are important for long-term progress.",
     },
   ];
 
@@ -82,8 +173,8 @@ export default function PetSittingFAQ() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-20 items-start">
           <div>
-            <p className="text-sm font-medium text-deepgreen mb-4">Sitting questions</p>
-            <h2 id="faq-heading" className="font-display text-4xl md:text-[52px] font-normal leading-[1.08] text-forest">
+            <p className="text-sm font-medium text-midnight mb-4">Sitting questions</p>
+            <h2 id="faq-heading" className="font-display text-4xl md:text-[52px] font-normal leading-[1.08] text-navy">
               Pet sitting questions
             </h2>
             <p className="text-base leading-relaxed text-ink mt-5 max-w-sm">
@@ -93,9 +184,9 @@ export default function PetSittingFAQ() {
           <FAQList items={allFaqs} showControls />
         </div>
 
-        <div className="mt-12 md:mt-16 pt-8 border-t border-forest/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="mt-12 md:mt-16 pt-8 border-t border-navy/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest">
+            <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-navy">
               Need customized care or multi-day sitting?
             </h3>
             <p className="text-base leading-relaxed text-ink mt-3">
@@ -106,7 +197,7 @@ export default function PetSittingFAQ() {
             href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=Hi%20PawCab,%20I'd%20like%20to%20request%20a%20quote%20for%20In-Home%20Pet%20Sitting.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex min-h-12 items-center justify-center gap-2.5 bg-forest text-white hover:bg-deepgreen px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"
+            className="shrink-0 inline-flex min-h-12 items-center justify-center gap-2.5 bg-navy text-white hover:bg-midnight px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"
           >
             <PiWhatsappLogo aria-hidden="true" className="text-lg" />
             Request a Quote

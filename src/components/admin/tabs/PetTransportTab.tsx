@@ -253,7 +253,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
             onClick={() => setActiveSection(tab.id as typeof activeSection)}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
               activeSection === tab.id
-                ? "bg-pawcab-gold text-deep-midnight shadow-md"
+                ? "bg-pawcab-gold text-midnight shadow-md"
                 : "text-neutral-400 hover:text-white hover:bg-neutral-800"
             }`}
           >
@@ -266,7 +266,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
       {activeSection === "pricing" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
               <BsCalculator className="text-pawcab-gold" />
               <span>Fare Calculator Base Parameters</span>
             </h3>
@@ -413,7 +413,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
       {activeSection === "rates" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
               <BsGrid3X3 className="text-pawcab-gold" />
               <span>Antar-Zona Rates Matrix (IDR / KM)</span>
             </h3>
@@ -500,7 +500,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+              <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
                 <BsGeoAlt className="text-pawcab-gold" />
                 <span>Jarak Spesifik Antar-Daerah ({routeEntries.length} Rute)</span>
               </h3>
@@ -511,7 +511,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
             <button
               type="button"
               onClick={() => setShowAddRouteModal(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer shrink-0"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer shrink-0"
             >
               <BsPlusLg /> Tambah Rute Baru
             </button>
@@ -751,7 +751,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
             </button>
 
             <div className="border-b border-neutral-800 pb-3">
-              <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+              <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
                 <BsGeoAlt className="text-pawcab-gold" />
                 <span>Tambah Jarak Rute Baru</span>
               </h3>
@@ -855,7 +855,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
               <button
                 type="button"
                 onClick={handleSaveNewRoute}
-                className="px-5 py-2 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight text-xs font-bold transition cursor-pointer"
+                className="px-5 py-2 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight text-xs font-bold transition cursor-pointer"
               >
                 Simpan Rute
               </button>
@@ -879,7 +879,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
       {activeSection === "zones" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
               <BsMap className="text-pawcab-gold" />
               <span>Official Zone Definitions (4 Zones)</span>
             </h3>
@@ -952,7 +952,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white">
+              <h3 className="font-display text-xl font-bold text-white">
                 Coverage Areas List ({(pricing?.areas || []).length} Locations)
               </h3>
               <p className="text-xs text-neutral-400">
@@ -962,7 +962,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
             <button
               type="button"
               onClick={handleAddArea}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer"
             >
               <BsPlusLg /> Add New Area
             </button>
@@ -1028,7 +1028,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
       {activeSection === "hero" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Pet Transport Page Banner</h3>
+            <h3 className="font-display text-xl font-bold text-white">Pet Transport Page Banner</h3>
             <p className="text-xs text-neutral-400">
               Hero title, subtitle, and image for `/services/pet-transport`.
             </p>
@@ -1095,7 +1095,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white">
+              <h3 className="font-display text-xl font-bold text-white">
                 Pet Transport FAQs ({(transport?.faqs || []).length} Questions)
               </h3>
               <p className="text-xs text-neutral-400">
@@ -1105,7 +1105,7 @@ export default function PetTransportTab({ content, onChange }: PetTransportTabPr
             <button
               type="button"
               onClick={handleAddFaq}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer"
             >
               <BsPlusLg /> Add FAQ
             </button>

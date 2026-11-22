@@ -44,7 +44,7 @@ export default function ConfirmModal({
           >
             <BsExclamationTriangleFill className="text-lg" />
           </div>
-          <h3 className="font-playfair text-xl font-bold text-white">{title}</h3>
+          <h3 className="font-display text-xl font-bold text-white">{title}</h3>
         </div>
 
         <p className="text-sm text-neutral-300 leading-relaxed mb-6">{message}</p>
@@ -63,7 +63,7 @@ export default function ConfirmModal({
             className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer shadow-lg ${
               isDestructive
                 ? "bg-red-600 hover:bg-red-700 text-white shadow-red-900/30"
-                : "bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight"
+                : "bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight"
             }`}
           >
             {confirmText}

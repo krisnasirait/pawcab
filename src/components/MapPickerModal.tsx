@@ -44,9 +44,9 @@ function pin(color: string, border: string, label: string) {
   });
 }
 
-const PICKUP_PIN = () => pin("var(--color-accent)", "var(--color-forest)", "Pickup");
-const DROPOFF_PIN = () => pin("var(--color-forest)", "var(--color-surface)", "Drop-off");
-const CANDIDATE_PIN = () => pin("var(--color-deepgreen)", "var(--color-accent)", "Chosen point");
+const PICKUP_PIN = () => pin("var(--color-accent)", "var(--color-navy)", "Pickup");
+const DROPOFF_PIN = () => pin("var(--color-navy)", "var(--color-surface)", "Drop-off");
+const CANDIDATE_PIN = () => pin("var(--color-midnight)", "var(--color-accent)", "Chosen point");
 
 function ClickToPick({
   onPick,
@@ -205,7 +205,7 @@ export default function MapPickerModal({
       aria-modal="true"
       aria-label="Choose location on map"
       ref={dialogRef}
-      className="fixed inset-0 z-[60] bg-deep-midnight/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-[60] bg-midnight/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
       <div
@@ -215,10 +215,10 @@ export default function MapPickerModal({
         {/* Header */}
         <div className="flex items-center justify-between gap-3 p-5 sm:p-6 pb-4">
           <div>
-            <h3 className="font-playfair text-xl sm:text-2xl font-medium text-deep-midnight">
+            <h3 className="font-display text-xl sm:text-2xl font-medium text-midnight">
               Choose on Map
             </h3>
-            <p className="text-xs sm:text-sm text-warm-taupe mt-1">
+            <p className="text-xs sm:text-sm text-ink mt-1">
               Tap anywhere in Bali, then set it as your {target}.
             </p>
           </div>
@@ -227,7 +227,7 @@ export default function MapPickerModal({
             type="button"
             onClick={onClose}
             aria-label="Close map picker"
-            className="w-11 h-11 shrink-0 rounded-full bg-deep-midnight/5 hover:bg-deep-midnight/10 text-deep-midnight flex items-center justify-center transition-colors"
+            className="w-11 h-11 shrink-0 rounded-full bg-midnight/5 hover:bg-midnight/10 text-midnight flex items-center justify-center transition-colors"
           >
             <PiX aria-hidden="true" className="text-2xl" />
           </button>
@@ -235,7 +235,7 @@ export default function MapPickerModal({
 
         {/* Target toggle */}
         <div className="px-5 sm:px-6 pb-4 flex flex-wrap items-center gap-2">
-          <span className="text-xs font-medium text-warm-taupe mr-1">
+          <span className="text-xs font-medium text-ink mr-1">
             Setting:
           </span>
           {(
@@ -251,8 +251,8 @@ export default function MapPickerModal({
               aria-pressed={target === t.id}
               className={`inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full text-xs font-medium transition-colors ${
                 target === t.id
-                  ? "bg-forest text-white"
-                  : "bg-deep-midnight/5 text-deep-midnight hover:bg-deep-midnight/10"
+                  ? "bg-navy text-white"
+                  : "bg-midnight/5 text-midnight hover:bg-midnight/10"
               }`}
             >
               {t.icon}
@@ -261,14 +261,14 @@ export default function MapPickerModal({
           ))}
           <span
             aria-hidden="true"
-            className="ml-auto hidden sm:flex items-center gap-3 text-[11px] text-warm-taupe font-medium"
+            className="ml-auto hidden sm:flex items-center gap-3 text-[11px] text-ink font-medium"
           >
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-pawcab-gold border border-deep-midnight inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-pawcab-gold border border-midnight inline-block" />
               Pickup
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-deep-midnight border border-white inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-midnight border border-white inline-block" />
               Drop-off
             </span>
           </span>
@@ -319,19 +319,19 @@ export default function MapPickerModal({
         {/* Status + actions */}
         <div className="p-5 sm:p-6 pt-4">
           {geoError && (
-            <p role="alert" className="text-xs sm:text-sm text-warm-taupe font-medium mb-3">
+            <p role="alert" className="text-xs sm:text-sm text-ink font-medium mb-3">
               {geoError}
             </p>
           )}
 
           {resolving && (
-            <p role="status" className="text-xs sm:text-sm text-warm-taupe font-medium mb-3">
+            <p role="status" className="text-xs sm:text-sm text-ink font-medium mb-3">
               Finding the address for that point...
             </p>
           )}
 
           {outsideArea && !resolving && (
-            <p role="alert" className="text-xs sm:text-sm text-warm-taupe font-medium mb-3">
+            <p role="alert" className="text-xs sm:text-sm text-ink font-medium mb-3">
               That point is outside our Bali service area. Try a spot on the
               island.
             </p>
@@ -339,10 +339,10 @@ export default function MapPickerModal({
 
           {candidatePlace && !resolving && (
             <div className="rounded-2xl bg-warm-ivory border border-sand-beige/50 p-4 mb-4">
-              <p className="text-sm font-bold text-deep-midnight">
+              <p className="text-sm font-bold text-midnight">
                 {candidatePlace.short}
               </p>
-              <p className="text-xs text-warm-taupe mt-0.5">
+              <p className="text-xs text-ink mt-0.5">
                 {candidatePlace.name}
               </p>
             </div>
@@ -353,7 +353,7 @@ export default function MapPickerModal({
               type="button"
               onClick={handleLocate}
               disabled={locating}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-deep-midnight/25 text-deep-midnight text-xs font-medium hover:bg-deep-midnight hover:text-soft-white transition-colors disabled:opacity-60"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] rounded-full border border-midnight/25 text-midnight text-xs font-medium hover:bg-midnight hover:text-soft-white transition-colors disabled:opacity-60"
             >
               {locating ? (
                 <span
@@ -369,7 +369,7 @@ export default function MapPickerModal({
               type="button"
               disabled={!candidatePlace || resolving}
               onClick={() => candidatePlace && onConfirm(candidatePlace, target)}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[48px] rounded-full bg-accent text-forest text-sm font-medium border-2 border-line hover:bg-accent-hover transition-colors disabled:opacity-40"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 min-h-[48px] rounded-full bg-accent text-navy text-sm font-medium border-2 border-line hover:bg-accent-hover transition-colors disabled:opacity-40"
             >
               Set as {target === "pickup" ? "Pickup" : "Drop-off"}
             </button>

@@ -42,7 +42,7 @@ export default function AdminHeader({
         {/* Left: Brand & GitHub status */}
         <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-deep-midnight border border-sand-beige/30 p-1.5 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-midnight border border-sand-beige/30 p-1.5 flex items-center justify-center shrink-0">
               <Image
                 src="/images/logo-pawcab.png"
                 alt="The PawCab Logo"
@@ -53,7 +53,7 @@ export default function AdminHeader({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-playfair font-bold text-base text-white">The PawCab</span>
+                <span className="font-display font-bold text-base text-white">The PawCab</span>
                 <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-pawcab-gold/20 text-pawcab-gold tracking-widest uppercase">
                   CMS
                 </span>
@@ -157,7 +157,7 @@ export default function AdminHeader({
             disabled={isPublishing}
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition cursor-pointer shadow-lg disabled:opacity-50 ${
               hasUnsavedChanges
-                ? "bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight ring-2 ring-pawcab-gold/40 animate-pulse"
+                ? "bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight ring-2 ring-pawcab-gold/40 animate-pulse"
                 : "bg-success hover:bg-emerald-500 text-white"
             }`}
           >

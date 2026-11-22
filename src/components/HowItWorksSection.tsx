@@ -16,14 +16,14 @@ export default function HowItWorksSection() {
       ];
 
   return (
-    <section className="bg-white py-16 md:py-24 border-t border-sage">
+    <section className="bg-white py-16 md:py-24 border-t border-sand">
       <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16">
         <div>
-          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-navy mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-navy" />
             How booking works
           </p>
-          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-forest">
+          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-navy">
             Priced in a minute, booked on WhatsApp.
           </h2>
           <div className="mt-8">
@@ -39,21 +39,21 @@ export default function HowItWorksSection() {
           </div>
         </div>
 
-        <ol className="border-t border-forest/20">
+        <ol className="border-t border-navy/20">
           {steps.map((s, i) => (
             <li
               key={i}
-              className="flex items-start gap-4 px-1 py-5 md:py-6 border-b border-forest/20"
+              className="flex items-start gap-4 px-1 py-5 md:py-6 border-b border-navy/20"
             >
               <span
                 aria-hidden="true"
-                className="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-accent text-forest font-medium text-[15px] border-2 border-forest"
+                className="shrink-0 inline-flex items-center justify-center h-9 w-9 rounded-full bg-accent text-navy font-medium text-[15px] border-2 border-navy"
               >
                 {s.number || i + 1}
               </span>
               <div>
-                <p className="text-[12.5px] font-medium text-deepgreen">Step {s.number || i + 1}</p>
-                <h3 className="text-[20px] font-normal leading-[1.25] text-forest mt-0.5">{s.title}</h3>
+                <p className="text-[12.5px] font-medium text-midnight">Step {s.number || i + 1}</p>
+                <h3 className="text-[20px] font-normal leading-[1.25] text-navy mt-0.5">{s.title}</h3>
                 <p className="text-[15px] leading-[1.45] text-ink mt-1 max-w-md">{s.description}</p>
               </div>
             </li>

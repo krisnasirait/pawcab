@@ -76,7 +76,7 @@ export default function GallerySection() {
   }, [lightboxOpen, showNext, showPrev]);
 
   return (
-    <section id="passengers" className="bg-forest text-white py-16 md:py-24 overflow-hidden" data-surface="forest">
+    <section id="passengers" className="bg-navy text-white py-16 md:py-24 overflow-hidden" data-surface="navy">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
           <div className="max-w-xl">
@@ -129,7 +129,7 @@ export default function GallerySection() {
           aria-modal="true"
           aria-label="Passenger photo viewer"
           ref={dialogRef}
-          className="fixed inset-0 z-50 bg-forest/95 backdrop-blur-md flex items-center justify-center p-4 select-none"
+          className="fixed inset-0 z-50 bg-navy/95 backdrop-blur-md flex items-center justify-center p-4 select-none"
           onClick={() => setLightboxIndex(null)}
         >
           <button ref={closeRef} onClick={() => setLightboxIndex(null)} aria-label="Close image preview" className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">

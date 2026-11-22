@@ -9,14 +9,12 @@ export default function Footer() {
   const site = contentData.site;
 
   return (
-    <footer id="footer" className="bg-forest text-white pt-16 pb-8 border-t-4 border-accent" data-surface="forest">
+    <footer id="footer" className="bg-midnight text-white pt-16 pb-8 border-t-4 border-accent" data-surface="navy">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="grid md:grid-cols-[1.2fr_1fr_1fr] gap-10 pb-10 border-b border-accent/25">
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white shrink-0">
-                <Image src="/images/logo-pawcab.png" alt="The PawCab logo" width={28} height={28} className="object-contain" />
-              </span>
+              <Image src="/images/logo-pawcab.png" alt="The PawCab logo" width={32} height={32} className="object-contain shrink-0" />
               <span className="font-display text-[22px] font-medium text-white">
                 {site.name || "The PawCab"}
               </span>

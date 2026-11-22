@@ -6,6 +6,7 @@ import { PiMinus, PiPlus } from "react-icons/pi";
 interface FAQItem {
   id: number;
   question: string;
+  group?: string;
   answer?: string;
   answerPrefix?: string;
   answerBold?: string;
@@ -25,18 +26,24 @@ export default function FAQList({ items, showControls = false }: { items: FAQIte
     <div className="min-w-0">
       {showControls && (
         <div className="flex flex-wrap justify-end gap-x-6 mb-3">
-          <button type="button" onClick={() => setAll(true)} className="min-h-11 text-sm font-medium text-forest underline underline-offset-4 decoration-forest/40 hover:decoration-forest">
+          <button type="button" onClick={() => setAll(true)} className="min-h-11 text-sm font-medium text-navy underline underline-offset-4 decoration-navy/40 hover:decoration-navy">
             Expand All
           </button>
-          <button type="button" onClick={() => setAll(false)} className="min-h-11 text-sm font-medium text-forest underline underline-offset-4 decoration-forest/40 hover:decoration-forest">
+          <button type="button" onClick={() => setAll(false)} className="min-h-11 text-sm font-medium text-navy underline underline-offset-4 decoration-navy/40 hover:decoration-navy">
             Collapse All
           </button>
         </div>
       )}
-      <div ref={listRef} className="border-t border-forest/25">
+      <div ref={listRef} className="border-t border-navy/25">
         {items.map((item, index) => (
-          <details key={item.id} open={index === 0} className="group border-b border-forest/25">
-            <summary className="flex min-h-16 items-start justify-between gap-5 py-6 list-none text-forest hover:text-deepgreen [&::-webkit-details-marker]:hidden">
+          <div key={item.id}>
+          {item.group && (index === 0 || items[index - 1].group !== item.group) && (
+            <p className="pt-8 pb-1 text-[13px] font-semibold tracking-widest text-navy/70">
+              {item.group}
+            </p>
+          )}
+          <details open={index === 0} className="group border-b border-navy/25">
+            <summary className="flex min-h-16 items-start justify-between gap-5 py-6 list-none text-navy hover:text-midnight [&::-webkit-details-marker]:hidden">
               <h3 className="font-text text-lg md:text-xl font-medium leading-snug">{item.question}</h3>
               <span aria-hidden="true" className="shrink-0 mt-1 text-xl">
                 <PiPlus className="group-open:hidden" />
@@ -47,14 +54,15 @@ export default function FAQList({ items, showControls = false }: { items: FAQIte
               {item.answer ? item.answer : (
                 <>
                   {item.answerPrefix}
-                  {item.answerBold && <strong className="font-semibold text-forest">{item.answerBold}</strong>}
+                  {item.answerBold && <strong className="font-semibold text-navy">{item.answerBold}</strong>}
                   {item.answerMiddle}
-                  {item.answerBold2 && <strong className="font-semibold text-forest">{item.answerBold2}</strong>}
+                  {item.answerBold2 && <strong className="font-semibold text-navy">{item.answerBold2}</strong>}
                   {item.answerSuffix}
                 </>
               )}
             </p>
           </details>
+          </div>
         ))}
       </div>
     </div>

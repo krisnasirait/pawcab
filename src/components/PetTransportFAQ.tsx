@@ -7,6 +7,7 @@ interface FAQItem {
   id: number;
   number: string;
   question: string;
+  group?: string;
   answer?: string;
   answerPrefix?: string;
   answerBold?: string;
@@ -137,18 +138,18 @@ export default function PetTransportFAQ() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] gap-10 lg:gap-20 items-start">
           <div>
-            <p className="text-sm font-medium text-deepgreen mb-4">Transport questions</p>
-            <h2 id="faq-heading" className="font-display text-4xl md:text-[52px] font-normal leading-[1.08] text-forest">
+            <p className="text-sm font-medium text-midnight mb-4">Transport questions</p>
+            <h2 id="faq-heading" className="font-display text-4xl md:text-[52px] font-normal leading-[1.08] text-navy">
               Frequently asked questions
             </h2>
           </div>
           <FAQList items={allFaqs} />
         </div>
 
-        <div className="mt-12 md:mt-16 pt-8 border-t border-forest/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="mt-12 md:mt-16 pt-8 border-t border-navy/25 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium text-deepgreen mb-3">Personal pet concierge</p>
-            <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-forest">
+            <p className="text-sm font-medium text-midnight mb-3">Personal pet concierge</p>
+            <h3 className="font-display text-[28px] md:text-[32px] font-normal leading-[1.15] text-navy">
               Have a unique question or custom itinerary?
             </h3>
             <p className="text-base leading-relaxed text-ink mt-3">
@@ -159,7 +160,7 @@ export default function PetTransportFAQ() {
             href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=Hi%20PawCab,%20I%20have%20questions%20about%20Pet%20Transportation%20service.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="shrink-0 inline-flex min-h-12 items-center justify-center gap-2.5 bg-forest text-white hover:bg-deepgreen px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"
+            className="shrink-0 inline-flex min-h-12 items-center justify-center gap-2.5 bg-navy text-white hover:bg-midnight px-6 py-3 rounded-full font-medium text-sm transition-colors duration-200"
           >
             <PiWhatsappLogo aria-hidden="true" className="text-lg" />
             Chat with Concierge

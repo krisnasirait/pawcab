@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const defaultHighlightIcons = [
-  <PiHeart key="1" className="text-2xl sm:text-3xl text-deep-midnight" />,
-  <PiCarProfile key="2" className="text-2xl sm:text-3xl text-deep-midnight" />,
-  <PiShieldCheck key="3" className="text-2xl sm:text-3xl text-deep-midnight" />,
-  <PiChatCircleDots key="4" className="text-2xl sm:text-3xl text-deep-midnight" />,
+  <PiHeart key="1" className="text-2xl sm:text-3xl text-midnight" />,
+  <PiCarProfile key="2" className="text-2xl sm:text-3xl text-midnight" />,
+  <PiShieldCheck key="3" className="text-2xl sm:text-3xl text-midnight" />,
+  <PiChatCircleDots key="4" className="text-2xl sm:text-3xl text-midnight" />,
 ];
 
 export default function StoriesPage() {
@@ -31,27 +31,27 @@ export default function StoriesPage() {
     subtitle: h.subtitle,
   })) : [
     {
-      icon: <PiHeart className="text-2xl sm:text-3xl text-deep-midnight" />,
+      icon: <PiHeart className="text-2xl sm:text-3xl text-midnight" />,
       title: "Compassionate Care",
       subtitle: "Every pet treated like family",
     },
     {
       icon: (
-        <PiCarProfile className="text-2xl sm:text-3xl text-deep-midnight" />
+        <PiCarProfile className="text-2xl sm:text-3xl text-midnight" />
       ),
       title: "Private & Spacious",
       subtitle: "No shared cages or unfamiliar pets",
     },
     {
       icon: (
-        <PiShieldCheck className="text-2xl sm:text-3xl text-deep-midnight" />
+        <PiShieldCheck className="text-2xl sm:text-3xl text-midnight" />
       ),
       title: "Safe & Stress-Free",
       subtitle: "Calm driving & trained handlers",
     },
     {
       icon: (
-        <PiChatCircleDots className="text-2xl sm:text-3xl text-deep-midnight" />
+        <PiChatCircleDots className="text-2xl sm:text-3xl text-midnight" />
       ),
       title: "Live Trip Updates",
       subtitle: "Photos & updates via WhatsApp",
@@ -59,7 +59,7 @@ export default function StoriesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-warm-ivory text-deep-midnight flex flex-col selection:bg-pawcab-gold selection:text-deep-midnight">
+    <div className="min-h-screen bg-warm-ivory text-midnight flex flex-col selection:bg-pawcab-gold selection:text-midnight">
       {/* Light Theme Navbar */}
       <Header theme="light" />
 
@@ -71,33 +71,33 @@ export default function StoriesPage() {
           <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <div>
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs md:text-sm text-warm-taupe font-medium mb-8">
+            <nav className="flex items-center gap-2 text-xs md:text-sm text-ink font-medium mb-8">
               <Link
                 href="/"
-                className="hover:text-deep-midnight transition-colors"
+                className="hover:text-midnight transition-colors"
               >
                 Home
               </Link>
               <span>/</span>
-              <span className="text-warm-taupe font-semibold">Stories</span>
+              <span className="text-ink font-semibold">Stories</span>
             </nav>
 
             {/* Header Content */}
             <div className="max-w-2xl lg:max-w-xl">
               {/* Eyebrow Badge */}
               <div className="mb-4">
-                <p className="tracking-[0.25em] text-xs md:text-sm text-warm-taupe font-semibold">
+                <p className="tracking-[0.25em] text-xs md:text-sm text-ink font-semibold">
                   {storiesContent?.hero?.badge || "COMMUNITY & EXPERIENCES"}
                 </p>
               </div>
 
               {/* Page Title */}
-              <h1 className="font-playfair text-4xl sm:text-5xl md:text-[56px] text-forest font-normal leading-[1.08] tracking-tight mb-6">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-[56px] text-navy font-normal leading-[1.08] tracking-tight mb-6">
                 {storiesContent?.hero?.title || "Pawcab Stories"}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-warm-taupe font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+              <p className="text-ink font-normal text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 {storiesContent?.hero?.subtitle || "Real experiences, happy paws, and journeys made better with The PawCab."}
               </p>
 
@@ -107,7 +107,7 @@ export default function StoriesPage() {
                   href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=Hi%20PawCab,%20I'd%20like%20to%20book%20a%20ride%20for%20my%20pet.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-forest text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-deepgreen transition-colors duration-200 group"
+                  className="inline-flex items-center gap-3 bg-navy text-white px-8 py-4 rounded-full font-medium text-sm hover:bg-midnight transition-colors duration-200 group"
                 >
                   Book a Journey
                   <PiArrowRight className="text-base group-hover:translate-x-1 transition-transform duration-200 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0" />
@@ -115,7 +115,7 @@ export default function StoriesPage() {
 
                 <a
                   href="#featured-story"
-                  className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-medium text-sm hover:bg-deep-midnight hover:text-soft-white transition-colors duration-200 bg-white/60"
+                  className="inline-flex items-center gap-2 border border-midnight/30 text-midnight px-7 py-4 rounded-full font-medium text-sm hover:bg-midnight hover:text-soft-white transition-colors duration-200 bg-white/60"
                 >
                   Read Our Stories
                   <PiArrowDown />
@@ -123,7 +123,7 @@ export default function StoriesPage() {
               </div>
             </div>
             </div>
-            <div className="relative rounded-[28px] overflow-hidden bg-sage aspect-[4/3]">
+            <div className="relative rounded-[28px] overflow-hidden bg-sand aspect-[4/3]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={storiesContent?.hero?.heroImage || "https://images.unsplash.com/photo-1544568100-847a948585b9?q=80&w=1200&auto=format&fit=crop"}
@@ -146,10 +146,10 @@ export default function StoriesPage() {
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="font-playfair font-normal text-base text-deep-midnight">
+                  <h3 className="font-display font-normal text-base text-midnight">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-warm-taupe mt-0.5">
+                  <p className="text-xs text-ink mt-0.5">
                     {item.subtitle}
                   </p>
                 </div>
@@ -172,7 +172,7 @@ export default function StoriesPage() {
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-forest text-[0.75rem] font-medium border border-forest">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent text-navy text-[0.75rem] font-medium border border-navy">
                     <PiPawPrint className="text-xs" /> Spotlight Story
                   </span>
                 </div>
@@ -181,19 +181,19 @@ export default function StoriesPage() {
               {/* Text on Right */}
               <div className="w-full lg:w-7/12 p-6 sm:p-8 md:p-9 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 text-xs text-warm-taupe font-semibold mb-2">
-                    <span className="flex items-center gap-1 text-warm-taupe">
-                      <PiMapPin className="text-forest" /> Canggu → Echo Beach
+                  <div className="flex items-center gap-2 text-xs text-ink font-semibold mb-2">
+                    <span className="flex items-center gap-1 text-ink">
+                      <PiMapPin className="text-navy" /> Canggu → Echo Beach
                     </span>
                     <span>•</span>
                     <span>Beach Adventure</span>
                   </div>
 
-                  <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl text-deep-midnight font-normal leading-snug mb-3">
+                  <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-midnight font-normal leading-snug mb-3">
                     How Luna Found Her Travel Confidence in Bali
                   </h2>
 
-                  <p className="text-warm-taupe text-xs sm:text-sm leading-relaxed mb-4 font-normal">
+                  <p className="text-ink text-xs sm:text-sm leading-relaxed mb-4 font-normal">
                     Getting Luna into vehicles used to mean anxious pacing, panting, and distress.
                     With The PawCab’s flat-floor setup, soothing climate control, and her human
                     seated right by her side, Luna now gazes happily out the window and looks forward
@@ -201,29 +201,29 @@ export default function StoriesPage() {
                   </p>
 
                   <div className="p-3.5 sm:p-4 rounded-xl bg-sand-beige/30 border border-sand-beige/50 mb-4">
-                    <div className="flex items-center gap-1 text-brass mb-1.5">
+                    <div className="flex items-center gap-1 text-navy mb-1.5">
                       {[...Array(5)].map((_, i) => (
                         <PiStarFill key={i} className="text-[0.65rem]" />
                       ))}
                     </div>
-                    <blockquote className="text-xs italic text-deep-midnight/90 leading-relaxed font-medium">
+                    <blockquote className="text-xs italic text-midnight/90 leading-relaxed font-medium">
                       &ldquo;We used to dread taking Luna anywhere because of car anxiety. With The PawCab, she hops right in with tail wags. It changed our Bali lifestyle completely.&rdquo;
                     </blockquote>
-                    <p className="text-[0.7rem] font-bold text-deep-midnight mt-1.5">
+                    <p className="text-[0.7rem] font-bold text-midnight mt-1.5">
                       Sarah & Luna, Canggu
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between pt-3 border-t border-sand-beige/40">
-                  <span className="text-[0.7rem] font-semibold text-warm-taupe">
+                  <span className="text-[0.7rem] font-semibold text-ink">
                     Full Private Service
                   </span>
                   <a
                     href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=Hi%20PawCab,%20I%20read%20Luna's%20story%20and%20would%20like%20to%20book%20a%20similar%20trip.`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-deep-midnight hover:text-pawcab-navy transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-midnight hover:text-pawcab-navy transition-colors"
                   >
                     Book a Similar Ride <PiArrowRight />
                   </a>
@@ -241,20 +241,20 @@ export default function StoriesPage() {
         {/* ========================================================
             COMMUNITY METRICS & TRUST
             ======================================================== */}
-        <section className="bg-forest text-white py-16 md:py-20 px-6 md:px-10" data-surface="forest">
+        <section className="bg-navy text-white py-16 md:py-20 px-6 md:px-10" data-surface="navy">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <p className="text-xs text-forest font-semibold mb-2">
+              <p className="text-xs text-navy font-semibold mb-2">
                 Trusted Across Bali
               </p>
-              <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-white">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white">
                 Every Mile, Handled with Heart.
               </h2>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
-                <p className="font-playfair text-4xl sm:text-5xl text-forest font-normal mb-2">
+                <p className="font-display text-4xl sm:text-5xl text-navy font-normal mb-2">
                   {storiesContent?.metrics?.[0]?.value || "500+"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 tracking-wider">
@@ -263,7 +263,7 @@ export default function StoriesPage() {
               </div>
 
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
-                <p className="font-playfair text-4xl sm:text-5xl text-forest font-normal mb-2">
+                <p className="font-display text-4xl sm:text-5xl text-navy font-normal mb-2">
                   {storiesContent?.metrics?.[1]?.value || "100%"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 tracking-wider">
@@ -272,7 +272,7 @@ export default function StoriesPage() {
               </div>
 
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
-                <p className="font-playfair text-4xl sm:text-5xl text-forest font-normal mb-2">
+                <p className="font-display text-4xl sm:text-5xl text-navy font-normal mb-2">
                   {storiesContent?.metrics?.[2]?.value || "4.9★"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 tracking-wider">
@@ -281,7 +281,7 @@ export default function StoriesPage() {
               </div>
 
               <div className="p-6 rounded-2xl bg-soft-white/5 border border-soft-white/10">
-                <p className="font-playfair text-4xl sm:text-5xl text-forest font-normal mb-2">
+                <p className="font-display text-4xl sm:text-5xl text-navy font-normal mb-2">
                   {storiesContent?.metrics?.[3]?.value || "18+"}
                 </p>
                 <p className="text-xs sm:text-sm text-soft-white/70 tracking-wider">
@@ -297,15 +297,15 @@ export default function StoriesPage() {
             ======================================================== */}
         <section className="bg-warm-ivory py-16 md:py-24 px-6 md:px-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="w-16 h-16 rounded-full bg-sand-beige/40 flex items-center justify-center mx-auto mb-6 text-deep-midnight">
-              <PiHeart className="text-3xl text-deep-midnight" />
+            <div className="w-16 h-16 rounded-full bg-sand-beige/40 flex items-center justify-center mx-auto mb-6 text-midnight">
+              <PiHeart className="text-3xl text-midnight" />
             </div>
 
-            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-deep-midnight font-normal leading-tight mb-4">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-midnight font-normal leading-tight mb-4">
               Ready to Create Your Pet&apos;s Next Happy Story?
             </h2>
 
-            <p className="text-warm-taupe text-base md:text-lg max-w-xl mx-auto mb-8 font-normal">
+            <p className="text-ink text-base md:text-lg max-w-xl mx-auto mb-8 font-normal">
               Whether it&apos;s a scenic beach day, a comfortable vet visit, or
               a relocation across Bali, we handle every ride door to door.
             </p>
@@ -315,7 +315,7 @@ export default function StoriesPage() {
                 href={`https://wa.me/${contentData.site?.whatsapp || "6285857883906"}?text=Hi%20PawCab,%20I%20would%20like%20to%20book%20a%20ride%20for%20my%20pet.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-accent text-forest px-8 py-4 rounded-full font-medium text-sm border-2 border-line hover:bg-accent-hover transition-colors duration-200"
+                className="inline-flex items-center gap-3 bg-accent text-navy px-8 py-4 rounded-full font-medium text-sm border-2 border-line hover:bg-accent-hover transition-colors duration-200"
               >
                 <PiWhatsappLogo className="text-base" />
                 Book via WhatsApp
@@ -323,7 +323,7 @@ export default function StoriesPage() {
 
               <Link
                 href="/#services"
-                className="inline-flex items-center gap-2 border border-deep-midnight/30 text-deep-midnight px-7 py-4 rounded-full font-semibold text-xs sm:text-sm hover:bg-deep-midnight hover:text-soft-white transition-colors duration-200"
+                className="inline-flex items-center gap-2 border border-midnight/30 text-midnight px-7 py-4 rounded-full font-semibold text-xs sm:text-sm hover:bg-midnight hover:text-soft-white transition-colors duration-200"
               >
                 See Our Services
                 <PiArrowRight />

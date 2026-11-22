@@ -66,7 +66,7 @@ export default function BaliCoverageMap({ activeZone, onSelectZone, onTileError,
     const polygons = regions.map((region) => ({
       zoneId: region.zoneId,
       layer: L.polygon(region.positions, {
-        color: "var(--color-forest)",
+        color: "var(--color-navy)",
         fillColor: colors[region.zoneId],
         fillRule: "evenodd",
       })
@@ -77,7 +77,7 @@ export default function BaliCoverageMap({ activeZone, onSelectZone, onTileError,
     const markers = coverage.areas.map((area) => ({
       zoneId: area.zoneId,
       layer: L.circleMarker([area.lat, area.lon], {
-        color: "var(--color-forest)",
+        color: "var(--color-navy)",
         weight: 1.5,
         fillColor: colors[area.zoneId],
       })
@@ -102,7 +102,7 @@ export default function BaliCoverageMap({ activeZone, onSelectZone, onTileError,
         radius: 8,
         color: "var(--color-surface)",
         weight: 2.5,
-        fillColor: "var(--color-forest)",
+        fillColor: "var(--color-navy)",
         fillOpacity: 1,
       })
         .bindTooltip(tooltipText(point.label))
@@ -131,7 +131,7 @@ export default function BaliCoverageMap({ activeZone, onSelectZone, onTileError,
     <div
       ref={containerRef}
       className={heightClass ?? "h-[420px] sm:h-[520px] w-full"}
-      style={{ fontFamily: "var(--font-public-sans), system-ui, sans-serif" }}
+      style={{ fontFamily: "var(--font-text), system-ui, sans-serif" }}
     />
   );
 }

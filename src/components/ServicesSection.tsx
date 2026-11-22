@@ -19,11 +19,11 @@ export default function ServicesSection() {
     <section id="services" className="bg-canvas py-14 md:py-20 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="max-w-2xl mb-10 md:mb-14">
-          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-navy mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-navy" />
             What we do
           </p>
-          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-forest">
+          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-navy">
             Three ways we look after your dog.
           </h2>
           <p className="text-[17px] leading-[1.55] text-ink mt-4">
@@ -31,16 +31,16 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className="border-t border-forest/20">
+        <div className="border-t border-navy/20">
           {services.map((s, idx) => (
             <div key={s.id}>
               <Link
                 href={s.href}
-                className={`group grid md:grid-cols-[1fr_1.1fr] gap-6 md:gap-12 items-center py-8 md:py-10 border-b border-forest/20 ${
+                className={`group grid md:grid-cols-[1fr_1.1fr] gap-6 md:gap-12 items-center py-8 md:py-10 border-b border-navy/20 ${
                   idx % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                <div className="rounded-[28px] overflow-hidden bg-sage aspect-[16/10]">
+                <div className="rounded-[28px] overflow-hidden bg-sand aspect-[16/10]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={s.image}
@@ -50,12 +50,12 @@ export default function ServicesSection() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-[32px] font-normal text-forest leading-[1.15] transition-colors duration-200 group-hover:text-deepgreen">
+                  <h3 className="text-2xl md:text-[32px] font-normal text-navy leading-[1.15] transition-colors duration-200 group-hover:text-midnight">
                     {s.title}
                   </h3>
                   <p className="text-[16px] leading-[1.55] text-ink mt-3 max-w-md">{s.description}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-forest">
-                    <span className="underline underline-offset-4 decoration-forest decoration-2">See {s.title.toLowerCase()}</span>
+                  <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-medium text-navy">
+                    <span className="underline underline-offset-4 decoration-navy decoration-2">See {s.title.toLowerCase()}</span>
                     <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0">→</span>
                   </span>
                 </div>

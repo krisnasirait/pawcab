@@ -98,7 +98,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
           onClick={() => setActiveSubTab("services")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSubTab === "services"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -109,7 +109,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
           onClick={() => setActiveSubTab("hero")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSubTab === "hero"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -120,7 +120,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
           onClick={() => setActiveSubTab("faqs")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSubTab === "faqs"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -133,7 +133,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white">Pet Sitting Services</h3>
+              <h3 className="font-display text-xl font-bold text-white">Pet Sitting Services</h3>
               <p className="text-xs text-neutral-400">
                 Drop-in visits, half-day companions, and overnight house sitting packages.
               </p>
@@ -141,7 +141,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
             <button
               type="button"
               onClick={handleAddService}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer"
             >
               <BsPlusLg /> Add Service Tier
             </button>
@@ -259,7 +259,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
       {activeSubTab === "hero" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Pet Sitting Hero Banner</h3>
+            <h3 className="font-display text-xl font-bold text-white">Pet Sitting Hero Banner</h3>
             <p className="text-xs text-neutral-400">
               Hero title, subtitle, and photo for `/services/pet-sitting`.
             </p>
@@ -326,7 +326,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white">Pet Sitting FAQs</h3>
+              <h3 className="font-display text-xl font-bold text-white">Pet Sitting FAQs</h3>
               <p className="text-xs text-neutral-400">
                 Frequently asked questions on meet-and-greets and medications.
               </p>
@@ -334,7 +334,7 @@ export default function PetSittingTab({ content, onChange }: PetSittingTabProps)
             <button
               type="button"
               onClick={handleAddFaq}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer"
             >
               <BsPlusLg /> Add FAQ
             </button>

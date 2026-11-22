@@ -190,7 +190,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
             onClick={() => setActiveSubTab(tab.id as typeof activeSubTab)}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
               activeSubTab === tab.id
-                ? "bg-pawcab-gold text-deep-midnight shadow-md"
+                ? "bg-pawcab-gold text-midnight shadow-md"
                 : "text-neutral-400 hover:text-white hover:bg-neutral-800"
             }`}
           >
@@ -203,7 +203,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "hero" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Homepage Hero Banner</h3>
+            <h3 className="font-display text-xl font-bold text-white">Homepage Hero Banner</h3>
             <p className="text-xs text-neutral-400">
               Manage the primary visual headline, description, call-to-actions, and background image.
             </p>
@@ -335,7 +335,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "features" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">4 Feature Highlights Row</h3>
+            <h3 className="font-display text-xl font-bold text-white">4 Feature Highlights Row</h3>
             <p className="text-xs text-neutral-400">
               The 4 key pillars displayed directly below the hero banner.
             </p>
@@ -398,7 +398,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "about" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">About The PawCab</h3>
+            <h3 className="font-display text-xl font-bold text-white">About The PawCab</h3>
             <p className="text-xs text-neutral-400">
               Story intro, photo, and background overlay on the homepage.
             </p>
@@ -480,7 +480,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "services" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">3 Core Services Showcase</h3>
+            <h3 className="font-display text-xl font-bold text-white">3 Core Services Showcase</h3>
             <p className="text-xs text-neutral-400">
               Manage the 3 main cards displayed on the homepage services section.
             </p>
@@ -566,7 +566,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "coverage" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Bali Coverage Section</h3>
+            <h3 className="font-display text-xl font-bold text-white">Bali Coverage Section</h3>
             <p className="text-xs text-neutral-400">
               The zone map illustration and Bali landscape banner on the homepage.
             </p>
@@ -649,7 +649,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white">
+              <h3 className="font-display text-xl font-bold text-white">
                 Passengers Gallery ({(content.home?.gallery?.items || []).length} Pets)
               </h3>
               <p className="text-xs text-neutral-400">
@@ -659,7 +659,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
             <button
               type="button"
               onClick={handleAddGalleryItem}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer"
             >
               <BsPlusLg /> Add Passenger Photo
             </button>
@@ -713,7 +713,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "comfort" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Comfort & Safety Section</h3>
+            <h3 className="font-display text-xl font-bold text-white">Comfort & Safety Section</h3>
             <p className="text-xs text-neutral-400">
               Details on vehicle hygiene, crate options, and safety equipment.
             </p>
@@ -800,7 +800,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "reviews" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Google Reviews Widget</h3>
+            <h3 className="font-display text-xl font-bold text-white">Google Reviews Widget</h3>
             <p className="text-xs text-neutral-400">
               Integrated with Elfsight Google Reviews widget.
             </p>
@@ -842,7 +842,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
       {activeSubTab === "howItWorks" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">4 Step How It Works</h3>
+            <h3 className="font-display text-xl font-bold text-white">4 Step How It Works</h3>
             <p className="text-xs text-neutral-400">
               The straightforward booking process displayed at the bottom of the page.
             </p>
@@ -881,7 +881,7 @@ export default function HomeTab({ content, onChange }: HomeTabProps) {
                 className="bg-neutral-950 border border-neutral-800 rounded-2xl p-5 space-y-3"
               >
                 <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-pawcab-gold text-deep-midnight text-xs font-bold flex items-center justify-center">
+                  <span className="w-6 h-6 rounded-full bg-pawcab-gold text-midnight text-xs font-bold flex items-center justify-center">
                     {step.number}
                   </span>
                   <span className="text-xs font-bold text-neutral-300 uppercase tracking-wider">

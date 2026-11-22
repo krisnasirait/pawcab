@@ -141,7 +141,7 @@ export default function ProductsTab({
       <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
           <div>
-            <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
               <BsBoxSeam className="text-pawcab-gold" />
               <span>Products & Services Catalog</span>
             </h3>
@@ -152,7 +152,7 @@ export default function ProductsTab({
           <button
             type="button"
             onClick={handleOpenCreateModal}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer shadow-md"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer shadow-md"
           >
             <BsPlusLg /> Add New Product
           </button>
@@ -317,7 +317,7 @@ export default function ProductsTab({
               <BsX className="text-xl" />
             </button>
 
-            <h3 className="font-playfair text-xl font-bold text-white mb-1">
+            <h3 className="font-display text-xl font-bold text-white mb-1">
               {editingIndex === null ? "Add New Product" : "Edit Product"}
             </h3>
             <p className="text-xs text-neutral-400 mb-6">
@@ -465,7 +465,7 @@ export default function ProductsTab({
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight text-xs font-bold transition cursor-pointer shadow-lg"
+                  className="px-5 py-2.5 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight text-xs font-bold transition cursor-pointer shadow-lg"
                 >
                   {editingIndex === null ? "Add to Catalog" : "Save Changes"}
                 </button>

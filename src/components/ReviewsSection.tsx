@@ -80,13 +80,13 @@ export default function ReviewsSection() {
   }, [shouldLoad, failed, ready]);
 
   return (
-    <section ref={ref} className="bg-white py-16 md:py-20 px-5 md:px-8 border-t border-sage">
+    <section ref={ref} className="bg-white py-16 md:py-20 px-5 md:px-8 border-t border-sand">
       <div className="max-w-7xl mx-auto">
-        <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
-          <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
+        <p className="flex items-center gap-3 text-[14px] font-medium text-navy mb-4">
+          <span aria-hidden="true" className="inline-block h-px w-10 bg-navy" />
           {reviews?.badge || "Guestbook"}
         </p>
-        <h2 className="text-4xl md:text-[52px] leading-[1.08] font-normal text-forest mb-8" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+        <h2 className="text-4xl md:text-[52px] leading-[1.08] font-normal text-navy mb-8" style={{ fontFamily: "var(--font-display), Georgia, serif" }}>
           {reviews?.heading || "Notes from the back seat."}
         </h2>
         {elfsightAppId && !failed ? (
@@ -107,7 +107,7 @@ export default function ReviewsSection() {
               href={contentData.site.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-forest underline underline-offset-4 decoration-forest decoration-2"
+              className="font-medium text-navy underline underline-offset-4 decoration-navy decoration-2"
             >
               Instagram @{contentData.site.instagram}
             </a>.

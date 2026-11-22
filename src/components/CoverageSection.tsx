@@ -15,23 +15,23 @@ export default function CoverageSection() {
   ];
 
   return (
-    <section id="coverage" className="bg-sagewash py-14 md:py-20 scroll-mt-20">
+    <section id="coverage" className="bg-surface py-14 md:py-20 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
         <div>
-          <p className="flex items-center gap-3 text-[14px] font-medium text-forest mb-4">
-            <span aria-hidden="true" className="inline-block h-px w-10 bg-forest" />
+          <p className="flex items-center gap-3 text-[14px] font-medium text-navy mb-4">
+            <span aria-hidden="true" className="inline-block h-px w-10 bg-navy" />
             Where we drive
           </p>
-          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-forest">
+          <h2 className="text-4xl md:text-[56px] leading-[1.05] font-normal text-navy">
             If it is in Bali, we will come to the gate.
           </h2>
           <p className="text-[17px] leading-[1.55] text-ink mt-4 max-w-md">
             {coverage?.description || "Four zones, each with its own rate card. Type two addresses and the fare follows the zone you are in."}
           </p>
-          <ul className="mt-8 border-t border-forest/20">
+          <ul className="mt-8 border-t border-navy/20">
             {zones.map((z) => (
-              <li key={z.name} className="py-4 border-b border-forest/20 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                <span className="font-medium text-[15px] text-forest sm:w-64 shrink-0">{z.name}</span>
+              <li key={z.name} className="py-4 border-b border-navy/20 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                <span className="font-medium text-[15px] text-navy sm:w-64 shrink-0">{z.name}</span>
                 <span className="text-[14px] text-ink">{z.note}</span>
               </li>
             ))}

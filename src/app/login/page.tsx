@@ -51,7 +51,7 @@ function LoginForm() {
   };
 
   return (
-    <div data-surface="forest" className="min-h-screen bg-deep-midnight flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden">
+    <div data-surface="navy" className="min-h-screen bg-midnight flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden">
       {/* Decorative background glow elements */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-pawcab-gold/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-sand-beige/5 rounded-full blur-3xl pointer-events-none" />
@@ -61,7 +61,7 @@ function LoginForm() {
         {/* Header with Logo */}
         <div className="flex flex-col items-center text-center mb-8">
           <Link href="/" className="inline-block mb-4 group">
-            <div className="relative w-16 h-16 rounded-2xl bg-deep-midnight flex items-center justify-center p-2.5 shadow-md group-hover:scale-105 transition-transform">
+            <div className="relative w-16 h-16 rounded-2xl bg-midnight flex items-center justify-center p-2.5 shadow-md group-hover:scale-105 transition-transform">
               <Image
                 src="/images/logo-pawcab.png"
                 alt="The PawCab Logo"
@@ -73,14 +73,14 @@ function LoginForm() {
           </Link>
           <div className="inline-flex items-center gap-2 mb-1">
             <span className="w-1.5 h-1.5 rounded-full bg-pawcab-gold" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-warm-taupe">
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-ink">
               Internal CMS
             </span>
           </div>
-          <h1 className="font-playfair text-2xl sm:text-3xl font-bold text-deep-midnight">
+          <h1 className="font-display text-2xl sm:text-3xl font-bold text-midnight">
             The PawCab Admin
           </h1>
-          <p className="text-xs sm:text-sm text-warm-taupe mt-1.5">
+          <p className="text-xs sm:text-sm text-ink mt-1.5">
             Manage website content, pricing, stories & GitHub sync.
           </p>
         </div>
@@ -98,11 +98,11 @@ function LoginForm() {
         {/* Login form */}
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-warm-taupe mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-ink mb-2">
               Admin Password
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-deep-midnight/40">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-midnight/40">
                 <BsShieldLock className="text-base" />
               </div>
               <input
@@ -111,13 +111,13 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password..."
                 autoFocus
-                className="w-full pl-10 pr-11 py-3 bg-white/90 border border-warm-taupe rounded-xl text-deep-midnight text-sm placeholder:text-warm-taupe focus:ring-2 focus:ring-pawcab-gold/70 focus:border-pawcab-gold transition"
+                className="w-full pl-10 pr-11 py-3 bg-white/90 border border-line rounded-xl text-midnight text-sm placeholder:text-ink focus:ring-2 focus:ring-pawcab-gold/70 focus:border-pawcab-gold transition"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-warm-taupe hover:text-deep-midnight transition"
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-ink hover:text-midnight transition"
               >
                 {showPassword ? <BsEyeSlash size={16} /> : <BsEye size={16} />}
               </button>
@@ -127,7 +127,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 px-4 bg-deep-midnight hover:bg-deep-midnight/90 text-white rounded-xl font-medium text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
+            className="w-full py-3.5 px-4 bg-midnight hover:bg-midnight/90 text-white rounded-xl font-medium text-sm tracking-wider uppercase flex items-center justify-center gap-2 shadow-lg transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
           >
             {loading ? (
               <>
@@ -164,13 +164,13 @@ function LoginForm() {
 
         {/* Footer info */}
         <div className="mt-8 pt-6 border-t border-sand-beige/40 flex flex-col items-center gap-3 text-center">
-          <div className="flex items-center gap-1.5 text-xs text-warm-taupe">
+          <div className="flex items-center gap-1.5 text-xs text-ink">
             <PiPawPrint className="text-pawcab-gold" />
             <span>GitHub Contents API & Classic PAT Synced</span>
           </div>
           <Link
             href="/"
-            className="text-xs text-warm-taupe hover:text-deep-midnight transition font-medium"
+            className="text-xs text-ink hover:text-midnight transition font-medium"
           >
             ← Return to PawCab Website
           </Link>
@@ -184,7 +184,7 @@ export default function LoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-deep-midnight flex items-center justify-center text-white">
+        <div className="min-h-screen bg-midnight flex items-center justify-center text-white">
           Loading...
         </div>
       }

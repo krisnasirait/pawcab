@@ -338,7 +338,7 @@ export default function AdminPage() {
   ];
 
   return (
-    <div data-theme="admin" className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans selection:bg-pawcab-gold selection:text-deep-midnight">
+    <div data-theme="admin" className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans selection:bg-pawcab-gold selection:text-midnight">
       {/* Top Navbar */}
       <AdminHeader
         hasUnsavedChanges={hasUnsavedChanges}
@@ -382,7 +382,7 @@ export default function AdminPage() {
             <div className="w-14 h-14 rounded-2xl bg-red-950/50 text-red-400 flex items-center justify-center mx-auto mb-4 text-2xl">
               <BsExclamationTriangleFill />
             </div>
-            <h3 className="font-playfair text-2xl font-bold text-white mb-2">
+            <h3 className="font-display text-2xl font-bold text-white mb-2">
               Failed to Load Content
             </h3>
             <p className="text-xs text-neutral-400 mb-6">
@@ -391,7 +391,7 @@ export default function AdminPage() {
             <button
               type="button"
               onClick={handleManualRefresh}
-              className="px-5 py-2.5 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight font-bold rounded-xl text-xs transition cursor-pointer"
+              className="px-5 py-2.5 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight font-bold rounded-xl text-xs transition cursor-pointer"
             >
               Retry Sync
             </button>
@@ -484,7 +484,7 @@ export default function AdminPage() {
               type="button"
               onClick={() => setIsCommitModalOpen(true)}
               disabled={isPublishing}
-              className="px-4 py-1.5 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight text-xs font-bold transition cursor-pointer flex items-center gap-1.5 shadow-lg"
+              className="px-4 py-1.5 rounded-xl bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight text-xs font-bold transition cursor-pointer flex items-center gap-1.5 shadow-lg"
             >
               <BsUpload />
               <span>Publish to GitHub</span>

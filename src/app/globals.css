@@ -1,70 +1,71 @@
 @import "tailwindcss";
 
 @theme {
-  /* Logo amber anchors the brand; forest is its accessible ink.
-     Roles and measured contrast pairs are documented in DESIGN.md. */
-  --color-canvas: #fbf6f1;
-  --color-accent: #febb00;
-  --color-accent-hover: #ffc61a;
-  --color-forest: #1c3f1d;
-  --color-accent-ink: var(--color-forest);
-  --color-deepgreen: #2a4726;
-  --color-sage: #cee2c5;
-  --color-sagewash: #f4f9ee;
-  --color-ink: #3d3d3d;
-  --color-line: #333333;
-  --color-surface: #ffffff;
+  /* PawCab brand system (22 Nov 2026 board). Semantic names stay stable
+     while values move. Contrast pairs verified in
+     scripts/check-color-tokens.py — never eyeball a pairing. */
+  --color-canvas: #F7F2E8; /* warm ivory — page background */
+  --color-accent: #FDC300; /* pawcab gold — CTAs, key highlights only */
+  --color-accent-hover: #D9A800; /* darker gold for gold-bg hovers */
+  --color-navy: #283B70; /* pawcab navy — primary text, header, key surfaces */
+  --color-accent-ink: var(--color-navy);
+  --color-midnight: #14233F; /* deep midnight — footer, overlays, estimator band */
+  --color-sand: #DDD0BA; /* sand beige — secondary surfaces, dividers */
+  --color-taupe: #9C8B75; /* NEVER body text (2.96:1 on ivory) — borders, inactive icons */
+  --color-ink: #283B70; /* body copy = navy (9.65:1 on ivory) */
+  --color-line: #333333; /* hairlines, input borders (11:1 on ivory) */
+  --color-surface: #FCFAF6; /* soft white — cards, estimator widget */
   --color-on-dark: var(--color-surface);
-  --color-focus: var(--color-forest);
+  --color-focus: var(--color-navy);
   --color-error: var(--color-red-700);
   --color-error-dark: var(--color-red-300);
   --color-success: var(--color-emerald-600);
   --color-info: var(--color-blue-500);
 
-  /* Map categories, not additional brand accents. Labels repeat zone identity. */
-  --color-map-zone-1: var(--color-sage);
-  --color-map-zone-2: var(--color-accent);
-  --color-map-zone-3: #ede6c9;
-  --color-map-zone-4: #8fbdb0;
+  /* Map categories, not additional brand accents. Label identity lives
+     in the zone chips, not the fill alone. */
+  --color-map-zone-1: #DDD0BA;
+  --color-map-zone-2: #FDC300;
+  --color-map-zone-3: #9C8B75;
+  --color-map-zone-4: #283B70;
 
-  /* Compatibility aliases: existing CMS/admin utilities retain their values. */
+  /* Compatibility aliases: legacy names resolve to brand values so older
+     utility classes keep rendering during the migration. */
   --color-pawcab-gold: var(--color-accent);
-  --color-pawcab-navy: var(--color-forest);
-  --color-deep-midnight: var(--color-forest);
-  --color-brass: var(--color-deepgreen);
-  --color-warm-ivory: var(--color-surface);
-  --color-sand-beige: var(--color-sage);
-  --color-warm-taupe: var(--color-ink);
+  --color-pawcab-navy: var(--color-navy);
+  --color-brass: var(--color-accent);
+  --color-warm-ivory: var(--color-canvas);
+  --color-sand-beige: var(--color-sand);
+  --color-warm-taupe: var(--color-taupe);
   --color-soft-white: var(--color-surface);
-  --color-canopy: var(--color-forest);
-  --color-lagoon: var(--color-deepgreen);
-  --color-rattan: var(--color-sage);
+  --color-canopy: var(--color-navy);
+  --color-lagoon: var(--color-midnight);
+  --color-rattan: var(--color-sand);
   --color-bark: var(--color-ink);
   --color-paper: var(--color-surface);
 
-  /* Type: Cormorant Garamond stands in for Typekit's licensed argent-cf;
-     Public Sans is the body face. Alias names are kept for compatibility only,
-     see DESIGN.md "Aliases kept on purpose". */
-  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
-  --font-text: var(--font-public-sans), system-ui, sans-serif;
-  --font-fraunces: var(--font-cormorant), Georgia, serif;
-  --font-playfair: var(--font-cormorant), Georgia, serif;
-  --font-dm-sans: var(--font-public-sans), system-ui, sans-serif;
-  --font-montserrat: var(--font-public-sans), system-ui, sans-serif;
+  /* Type: Playfair Display for display, Montserrat for UI/body.
+     Alias names are kept for compatibility only. */
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-text: var(--font-montserrat), system-ui, sans-serif;
+  --font-fraunces: var(--font-display);
+  --font-cormorant: var(--font-display);
+  --font-public-sans: var(--font-text);
+  --font-dm-sans: var(--font-text);
 }
 
-/* The wordmark uses the display face; the old class name is gone. */
+/* The wordmark uses the display face. */
 .font-display {
   font-family: var(--font-display) !important;
 }
 
 @layer base {
-  /* Public scope: warm canvas, stronger editorial type. Admin/login keep
+  /* Public scope: warm ivory canvas, navy editorial type. Admin/login keep
      the neutral body defaults below. */
   main[data-ui="public"] {
     background-color: var(--color-canvas);
     color: var(--color-ink);
-    font-family: var(--font-public-sans), system-ui, sans-serif;
+    font-family: var(--font-text);
     font-size: 17px;
     font-weight: 400;
     line-height: 1.55;
@@ -76,26 +77,26 @@
   body:has(main[data-ui="public"]) {
     font-weight: 400;
     line-height: 1.55;
-    --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
-    --font-fraunces: var(--font-cormorant), Georgia, serif;
-    --font-playfair: var(--font-cormorant), Georgia, serif;
-    --font-text: var(--font-public-sans), system-ui, sans-serif;
-    --font-dm-sans: var(--font-public-sans), system-ui, sans-serif;
-    --font-montserrat: var(--font-public-sans), system-ui, sans-serif;
+    --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+    --font-fraunces: var(--font-display);
+    --font-text: var(--font-montserrat), system-ui, sans-serif;
+    --font-dm-sans: var(--font-text);
+    --font-public-sans: var(--font-text);
+    --font-cormorant: var(--font-display);
   }
 
   main[data-ui="public"] :is(h1, h2, h3) {
-    font-family: var(--font-cormorant), Georgia, serif;
+    font-family: var(--font-display);
     font-weight: 400;
     letter-spacing: -0.01em;
-    color: var(--color-forest);
+    color: var(--color-navy);
     text-wrap: balance;
   }
 
   body {
     background-color: var(--color-surface);
     color: var(--color-ink);
-    font-family: var(--font-public-sans), system-ui, sans-serif;
+    font-family: var(--font-text);
     font-size: 18px;
     font-weight: 300;
     line-height: 1.35;
@@ -104,17 +105,17 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-cormorant), Georgia, serif;
-    font-weight: 300;
-    line-height: 0.95;
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.08;
     letter-spacing: -0.01em;
-    color: var(--color-forest);
+    color: var(--color-navy);
     text-wrap: balance;
   }
 
   /* Headings that sit on a dark band inherit that band's colour instead of
-     the page default, so a heading can never land forest-on-forest. */
-  [data-surface="forest"] :is(h1, h2, h3, h4, h5, h6) {
+     the page default, so a heading can never land navy-on-navy. */
+  [data-surface="navy"] :is(h1, h2, h3, h4, h5, h6) {
     color: inherit;
   }
 
@@ -141,19 +142,20 @@
     cursor: not-allowed;
   }
 
-  /* R-32: one visible focus indicator everywhere. */
+  /* R-32: one visible focus indicator everywhere. Gold on dark surfaces,
+     navy on light — both verified ≥3:1 against their neighbours. */
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 2px;
   }
 
-  [data-surface="forest"],
+  [data-surface="navy"],
   [data-theme="admin"] {
     --color-focus: var(--color-accent);
   }
 
   [data-surface="light"] {
-    --color-focus: var(--color-forest);
+    --color-focus: var(--color-navy);
   }
 
   ::placeholder {

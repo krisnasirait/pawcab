@@ -87,7 +87,7 @@ export default function StoriesTab({
           onClick={() => setActiveSection("stories")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSection === "stories"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -98,7 +98,7 @@ export default function StoriesTab({
           onClick={() => setActiveSection("spotlight")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSection === "spotlight"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -109,7 +109,7 @@ export default function StoriesTab({
           onClick={() => setActiveSection("metrics")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSection === "metrics"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -120,7 +120,7 @@ export default function StoriesTab({
           onClick={() => setActiveSection("hero")}
           className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
             activeSection === "hero"
-              ? "bg-pawcab-gold text-deep-midnight shadow-md"
+              ? "bg-pawcab-gold text-midnight shadow-md"
               : "text-neutral-400 hover:text-white"
           }`}
         >
@@ -133,7 +133,7 @@ export default function StoriesTab({
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-4">
             <div>
-              <h3 className="font-playfair text-xl font-bold text-white">PawCab Customer Stories</h3>
+              <h3 className="font-display text-xl font-bold text-white">PawCab Customer Stories</h3>
               <p className="text-xs text-neutral-400">
                 Manage the community gallery of verified pet passenger experiences in Bali.
               </p>
@@ -141,7 +141,7 @@ export default function StoriesTab({
             <button
               type="button"
               onClick={handleAddStory}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-deep-midnight rounded-xl font-bold text-xs transition cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-pawcab-gold hover:bg-pawcab-gold/90 text-midnight rounded-xl font-bold text-xs transition cursor-pointer"
             >
               <BsPlusLg /> Add New Story
             </button>
@@ -296,7 +296,7 @@ export default function StoriesTab({
       {activeSection === "spotlight" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
               <BsBookmarkStar className="text-pawcab-gold" />
               <span>Spotlight Featured Story</span>
             </h3>
@@ -412,7 +412,7 @@ export default function StoriesTab({
       {activeSection === "metrics" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Impact & Trust Metrics</h3>
+            <h3 className="font-display text-xl font-bold text-white">Impact & Trust Metrics</h3>
             <p className="text-xs text-neutral-400">
               The 4 statistical counters displayed on the Stories page.
             </p>
@@ -482,7 +482,7 @@ export default function StoriesTab({
       {activeSection === "hero" && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
           <div className="border-b border-neutral-800 pb-4">
-            <h3 className="font-playfair text-xl font-bold text-white">Stories Page Hero</h3>
+            <h3 className="font-display text-xl font-bold text-white">Stories Page Hero</h3>
             <p className="text-xs text-neutral-400">
               Hero title, subtitle, and photo for `/stories`.
             </p>

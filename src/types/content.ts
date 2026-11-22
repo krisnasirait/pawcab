@@ -168,6 +168,8 @@ export interface FAQItem {
   number: string;
   question: string;
   answer: string;
+  /** Optional sub-section inside one FAQ list (e.g. obedience add-on). */
+  group?: string;
 }
 
 export interface HighlightItem {

@@ -138,7 +138,7 @@ export default function AddressSearchInput({
       {/* Field Label */}
       <label
         htmlFor={inputId}
-        className="flex items-center gap-1.5 text-sm text-warm-taupe font-medium mb-2"
+        className="flex items-center gap-1.5 text-sm text-ink font-medium mb-2"
       >
         {icon}
         {label}
@@ -147,7 +147,7 @@ export default function AddressSearchInput({
       <div className="relative">
         <PiMagnifyingGlass
           aria-hidden="true"
-          className="absolute left-3.5 top-1/2 -translate-y-1/2 text-warm-taupe text-xs pointer-events-none"
+          className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink text-xs pointer-events-none"
         />
         <input
           ref={inputRef}
@@ -179,14 +179,14 @@ export default function AddressSearchInput({
             if (results.length > 0) setOpen(true);
           }}
           placeholder={placeholder}
-          className="w-full min-h-[48px] bg-white border border-line rounded-xl pl-9 pr-12 py-3 text-sm font-normal text-forest placeholder:text-ink focus:border-forest transition-colors"
+          className="w-full min-h-[48px] bg-white border border-line rounded-xl pl-9 pr-12 py-3 text-sm font-normal text-navy placeholder:text-ink focus:border-navy transition-colors"
         />
         {query ? (
           <button
             type="button"
             onClick={handleClear}
             aria-label={`Clear ${label}`}
-            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-sm text-warm-taupe hover:text-deep-midnight transition-colors"
+            className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-sm text-ink hover:text-midnight transition-colors"
           >
             <PiX aria-hidden="true" className="text-lg" />
           </button>
@@ -198,7 +198,7 @@ export default function AddressSearchInput({
               disabled={locating}
               aria-label={`Use my current location for ${label}`}
               title="Use my location"
-              className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-sm text-warm-taupe hover:text-deep-midnight transition-colors disabled:opacity-60"
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-sm text-ink hover:text-midnight transition-colors disabled:opacity-60"
             >
               {locating ? (
                 <span
@@ -219,7 +219,7 @@ export default function AddressSearchInput({
         <div className="absolute top-full left-0 right-0 mt-2 z-50 bg-white rounded-2xl border border-sand-beige/70 overflow-hidden">
           {status === "searching" && (
             <div
-              className="flex items-center gap-3 px-4 py-4 text-xs sm:text-sm text-warm-taupe font-medium"
+              className="flex items-center gap-3 px-4 py-4 text-xs sm:text-sm text-ink font-medium"
               role="status"
             >
               <span
@@ -248,8 +248,8 @@ export default function AddressSearchInput({
                     onMouseEnter={() => setActiveIdx(idx)}
                     className={`w-full text-left px-4 py-3 flex items-center gap-2.5 transition-colors min-h-[44px] ${
                       idx === activeIdx
-                        ? "bg-pawcab-gold/20 text-deep-midnight"
-                        : "text-deep-midnight hover:bg-warm-ivory"
+                        ? "bg-pawcab-gold/20 text-midnight"
+                        : "text-midnight hover:bg-warm-ivory"
                     }`}
                   >
                     <span
@@ -263,7 +263,7 @@ export default function AddressSearchInput({
                       >
                         {place.short}
                       </span>
-                      <span className="block truncate text-[11px] text-warm-taupe font-normal">
+                      <span className="block truncate text-[11px] text-ink font-normal">
                         {place.name}
                       </span>
                     </span>
@@ -275,7 +275,7 @@ export default function AddressSearchInput({
 
           {status === "empty" && (
             <div className="px-4 py-4">
-              <p className="text-xs sm:text-sm text-warm-taupe mb-3">
+              <p className="text-xs sm:text-sm text-ink mb-3">
                 No places found in Bali. Try a nearby landmark, street, or
                 beach.
               </p>
@@ -286,7 +286,7 @@ export default function AddressSearchInput({
                     setOpen(false);
                     onPickOnMap();
                   }}
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full bg-forest text-white text-xs font-medium hover:bg-deepgreen transition-colors"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[44px] rounded-full bg-navy text-white text-xs font-medium hover:bg-midnight transition-colors"
                 >
                   <PiMapPin aria-hidden="true" className="text-sm" />
                   Pick on Map Instead
@@ -297,7 +297,7 @@ export default function AddressSearchInput({
 
           {status === "error" && (
             <div className="flex items-center justify-between gap-3 px-4 py-3.5">
-              <p className="text-xs sm:text-sm text-warm-taupe">
+              <p className="text-xs sm:text-sm text-ink">
                 Address search failed. Check your connection and retry.
               </p>
               <button
@@ -306,7 +306,7 @@ export default function AddressSearchInput({
                   setStatus("searching");
                   setAttempt((n) => n + 1);
                 }}
-                className="shrink-0 px-4 py-2 min-h-[44px] rounded-full bg-forest text-white text-xs font-medium hover:bg-deepgreen transition-colors"
+                className="shrink-0 px-4 py-2 min-h-[44px] rounded-full bg-navy text-white text-xs font-medium hover:bg-midnight transition-colors"
               >
                 Retry
               </button>
@@ -315,7 +315,7 @@ export default function AddressSearchInput({
         </div>
       )}
 
-      <p className="mt-1.5 text-[11px] text-warm-taupe">
+      <p className="mt-1.5 text-[11px] text-ink">
         {results.some((r) => r.source === "local") ? (
           <>Address search by OpenStreetMap contributors and PawCab&apos;s local list</>
         ) : (
@@ -325,7 +325,7 @@ export default function AddressSearchInput({
               href="https://www.openstreetmap.org/copyright"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-deep-midnight transition-colors"
+              className="underline hover:text-midnight transition-colors"
             >
               OpenStreetMap
             </a>{" "}

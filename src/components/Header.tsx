@@ -44,12 +44,12 @@ export default function Header({ theme }: HeaderProps) {
 
   return (
     <header
-      className="sticky top-0 left-0 w-full z-30 bg-canvas/95 backdrop-blur text-forest border-b border-forest/15"
-      data-surface="light"
+      className="sticky top-0 left-0 w-full z-30 bg-navy/95 backdrop-blur text-white border-b border-white/10"
+      data-surface="navy"
     >
       <div className="max-w-7xl mx-auto w-full px-5 md:px-8 flex justify-between items-center min-h-[72px] md:min-h-[80px] py-3">
         <Link href="/" className="flex items-center gap-2.5 min-h-[44px]" aria-label="The PawCab home">
-          <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-forest shrink-0">
+          <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 border border-white/15 shrink-0">
             <Image
               src="/images/logo-pawcab.png"
               alt="The PawCab logo"
@@ -59,10 +59,10 @@ export default function Header({ theme }: HeaderProps) {
             />
           </span>
           <span className="flex flex-col leading-none">
-            <span className="font-display text-lg md:text-[22px] font-medium tracking-wide text-forest">
+            <span className="font-display text-lg md:text-[22px] font-medium tracking-wide text-white">
               THE PAWCAB
             </span>
-            <span className="text-[11px] font-medium tracking-wide text-ink mt-0.5">
+            <span className="text-[11px] font-medium tracking-wide text-white/70 mt-0.5">
               Private pet rides, Bali
             </span>
           </span>
@@ -73,7 +73,7 @@ export default function Header({ theme }: HeaderProps) {
             <Link
               key={link.label}
               href={link.href}
-              className="text-forest underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-accent hover:underline transition-colors duration-200"
+              className="text-white/85 underline-offset-[6px] decoration-2 decoration-transparent hover:decoration-accent hover:underline hover:text-white transition-colors duration-200"
             >
               {link.label}
             </Link>
@@ -85,7 +85,7 @@ export default function Header({ theme }: HeaderProps) {
             href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center min-h-[44px] rounded-full bg-accent text-forest font-medium text-[15px] px-5 py-2.5 border-2 border-accent hover:bg-accent-hover hover:border-accent-hover transition-colors duration-200"
+            className="hidden sm:inline-flex items-center min-h-[44px] rounded-full bg-accent text-navy font-medium text-[15px] px-5 py-2.5 border-2 border-accent hover:bg-accent-hover hover:border-accent-hover transition-colors duration-200"
           >
             Book a ride
           </a>
@@ -96,7 +96,7 @@ export default function Header({ theme }: HeaderProps) {
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             ref={triggerRef}
-            className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-forest/35 text-forest hover:border-forest transition-colors"
+            className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border-2 border-white/30 text-white hover:border-white transition-colors"
           >
             <span aria-hidden="true" className="text-xl leading-none">{menuOpen ? "✕" : "☰"}</span>
           </button>
@@ -107,7 +107,7 @@ export default function Header({ theme }: HeaderProps) {
         <div
           id="mobile-nav"
           ref={panelRef}
-          data-surface="light" className="lg:hidden mx-4 mb-3 rounded-2xl bg-white text-forest border border-forest/20 overflow-hidden"
+          data-surface="light" className="lg:hidden mx-4 mb-3 rounded-2xl bg-white text-navy border border-navy/20 overflow-hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col p-3">
             {NAV_LINKS.map((link) => (
@@ -115,7 +115,7 @@ export default function Header({ theme }: HeaderProps) {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="px-5 py-3.5 min-h-[48px] flex items-center rounded-xl text-[16px] font-medium text-forest hover:bg-sagewash hover:text-deepgreen transition-colors"
+                className="px-5 py-3.5 min-h-[48px] flex items-center rounded-xl text-[16px] font-medium text-navy hover:bg-surface hover:text-midnight transition-colors"
               >
                 {link.label}
               </Link>
@@ -124,7 +124,7 @@ export default function Header({ theme }: HeaderProps) {
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 mb-2 inline-flex items-center justify-center rounded-full bg-accent text-forest font-medium px-5 py-3.5 min-h-[48px] text-[15px] border-2 border-line"
+              className="mt-2 mb-2 inline-flex items-center justify-center rounded-full bg-accent text-navy font-medium px-5 py-3.5 min-h-[48px] text-[15px] border-2 border-line"
             >
               Book a ride
             </a>

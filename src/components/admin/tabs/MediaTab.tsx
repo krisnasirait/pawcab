@@ -92,7 +92,7 @@ export default function MediaTab() {
       {/* Upload Zone Card */}
       <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="border-b border-neutral-800 pb-4">
-          <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+          <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
             <BsImages className="text-pawcab-gold" />
             <span>GitHub Media & Image Uploader</span>
           </h3>
@@ -173,7 +173,7 @@ export default function MediaTab() {
       {/* Recent Uploads Reel */}
       {recentUploads.length > 0 && (
         <div className="bg-neutral-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-4">
-          <h3 className="font-playfair text-xl font-bold text-white flex items-center gap-2">
+          <h3 className="font-display text-xl font-bold text-white flex items-center gap-2">
             <BsFileEarmarkCheck className="text-emerald-400" />
             <span>Recently Uploaded to GitHub</span>
           </h3>
