@@ -665,37 +665,37 @@
           "id": 1,
           "number": "01",
           "question": "What type of vehicle do you use for pet transportation?",
-          "answer": "A private SUV with air conditioning on before every pickup, sanitised mats, and room for up to 3 dogs. You can ride along."
+          "answer": "A private SUV with sanitised mats and room for up to 3 dogs. The air conditioning is on before every pickup. You can ride along."
         },
         {
           "id": 2,
           "number": "02",
           "question": "How many pets can travel in the car?",
-          "answer": "Our vehicle can accommodate up to 3 large dogs or 4 medium-sized dogs, depending on their size and comfort requirements."
+          "answer": "Our vehicle can accommodate up to 3 large dogs or 4 medium-sized dogs, depending on their size and how much space they need."
         },
         {
           "id": 3,
           "number": "03",
           "question": "Is the vehicle air-conditioned?",
-          "answer": "Yes, continuous air conditioning is maintained throughout the journey to keep pets cool and calm in Bali's tropical climate."
+          "answer": "Yes, the air conditioning stays on throughout the journey to keep pets cool and calm in Bali's tropical climate."
         },
         {
           "id": 4,
           "number": "04",
           "question": "Can pet owners travel with their pets?",
-          "answer": "Absolutely! Up to 2 human companions are welcome to ride alongside their pets at no extra cost."
+          "answer": "Absolutely! Up to 2 people can ride along with their pet at no extra cost."
         },
         {
           "id": 5,
           "number": "05",
           "question": "Do you provide pet transportation outside Bali?",
-          "answer": "At the moment, our transportation service is dedicated to destinations across Bali island only."
+          "answer": "At the moment, our transportation service covers Bali island only."
         },
         {
           "id": 6,
           "number": "06",
           "question": "What if my destination is outside your listed service zones but still within Bali?",
-          "answer": "No problem! Please contact us for a personalized quotation."
+          "answer": "No problem! Contact us for a personalized quote."
         },
         {
           "id": 7,
@@ -706,7 +706,7 @@
         {
           "id": 8,
           "number": "08",
-          "question": "Do you accept same-day booking?",
+          "question": "Do you accept same-day bookings?",
           "answer": "Yes, same-day bookings are welcome, subject to availability."
         },
         {
@@ -719,7 +719,7 @@
           "id": 10,
           "number": "10",
           "question": "Is there any additional fee if I need the driver to wait?",
-          "answer": "Yes. On a round trip the driver waits on site and the fare is twice the one-way fare."
+          "answer": "Yes. On a round trip the driver waits on site and the fare is twice the one-way price."
         },
         {
           "id": 11,
@@ -737,7 +737,7 @@
           "id": 13,
           "number": "13",
           "question": "Can you transport my pet without me?",
-          "answer": "Absolutely! Your pet can travel with us without the owner present."
+          "answer": "Absolutely! Your pet can travel with us without you."
         }
       ]
     },
@@ -822,13 +822,13 @@
           "id": 1,
           "number": "01",
           "question": "Can I request walking times?",
-          "answer": "Yes, we recommend early morning (07:00 - 09:00) or late afternoon (16:30 - 18:30) to avoid hot pavement and excessive sun."
+          "answer": "Yes, we recommend early morning (07:00 - 09:00) or late afternoon (16:30 - 18:30) to avoid hot pavement and the midday heat."
         },
         {
           "id": 2,
           "number": "02",
           "question": "What if my dog is reactive to other dogs?",
-          "answer": "Our walks are private and handlers are trained to manage space, choose quiet paths, and ensure zero confrontation with street dogs."
+          "answer": "Our walks are private and handlers are trained to manage space, choose quiet paths, and keep a safe distance from street dogs."
         },
         {
           "id": 3,
@@ -840,25 +840,25 @@
           "id": 4,
           "number": "04",
           "question": "How long is each walking session?",
-          "answer": "Our standard walking session lasts 1 hour."
+          "answer": "Our standard walking session lasts one hour."
         },
         {
           "id": 5,
           "number": "05",
           "question": "Will my dog be walked with other dogs?",
-          "answer": "Our walking sessions are privately arranged."
+          "answer": "No, every walk is private: just your dog and the handler."
         },
         {
           "id": 6,
           "number": "06",
           "question": "Do I need to be home during the walk?",
-          "answer": "Not necessarily! We can walk your dog without you being present, as long as pick-up and access arrangements have been confirmed in advance."
+          "answer": "Not necessarily! We can walk your dog without you being present, as long as pickup and access arrangements have been confirmed in advance."
         },
         {
           "id": 7,
           "number": "07",
           "question": "Is transportation included in the walking fee?",
-          "answer": "Transportation is not required for Neighborhood Walks. For Beach Walks, an additional Pet Transportation fee applies based on your location."
+          "answer": "Transportation is not required for neighborhood walks. For beach walks, an additional pet transportation fee applies based on your location."
         },
         {
           "id": 8,
@@ -910,7 +910,7 @@
           "number": "15",
           "group": "Basic Obedience Add-On",
           "question": "Is there an additional charge?",
-          "answer": "Yes. Basic Obedience is available as an optional add-on for an additional fee."
+          "answer": "Yes, Basic Obedience is available as an optional add-on."
         },
         {
           "id": 16,
@@ -996,7 +996,7 @@
           "id": 1,
           "number": "01",
           "question": "Do you do a meet-and-greet beforehand?",
-          "answer": "Yes, we always arrange a complimentary meet-and-greet so your pets become familiar with their sitter and we can review routines."
+          "answer": "Yes, we always arrange a complimentary meet-and-greet so your pets become familiar with their sitter and we can learn their routines."
         },
         {
           "id": 2,
@@ -1008,7 +1008,7 @@
           "id": 3,
           "number": "03",
           "question": "Where does the pet sitting take place?",
-          "answer": "We provide in-home pet sitting at your house, villa or accommodation, so your pets can stay comfortable in a familiar environment."
+          "answer": "We provide in-home pet sitting at your house, villa, or accommodation, so your pets can stay comfortable in a familiar environment."
         },
         {
           "id": 4,
@@ -1038,7 +1038,7 @@
           "id": 8,
           "number": "08",
           "question": "Will my pet receive individual attention?",
-          "answer": "Yes! We focus on personalized care, ensuring your pet receives attention, companionship, and care suited to their individual needs."
+          "answer": "Yes! We focus on personalized care, ensuring your pet receives companionship and care suited to their individual needs."
         },
         {
           "id": 9,
@@ -1050,7 +1050,7 @@
           "id": 10,
           "number": "10",
           "question": "How much does pet sitting cost?",
-          "answer": "Our rates depend on your location, the number of pets, and duration of care."
+          "answer": "Our rates depend on your location, the number of pets, and the duration of care."
         },
         {
           "id": 11,
@@ -1090,7 +1090,7 @@
           "number": "16",
           "group": "Basic Obedience Add-On",
           "question": "Is there an additional charge?",
-          "answer": "Yes. Basic Obedience is available as an optional add-on for an additional fee."
+          "answer": "Yes, Basic Obedience is available as an optional add-on."
         },
         {
           "id": 17,
